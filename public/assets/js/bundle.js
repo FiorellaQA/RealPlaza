@@ -34,7 +34,47 @@ const HeaderAll = (titulo,update) => {
 
   return header;
 };
+function initMap() {
+  var mall = {
+    lat: -12.172645,
+    lng: -76.992717
+  };
 
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 18,
+    center: mall
+  });
+
+
+  var latitud, longitud, myLocation;
+  var funcionExito = function(posicion) {
+    latitud = posicion.coords.latitude;
+    longitud = posicion.coords.longitude;
+
+    myLocation = new google.maps.Marker({
+      position: { lat: latitud, lng: longitud},
+      map: map
+    });
+
+    map.setZoom(18);
+    map.setCenter({lat: latitud, lng: longitud});
+  }
+
+  var funcionError = function(error) {
+    alert("Tenemos un problema con encontrar tu ubicación");
+  };
+
+  function searchMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
+    }
+  }
+
+ //encuentra mi ubicación
+  document.getElementById('findMe').addEventListener('click', searchMe);
+
+
+}
 'use strict';
 
 const ChoiceProv = (update) => {
@@ -89,31 +129,7 @@ const ChoiceMall = (update) => {
 
 };
 
-'use strict';
 
-const MapaMall = (update) => {
-  const section = $('<section></section>');
-
-  const divMap = $('<div></div>');
-  const mapMall =  $('<div id="map">acá va el mapa</div>');
-
-  const divDetails = $('<div></div>');
-  const detailsMall =  $('<div>acá van los detalles</div>');
-
-
-  section.append(HeaderAll('Real Plaza Chorrillos'));
-
-  section.append(divMap);
-  divMap.append(mapMall);
-
-  section.append(divDetails);
-  divDetails.append(detailsMall);
-
-
-
-  return section;
-
-};
 'use strict';
 
 const ChoiceOption = (update) => {
@@ -137,12 +153,12 @@ const ChoiceOption = (update) => {
   divChoiceOption.append(btnUseLocation);
   divChoiceOption.append(btnChoiceRP);
 
-/*  btnUseLocation.on('click', (e) => {
+  btnUseLocation.on('click', (e) => {
     e.preventDefault();
-    //state.page = Choice(update);
+    state.page = 2;
     update();
 
-  });*/
+  });
 
   btnChoiceRP.on('click', (e) => {
     e.preventDefault();
@@ -162,6 +178,30 @@ const ChoiceOption = (update) => {
 //    const header = $('<header></header>');
 //    return header;
 //  };
+
+'use strict';
+
+const MapaMall = (update) => {
+  const section = $('<section></section>');
+
+  const divMap = $('<div></div>');
+  const mapMall =  $('<div id="map">acá va el mapa</div>');
+
+  const divDetails = $('<div></div>');
+  const detailsMall =  $('<div>acá van los detalles</div>');
+
+
+  section.append(HeaderAll('Real Plaza Chorrillos'));
+
+  section.append(divMap);
+  divMap.append(mapMall);
+
+  section.append(divDetails);
+  divDetails.append(detailsMall);
+
+  return section;
+
+};
 
 'use strict';
 
