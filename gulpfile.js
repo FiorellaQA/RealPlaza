@@ -22,7 +22,7 @@ var paths = {
   img: "img/**",
   js: "js/**/*.js",
 
-  components: "js/componentes/**.js",
+  components: "js/components/**.js",
   utils: "utils/**",
 
   css: "css",
