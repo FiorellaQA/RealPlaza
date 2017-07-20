@@ -21,11 +21,18 @@ const ChoiceOption = (update) => {
   divChoiceOption.append(btnUseLocation);
   divChoiceOption.append(btnChoiceRP);
 
-  btnUseLocation.on('click', () => {
+/*  btnUseLocation.on('click', (e) => {
+    e.preventDefault();
+    //state.page = Choice(update);
     update();
-  });
 
-  btnChoiceRP.on('click', () => {
+  });*/
+
+  btnChoiceRP.on('click', (e) => {
+    e.preventDefault();
+    state.page = 1;
+    update();
+
 
   });
 
