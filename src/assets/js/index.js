@@ -13,12 +13,18 @@ const render = (root) => {
   const wrapper = $('<div class="wrapper">hjjhj</div>');
 
   if(state.page == null){
-    wrapper.append(Header(_=>{ render(root) }));
+    wrapper.append(ChoiceOption(_=>{ render(root) }));
+
+    //wrapper.append(ChoiceMall(_=>{ render(root) }));
+  } else if (state.page == 1){
+    wrapper.append(ChoiceProv(_=>{ render(root) }));
+  } else if (state.page == 2){
+    wrapper.append(ChoiceMall(_=>{ render(root) }));
+  } else if (state.page == 3){
+    wrapper.append(MapaMall(_=>{ render(root) }));
   }
-
   root.append(wrapper);
-}
-
+};
 const state = {
   page: null,
   data:{}
@@ -41,7 +47,6 @@ $( _ => {
     console.log(filtro(arr,'VACANCY'));
   });
 
-
-  // const root = $("#root");
-  // render(root);
+  const root = $("#root");
+  render(root);
 });
