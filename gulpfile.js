@@ -20,9 +20,9 @@ var paths = {
   assets: "assets/",
   html: "**/*.html",
   img: "img/**",
-  js:"js/*.js",
+  js: "js/**/*.js",
 
-  components: "components/**",
+  components: "js/componentes/**.js",
   utils: "utils/**",
 
   css: "css",
@@ -30,7 +30,10 @@ var paths = {
   fontCss: "css/**",
   sass: "scss/**/*.scss",
   mainSass: "scss/main.scss",
-  mainJS:"js/**/*.js"
+  mainJS:"js/index.js",
+
+  models: "js/models/**.js",
+  vendor: "js/vendor/**.js",
 };
 
 var sources = {
@@ -44,7 +47,11 @@ var sources = {
   fontCss: config.source + paths.assets + paths.fontCss,
   sass: config.source + paths.assets + paths.sass,
   rootSass: config.source + paths.assets + paths.mainSass,
-  rootJS: config.source + paths.assets + paths.mainJS
+  rootJS: config.source + paths.assets + paths.mainJS,
+  vendor: config.source+paths.assets+ paths.vendor,
+  models: config.source+paths.assets+ paths.models,
+  components: config.source + paths.assets + paths.components,
+
 };
 
 //tareas independientes
@@ -77,15 +84,14 @@ gulp.task('sass', ()=> {
     .pipe(gulp.dest(config.dist + paths.assets + "css"));
 });
 
-gulp.task('js', ()=> {
-  gulp.src(sources.rootJS)
-  //.pipe(browserify())
-    .pipe(concat('bundle.js'))
-    //.pipe(rename("bundle.js"))
-    //.pipe(uglify())
-    .pipe(gulp.dest(config.dist + paths.assets + "js"));
+gulp.task('js', ()=>{
+  console.log(sources.components);
+  gulp.src([sources.models,sources.components,sources.rootJS])
+  .pipe(concat("new.js"))//temporal no es necsario en un existente
+  .pipe(browserify())
+  .pipe(rename("bundle.js"))
+  .pipe(gulp.dest(config.dist + paths.assets + "js"));
 });
-
 //agregando tareas watch
 gulp.task("html-watch", ["html"], function (done) {
   browserSync.reload();
@@ -123,6 +129,6 @@ gulp.task("serve", ()=> {
   gulp.watch(sources.img, ["img-watch"]);
   gulp.watch(sources.fonts, ["fonts-watch"]);
   gulp.watch(sources.sass, ["sass-watch"]);
-  gulp.watch(sources.rootJS, ["js-watch"]);
+  gulp.watch(sources.js, ["js-watch"]);
 
 });
