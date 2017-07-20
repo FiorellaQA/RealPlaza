@@ -1,0 +1,8 @@
+#SCSS caché
+.sass-cache/
+
+#map css
+main.css.map
+
+# Dependency directories
+node_modules/

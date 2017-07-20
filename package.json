@@ -1,0 +1,25 @@
+{
+  "name": "real-plaza",
+  "version": "1.0.0",
+  "description": "Cómo llegar al mall más cercano y luego a la tienda que quiero ir",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "real",
+    "plaza"
+  ],
+  "author": "Ruth Salvador, Flor Tello, Sandra Solorzano, Fiorella Quispe, Rosmery Maldonado",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0"
+  }
+}
