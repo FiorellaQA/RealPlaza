@@ -16,6 +16,9 @@ const state = {
 };
 
 $( _ => {
-  const root = $("#root");
-  render(root);
+  getJSON("http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarCoordenadas&json=%7B%7D").then((response) => {
+    console.log(response);
+  });
+  // const root = $("#root");
+  // render(root);
 });
