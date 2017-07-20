@@ -1,4 +1,12 @@
 'use strict';
+const  filtro= (array, destino) => {
+  console.log(state.data);
+  return state.data.coordenadas.filter((e,i)=>{
+      if(e.DESTINO.indexOf(destino) !== -1){
+        return e;
+      }
+  });
+};
 
 const render = (root) => {
   root.empty();
@@ -10,27 +18,30 @@ const render = (root) => {
 
   root.append(wrapper);
 }
+
 const state = {
   page: null,
   data:{}
 };
 
 $( _ => {
-  getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarDepartamento&json={}').then((response) => {
-    state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
-  });
-  getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarInmueble&json={"ps_cod_departamento":""}').then((response) => {
-    state.data.inmuebles = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
-  });
+
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
 
+  ListarInmuebles();
+  ListarDepartamentos();
   ListarInmueble(cod_depa);
   ListarRubro(cod_inmueble);
   ListarLocales(cod_inmueble,cod_rubro);
+  ListarCoordenadas().then((response)=>{
+    console.log(state.data.coordenadas);
+    var arr = state.data.coordenadas;
+    console.log(filtro(arr,'VACANCY'));
+  });
 
-  // console.log(state.data);
+
   // const root = $("#root");
   // render(root);
 });
