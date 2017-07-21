@@ -14,7 +14,6 @@ const InicioSesion = (update) => {
   section.append(container);
 
   btnNext.on('click',(e) => {
-    console.log('click');
     state.page = 2;
     update();
   });

@@ -44,10 +44,14 @@ const render = (root) => {
   root.append(wrapper);
 };
 const state = {
-  page: 2,
+  page: 0,
   data:{},
   selectRegion:null,
-  selectTienda:null
+  selectTienda:null,
+  selectRubro:null,
+  codigoInmueble: null,
+  nombreDestino: null
+
 };
 
 $( _ => {

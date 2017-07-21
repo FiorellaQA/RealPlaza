@@ -128,6 +128,18 @@ const ListarCoordenadas = () => {
 
 'use strict';
 
+const filterByName = (comercial,name) => {
+  // var index = stations.map(e=>e.district.toLowerCase()).indexOf(query.toLowerCase());
+  return comercial.filter((e)=>{
+    if(e.DESTINO.toLowerCase().lastIndexOf(name.toLowerCase()) !== -1){
+      return e;
+    }
+  });
+  // return stations.filter(e => e.district.toLowerCase().indexOf(query.toLowerCase() !== -1 ? e:"no encontrado" ));
+}
+
+'use strict';
+
 const  filtro= (array, destino) => {
   return state.data.coordenadas.filter((e,i)=>{
       if(e.DESTINO.indexOf(destino) !== -1){
@@ -216,28 +228,65 @@ $( _ => {
 'use strict';
 
 const MapaGrande = (update) => {
+  console.log(state.selectTienda.COD_INMUEBLE);
+
+
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
   const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
-  const mapMall     = $('<div class="map-mall">imagen</div>');
-  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
+  const input        = $('<input type ="text" id="buscar_comercial" placeholder="Ingrese tienda a buscar"/>');
+  const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
+  const result = $('<div class="result"></div>');
 
-  row.append(h1,mapMall,btnIrTienda);
+  ListarCoordenadas().then((response) => {
+    input.on('keyup',(e) => {
+        const filteredComercial = filterByName(state.data.coordenadas,input.val());
+        reRender(result,filteredComercial,update);
+      });
+      // filterByName(state.data.coordenadas,input.val());
+      reRender(result,state.data.coordenadas,update);
 
-  container.append(row);
-  section.append(HeaderAll('mapa grande ',10,update));
-  section.append(container);
 
-  btnIrTienda.on('click',(e) => {
-    state.page = 12;
-    state.selectTienda = 'VACANCY';
-    update();
   });
 
 
+  row.append(h1,input,mapMall);
+
+  container.append(row);
+  section.append(HeaderAll('mapa grande ',10,update));
+  section.append(container,result);
+
+
+
   return section;
+}
+
+const ComercialItem = (tienda,update) => {
+  const item = $('<div class="item col s7 offset-s2 l2 m3 blue-grey lighten-5 section" id=""><p>'+tienda.DESTINO+'</p></div>');
+  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
+
+  btnIrTienda.on('click',(e) => {
+    state.codigoInmueble = "5";
+    state.page = 12;
+    state.nombreDestino = tienda.DESTINO;
+    update();
+  });
+
+  item.append(btnIrTienda);
+
+  return item;
+};
+
+const reRender = (container,filteredComercial,update) => {
+  container.empty();
+  if (filteredComercial.length > 0) {
+    $.each(filteredComercial,(index,tienda) => {
+      container.append(ComercialItem(tienda,update));
+    });
+  } else {
+    container.append($('<p>Tienda no encontrada</p>'));
+  }
 }
 
 'use strict';
@@ -285,14 +334,14 @@ const ChoiceOption = (update) => {
 
 'use strict';
 const ChoiceMall = (update) => {
-  console.log(state.selectRegion);
+  // console.log(state.selectRegion);
   const divMall = $('<div></div>');
   ListarInmueble().then((response) => {
     // console.log(state.data.inm_departamento);
     $.each(state.data.inm_departamento, ( key, value ) =>  {
       const name = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
       const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
-      const btnNext = $('<button>Ver Detalle</button>');
+      const btnNext = $('<button>Ir</button>');
       btnNext.on('click',(e)=>{
         state.selectTienda = value;
         e.preventDefault();
@@ -324,7 +373,7 @@ const ChoiceRegion = (update) => {
       const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
-        console.log(value.COD_DEPARTAMENTO);
+        // console.log(value.COD_DEPARTAMENTO);
         state.selectRegion = "15";
         e.preventDefault();
         state.page = 5;
@@ -343,14 +392,18 @@ const ChoiceRegion = (update) => {
 
 'use strict';
 const DetalleMall  = (update) => {
+  console.log(state.selectTienda);
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
   const mapa        = $('<div id="map-detail" class="map"></div>');
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
+  const name   = $('<h2>'+state.selectTienda.NOM_INMUEBLE+'</h2>');
+  const direccion = $('<div><h3>'+state.selectTienda.DIRECCION+'</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit   anim id est laborum.</p</div>');
+  const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir</button>');
 
   row.append(mapa);
+  div.append(name,direccion);
   row.append(div);
   row.append(btnIr);
 
@@ -385,7 +438,6 @@ const InicioSesion = (update) => {
   section.append(container);
 
   btnNext.on('click',(e) => {
-    console.log('click');
     state.page = 2;
     update();
   });
@@ -396,30 +448,41 @@ const InicioSesion = (update) => {
 'use strict';
 
 const ListTiendas  = (update) => {
+  // console.log(state.selectTienda.COD_INMUEBLE);;
+  const divRubros = $('<div></div>');
+  ListarRubro().then((response) => {
+    $.each( state.data.rubros_inmueble, ( key, value ) =>  {
+      // console.log(value);
+      const rubro = $('<div><p>'+value.NOM_RUBRO+'<span>&#187;</span></p></div>');
+      const btnIr   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver tiendas de Rubro</button></div>');
+      divRubros.append(rubro,btnIr);
+      btnIr.on('click', (e) => {
+        // console.log(value.COD_RUBRO);
+        state.selectRubro = value.COD_RUBRO;
+        state.selectRubro = "7";
+        e.preventDefault();
+        state.page = 10;
+        update();
+      });
+    });
+  });
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
   const logo        = $('<div class="col-xs-12"><img src="assets/img/logo.png" alt="Logo de Real Plaza"></div>');
-  const btnIr   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a Tienda Elegida</button></div>');
 
-  row.append(logo);
-  row.append(btnIr);
+  row.append(logo,divRubros);
 
   container.append(row);
   section.append(HeaderAll('Listado de las tienda o rubros del mall',8,update));
   section.append(container);
-
-  btnIr.on('click', (e) => {
-    state.page = 10;
-    update();
-  });
   return section;
 };
 
 'use strict';
 
 const ListaCentros  = (update) => {
-  console.log(state.selectTienda);
+  // console.log(state.selectTienda);
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
@@ -456,19 +519,28 @@ const MapaLocation = (update) => {
   const row       = $('<div class="row"></div>');
   const h1        = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
   const divMap    = $('<div id="map-location" class="map"></div>');
-  const btnNext   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const divMall = $('<div></div>');
+  ListarInmueble().then((response) => {
+    console.log(state.data.inm_departamento);
+    $.each(state.data.inm_departamento, ( key, value ) =>  {
+      const name = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
+      const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
+      const btnNext = $('<button>Ver Detalle</button>');
+      btnNext.on('click',(e)=>{
+        state.selectTienda = value;
+        e.preventDefault();
+        state.page = 6;
+        update();
+      });
+      divMall.append(name,direccion,btnNext);
+    });
+  });
 
-  row.append(h1,divMap,btnNext);
+  row.append(h1,divMap,divMall);
 
   container.append(row);
   section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
   section.append(container);
-
-
-  btnNext.on('click',() => {
-    state.page = 5;
-    update();
-  });
 
   return section;
 
@@ -476,7 +548,9 @@ const MapaLocation = (update) => {
 
 'use strict';
 
-const MapaSVG = (destino,update) => {
+const MapaSVG = (update) => {
+  console.log(state.nombreDestino);
+  console.log(state.codigoInmueble);
   const section     = $('<section>Mapa SVG</section>');
 
   var bg = $(`<div style="width:761px;height:426px;background-color:blue;float:left;background-image: url(assets/img/guardia_civil.png);">`);
@@ -484,7 +558,7 @@ const MapaSVG = (destino,update) => {
 
   section.append(HeaderAll('mapa svg ',11,update));
         ListarCoordenadas().then((response)=>{
-          var pasos = filtro(state.data.coordenadas,destino);
+          var pasos = filtro(state.data.coordenadas,state.nombreDestino);
 
           $.each( pasos, ( key, value ) => {
             const line = `<line id="" x1=`+value.X1+` y1=`+value.Y1+` x2='`+value.X2+`' y2=`+value.Y2+` style='stroke:blue;stroke-width:5'/>`;
@@ -532,20 +606,29 @@ const TiendaElegida = (update) => {
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
   const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const mapMall     = $('<div class="map-mall"></div>');
-  const info_tienda     = $('<div class="info-tienda">hgjhjgkg</div>');
-  const btnVerMapaGrande = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver mapa grande</button>');
+  const divComercial= $('<div></div>');
+  ListarLocales().then((response) => {
+    $.each( state.data.locales, ( key, value ) =>  {
+      // console.log(value);
+      const comercial = $('<div><p>'+value.CLIENTE+'<span>&#187;</span></p></div>');
+      const btnVerMapaGrande = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver mapa grande</button>');
+      divComercial.append(comercial,btnVerMapaGrande);
+      btnVerMapaGrande.on('click',(e) => {
+        state.page = 11;
+        update();
+      });
+    });
+  });
+  const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
+  const info_tienda     = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
 
-  row.append(h1,mapMall,info_tienda,btnVerMapaGrande);
+  row.append(h1,mapMall,divComercial);
 
   container.append(row);
   section.append(HeaderAll('tienda elegida mapa e info',9,update));
   section.append(container);
 
-  btnVerMapaGrande.on('click',(e) => {
-    state.page = 11;
-    update();
-  });
+
 
 
   return section;
@@ -626,10 +709,14 @@ const render = (root) => {
   root.append(wrapper);
 };
 const state = {
-  page: 2,
+  page: 0,
   data:{},
   selectRegion:null,
-  selectTienda:null
+  selectTienda:null,
+  selectRubro:null,
+  codigoInmueble: null,
+  nombreDestino: null
+
 };
 
 $( _ => {

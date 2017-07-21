@@ -10,7 +10,7 @@ const ChoiceRegion = (update) => {
       const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
-        console.log(value.COD_DEPARTAMENTO);
+        // console.log(value.COD_DEPARTAMENTO);
         state.selectRegion = "15";
         e.preventDefault();
         state.page = 5;

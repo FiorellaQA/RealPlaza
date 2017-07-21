@@ -1,6 +1,8 @@
 'use strict';
 
-const MapaSVG = (destino,update) => {
+const MapaSVG = (update) => {
+  console.log(state.nombreDestino);
+  console.log(state.codigoInmueble);
   const section     = $('<section>Mapa SVG</section>');
 
   var bg = $(`<div style="width:761px;height:426px;background-color:blue;float:left;background-image: url(assets/img/guardia_civil.png);">`);
@@ -8,7 +10,7 @@ const MapaSVG = (destino,update) => {
 
   section.append(HeaderAll('mapa svg ',11,update));
         ListarCoordenadas().then((response)=>{
-          var pasos = filtro(state.data.coordenadas,destino);
+          var pasos = filtro(state.data.coordenadas,state.nombreDestino);
 
           $.each( pasos, ( key, value ) => {
             const line = `<line id="" x1=`+value.X1+` y1=`+value.Y1+` x2='`+value.X2+`' y2=`+value.Y2+` style='stroke:blue;stroke-width:5'/>`;
