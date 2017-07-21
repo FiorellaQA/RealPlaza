@@ -10,7 +10,7 @@ const HeaderAll = (titulo,number,update) => {
 
   back.on('click', (e) => {
     e.preventDefault();
-    state.page = number--;
+    state.page = number;
     console.log(state.page);
     update();
   });

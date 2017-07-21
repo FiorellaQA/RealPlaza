@@ -9,22 +9,36 @@ const  filtro= (array, destino) => {
 
 const render = (root) => {
   root.empty();
-  const wrapper = $('<div class="wrapper">hjjhj</div>');
+  const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == 0){
+    wrapper.append(Welcome(_=>{ render(root) }));
+  }else if(state.page == 1){
+    wrapper.append(InicioSesion(_=>{ render(root) }));
+  }else if (state.page == 2){
     wrapper.append(ChoiceOption(_=>{ render(root) }));
-  } else if (state.page == 1){
-    wrapper.append(ChoiceProv(_=>{ render(root) }));
-  } else if (state.page == 2){
-    wrapper.append(ChoiceMall(_=>{ render(root) }));
-  } else if (state.page == 3){
-    wrapper.append(ChoiceMall(_=>{ render(root) }));
+  }else if (state.page == 3){
+    wrapper.append(ChoiceRegion(_=>{ render(root) }));
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
   }else if (state.page == 5){
-    wrapper.append(MapaMall(_=>{ render(root) }));
-  }else if (state.page == 6){
-    wrapper.append(MapaMall(_=>{ render(root) }));
+    wrapper.append(ChoiceMall(_=>{ render(root) }));
+  }
+  else if (state.page == 6){
+    wrapper.append(ListaCentros(_=>{ render(root) }));
+  }
+  else if (state.page == 7){
+    wrapper.append(DetalleMall(_=>{ render(root) }));
+  }else if (state.page == 8){
+    wrapper.append(ComoLlegar(_=>{ render(root) }));
+  }else if (state.page == 9){
+    wrapper.append(ListTiendas(_=>{ render(root) }));
+  }else if (state.page == 10){
+    wrapper.append(TiendaElegida(_=>{ render(root) }));
+  }else if (state.page == 11){
+    wrapper.append(MapaGrande(_=>{ render(root) }));
+  }else if (state.page == 12){
+    wrapper.append(MapaSVG(_=>{ render(root) }));
   }
 
   root.append(wrapper);
@@ -55,6 +69,7 @@ $( _ => {
     // console.log(filtro(arr,'VACANCY'));
   });
 
+  console.log(state.data);
   const root = $("#root");
   render(root);
 });
