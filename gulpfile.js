@@ -23,7 +23,7 @@ var paths = {
   js: "js/**/*.js",
 
   components: "js/components/**.js",
-  utils: "utils/**",
+  utils: "js/utils/**.js",
 
   css: "css",
   fonts: "fonts/**",
@@ -51,7 +51,7 @@ var sources = {
   vendor: config.source+paths.assets+ paths.vendor,
   models: config.source+paths.assets+ paths.models,
   components: config.source + paths.assets + paths.components,
-
+	utils: config.source + paths.assets + paths.utils
 };
 
 //tareas independientes
@@ -86,7 +86,7 @@ gulp.task('sass', ()=> {
 
 gulp.task('js', ()=>{
   console.log(sources.components);
-  gulp.src([sources.models,sources.components,sources.rootJS])
+  gulp.src([sources.models,sources.utils,sources.components,sources.rootJS])
   .pipe(concat("new.js"))//temporal no es necsario en un existente
   .pipe(browserify())
   .pipe(rename("bundle.js"))

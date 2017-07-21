@@ -39,6 +39,43 @@ const ListarLocales = (cod_inmueble,cod_rubro) => {
   });
 };
 
+function onSuccess(googleUser) {
+	var profile = googleUser.getBasicProfile();
+	gapi.client.load('plus', 'v1', function () {
+		var request = gapi.client.plus.people.get({
+			'userId': 'me'
+		});
+		//Display the user details
+		request.execute(function (resp) {
+			var profileHTML = '<div class="profile"><div class="head">Welcome '+resp.name.givenName+'! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></div>';
+			profileHTML += '<img src="'+resp.image.url+'"/><div class="proDetails"><p>'+resp.displayName+'</p><p>'+resp.emails[0].value+'</p><p>'+resp.gender+'</p><p>'+resp.id+'</p><p><a href="'+resp.url+'">View Google+ Profile</a></p></div></div>';
+			$('.userContent').html(profileHTML);
+			$('#gSignIn').slideUp('slow');
+		});
+	});
+}
+function onFailure(error) {
+	alert(error);
+}
+function renderButton() {
+	gapi.signin2.render('gSignIn', {
+		'scope': 'profile email',
+		'width': 240,
+		'height': 50,
+		'longtitle': true,
+		'theme': 'dark',
+		'onsuccess': onSuccess,
+		'onfailure': onFailure
+	});
+}
+function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+		$('.userContent').html('');
+		$('#gSignIn').slideDown('slow');
+	});
+}
+
 'use strict';
  const Header = (update) => {
    const header = $('<header></header>');
@@ -47,15 +84,33 @@ const ListarLocales = (cod_inmueble,cod_rubro) => {
 
 'use strict';
 
+function Login() {
+	var section = $('<section></section>');
+
+	var btn = $('<div id="gSignIn"></div>');
+	var userDetails = $('<div class="userContent"></div>');
+
+	section.append(btn);
+	section.append(userDetails);
+
+
+
+
+	return section;
+}
+
+'use strict';
+
 const render = (root) => {
   root.empty();
-  const wrapper = $('<div class="wrapper">hjjhj</div>');
+  const wrapper = $('<div class="wrapper"></div>');
+	root.append(Login());
 
-  if(state.page == null){
-    wrapper.append(Header(_=>{ render(root) }));
-  }
+	/*if(state.user == null){
 
-  root.append(wrapper);
+	}*/
+
+  //root.append(wrapper);
 }
 const state = {
   page: null,
@@ -63,6 +118,7 @@ const state = {
 };
 
 $( _ => {
+	/*
   getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarDepartamento&json={}').then((response) => {
     state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
   });
@@ -75,11 +131,17 @@ $( _ => {
 
   ListarInmueble(cod_depa);
   ListarRubro(cod_inmueble);
-  ListarLocales(cod_inmueble,cod_rubro);
+  ListarLocales(cod_inmueble,cod_rubro);*/
 
-  // console.log(state.data);
-  // const root = $("#root");
-  // render(root);
+   console.log(state.data);
+  const root = $("#root");
+   render(root);
+
+
+
+
+
+
 });
 
 },{}]},{},[1])

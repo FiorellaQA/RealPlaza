@@ -2,13 +2,14 @@
 
 const render = (root) => {
   root.empty();
-  const wrapper = $('<div class="wrapper">hjjhj</div>');
+  const wrapper = $('<div class="wrapper"></div>');
+	root.append(Login());
 
-  if(state.page == null){
-    wrapper.append(Header(_=>{ render(root) }));
-  }
+	/*if(state.user == null){
 
-  root.append(wrapper);
+	}*/
+
+  //root.append(wrapper);
 }
 const state = {
   page: null,
@@ -16,6 +17,7 @@ const state = {
 };
 
 $( _ => {
+	/*
   getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarDepartamento&json={}').then((response) => {
     state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
   });
@@ -28,9 +30,15 @@ $( _ => {
 
   ListarInmueble(cod_depa);
   ListarRubro(cod_inmueble);
-  ListarLocales(cod_inmueble,cod_rubro);
+  ListarLocales(cod_inmueble,cod_rubro);*/
 
-  // console.log(state.data);
-  // const root = $("#root");
-  // render(root);
+   console.log(state.data);
+  const root = $("#root");
+   render(root);
+
+
+
+
+
+
 });

@@ -1,0 +1,33 @@
+/*Style components login*/
+.profile {
+  border: 3px solid #B7B7B7;
+  padding: 10px;
+  margin-top: 10px;
+  width: 350px;
+  background-color: #F7F7F7;
+  height: 160px;
+}
+
+.profile .head {
+  margin-bottom: 10px;
+}
+
+.profile .head a {
+  float: right;
+}
+
+.profile img {
+  width: 100px;
+  float: left;
+  margin: 0px 10px 10px 0px;
+}
+
+.profile .proDetails {
+  float: left;
+}
+
+.profile .proDetails p {
+  margin: 0px 0px 10px 0px;
+}
+
+/* End component login*/
