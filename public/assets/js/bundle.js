@@ -146,6 +146,55 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
+const initMap = (mapa) => {
+
+  var map = new google.maps.Map(document.getElementById(mapa), {
+    zoom: 12,
+    center: {lat: -12.172645, lng: -76.992717}
+  });
+
+
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    var markers = locations.map(function(location, i) {
+      return new google.maps.Marker({
+        position: location,
+        label: labels[i % labels.length]
+      });
+    });
+
+
+    // Add a marker clusterer to manage the markers.
+    var markerCluster = new MarkerClusterer(map, markers,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+  };
+  var locations = [
+    {lat: -31.563910, lng: 147.154312},
+    {lat: -33.718234, lng: 150.363181},
+    {lat: -33.727111, lng: 150.371124},
+    {lat: -33.848588, lng: 151.209834},
+    {lat: -33.851702, lng: 151.216968},
+    {lat: -34.671264, lng: 150.863657},
+    {lat: -35.304724, lng: 148.662905},
+    {lat: -36.817685, lng: 175.699196},
+    {lat: -36.828611, lng: 175.790222},
+    {lat: -37.750000, lng: 145.116667},
+    {lat: -37.759859, lng: 145.128708},
+    {lat: -37.765015, lng: 145.133858},
+    {lat: -37.770104, lng: 145.143299},
+    {lat: -37.773700, lng: 145.145187},
+    {lat: -37.774785, lng: 145.137978},
+    {lat: -37.819616, lng: 144.968119},
+    {lat: -38.330766, lng: 144.695692},
+    {lat: -39.927193, lng: 175.053218},
+    {lat: -41.330162, lng: 174.865694},
+    {lat: -42.734358, lng: 147.439506},
+    {lat: -42.734358, lng: 147.501315},
+    {lat: -42.735258, lng: 147.438000},
+    {lat: -43.999792, lng: 170.463352}
+  ];
 
 'use strict';
 
@@ -242,12 +291,12 @@ const ChoiceRegion = (update) => {
 'use strict';
 
 const DetalleMall  = (update) => {
-  const section     = $('<section id="cargarLista"></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const mapa        = $('<div class="map"></div>');
-  const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
+  const section    = $('<section id="cargarLista"></section>');
+  const container  = $('<div class="container"></div>');
+  const row        = $('<div class="row"></div>');
+  const mapa       = $('<div id="map-detail" class="map"></div>');
+  const div        = $('<div class="info-">Detalle Mall y mapa info</div>');
+  const btnIr      = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
 
   row.append(mapa);
   row.append(div);
@@ -262,9 +311,11 @@ const DetalleMall  = (update) => {
     state.page = 8;
     update();
   });
+
+
+
   return section;
 }
-
 'use strict';
 
 const InicioSesion = (update) => {
@@ -376,7 +427,7 @@ const MapaLocation = (update) => {
   const container = $('<div class="container"></div>');
   const row       = $('<div class="row"></div>');
   const h1        = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
-  const divMap    = $('<div id="map"></div>');
+  const divMap    = $('<div id="map-location" class="map"></div>');
   const btnNext   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
 
   row.append(h1,divMap,btnNext);
@@ -391,54 +442,6 @@ const MapaLocation = (update) => {
     update();
   });
 
-  $(() => {
-    const map = new GMaps({
-      div: '#map',
-      lat: -12.172645,
-      lng: -76.992717,
-      zoom: 12
-    });
-/*
-    /!*map.addMarker({
-      lat: -12.172645,
-      lng: -76.992717,
-      //title: state.selectedStation.name,
-      infoWindow: {
-        content: 'Grifo '
-      }
-    });*!/
-
-    var latitud, longitud;
-
-    GMaps.geolocate({
-      success: function(position) {
-        latitud = position.coords.latitude;
-        longitud = position.coords.longitude;
-
-        map.addMarker({
-          lat: latitud,
-          lng: longitud,
-          title: 'Mi ubicación',
-          infoWindow: {
-            content: 'Mi ubicación',
-          }
-        });
-        map.drawRoute({
-          origin: [latitud, longitud],
-          //destination: [state.selectedStation.lat, state.selectedStation.long],
-          travelMode: 'driving',
-          strokeColor: '#131540',
-          strokeOpacity: 0.6,
-          strokeWeight: 6
-        });
-      },
-      error: function(error) {
-        alert('Tenemos un problema con encontrar su ubicación');
-      }
-    });*/
-
-
-  });
   return section;
 
 };
@@ -537,9 +540,9 @@ const Welcome = (update) => {
 'use strict';
 const  filtro= (array, destino) => {
   return state.data.coordenadas.filter((e,i)=>{
-      if(e.DESTINO.indexOf(destino) !== -1){
-        return e;
-      }
+    if(e.DESTINO.indexOf(destino) !== -1){
+      return e;
+    }
   });
 };
 
@@ -557,6 +560,9 @@ const render = (root) => {
     wrapper.append(ChoiceRegion(_=>{ render(root) }));
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap('map-location');
+    }, 200);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   }
@@ -565,8 +571,13 @@ const render = (root) => {
   }
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap('map-detail');
+    }, 200);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
+
+
   }else if (state.page == 9){
     wrapper.append(ListTiendas(_=>{ render(root) }));
   }else if (state.page == 10){
@@ -577,6 +588,10 @@ const render = (root) => {
     wrapper.append(MapaSVG(_=>{ render(root) }));
   }
 
+
+
+
+
   root.append(wrapper);
 };
 const state = {
@@ -585,10 +600,11 @@ const state = {
 };
 
 $( _ => {
-
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
+
+
 
   ListarInmuebles();
   ListarDepartamentos().then((response) => {
@@ -609,5 +625,4 @@ $( _ => {
   const root = $("#root");
   render(root);
 });
-
 },{}]},{},[1])
