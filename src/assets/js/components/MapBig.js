@@ -13,12 +13,22 @@ const MapaGrande = (update) => {
   const result = $('<div class="result"></div>');
 
   ListarCoordenadas().then((response) => {
+    console.log(response);
+    var c = response;
+    var hash = {};
+    var nuevo = c.filter(function(current) {
+      var exists = !hash[current.DESTINO] || false;
+      hash[current.DESTINO] = true;
+      return exists;
+    });
     input.on('keyup',(e) => {
-        const filteredComercial = filterByName(state.data.coordenadas,input.val());
+        const filteredComercial = filterByName(nuevo,input.val());
+        // console.log(filteredComercial);
         reRender(result,filteredComercial,update);
       });
       // filterByName(state.data.coordenadas,input.val());
-      reRender(result,state.data.coordenadas,update);
+      // console.log(state.data.coordenadas);
+      reRender(result,nuevo,update);
 
 
   });

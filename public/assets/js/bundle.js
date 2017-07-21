@@ -130,11 +130,11 @@ const ListarCoordenadas = () => {
 
 const filterByName = (comercial,name) => {
   // var index = stations.map(e=>e.district.toLowerCase()).indexOf(query.toLowerCase());
-  return comercial.filter((e)=>{
-    if(e.DESTINO.toLowerCase().lastIndexOf(name.toLowerCase()) !== -1){
-      return e;
-    }
-  });
+  // return comercial.filter((e)=>{
+  //   if(e.DESTINO.toLowerCase().lastIndexOf(name.toLowerCase()) !== -1){
+  //     return e;
+  //   }
+  // });
   // return stations.filter(e => e.district.toLowerCase().indexOf(query.toLowerCase() !== -1 ? e:"no encontrado" ));
 }
 
@@ -142,7 +142,7 @@ const filterByName = (comercial,name) => {
 
 const  filtro= (array, destino) => {
   return state.data.coordenadas.filter((e,i)=>{
-      if(e.DESTINO.indexOf(destino) !== -1){
+      if(e.DESTINO.lastIndexOf(destino) !== -1){
         return e;
       }
   });
@@ -276,12 +276,22 @@ const MapaGrande = (update) => {
   const result = $('<div class="result"></div>');
 
   ListarCoordenadas().then((response) => {
+    console.log(response);
+    var c = response;
+    var hash = {};
+    var nuevo = c.filter(function(current) {
+      var exists = !hash[current.DESTINO] || false;
+      hash[current.DESTINO] = true;
+      return exists;
+    });
     input.on('keyup',(e) => {
-        const filteredComercial = filterByName(state.data.coordenadas,input.val());
+        const filteredComercial = filterByName(nuevo,input.val());
+        // console.log(filteredComercial);
         reRender(result,filteredComercial,update);
       });
       // filterByName(state.data.coordenadas,input.val());
-      reRender(result,state.data.coordenadas,update);
+      // console.log(state.data.coordenadas);
+      reRender(result,nuevo,update);
 
 
   });
@@ -428,7 +438,7 @@ const ChoiceRegion = (update) => {
 
 'use strict';
 const DetalleMall  = (update) => {
-  console.log(state.selectTienda);
+  // console.log(state.selectTienda);
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
