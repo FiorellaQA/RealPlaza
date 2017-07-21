@@ -1,29 +1,43 @@
+var  miUbicacion ;
 const initMap = () => {
+  var map = new google.maps.Map(document.getElementById("map"), {
+zoom: 13,
+});
+var funcionError = function(error) {
+ alert("tenemos un problema con encontrar tu ubicacion")
+};
+var latitud, longitud;
+var funcionExito = function(posicion) {
+ latitud = posicion.coords.latitude;
+ longitud = posicion.coords.longitude;
+
+ miUbicacion = new google.maps.Marker({
+     position: {
+         lat: latitud,
+         lng: longitud
+     },
+     map: map,
+     animation: google.maps.Animation.DROP,
+     title: "Yo me encuentro aqui"
+ });
 
 
+ map.setZoom(18);
+ map.setCenter({
+     lat: latitud,
+     lng: longitud
+ });
+}
 
-      //   var map = new google.maps.Map(document.getElementById('map'), {
-      //     zoom: 20,
-      //     center: {lat: -28.024, lng: 140.887}
-      //   });
-      //
-      //
-      //   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      //
-      //   var markers = locations.map(function(location, i) {
-      //     return new google.maps.Marker({
-      //       position: location,
-      //       label: labels[i % labels.length]
-      //     });
-      //   });
-      //
-      //
-      //   // Add a marker clusterer to manage the markers.
-      //   var markerCluster = new MarkerClusterer(map, markers,
-      //       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      //
-      //
-      // }
+function buscar() {
+ if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
+ }
+}
+
+buscar();
+
+        }
       var locations = [
         {lat: -31.563910, lng: 147.154312},
         {lat: -33.718234, lng: 150.363181},

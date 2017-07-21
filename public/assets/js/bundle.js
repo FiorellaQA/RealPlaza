@@ -146,30 +146,46 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
+var  miUbicacion ;
 const initMap = () => {
+  var map = new google.maps.Map(document.getElementById("map"), {
+zoom: 13,
+});
+var funcionError = function(error) {
+ alert("tenemos un problema con encontrar tu ubicacion")
+};
+var latitud, longitud;
+var funcionExito = function(posicion) {
+ latitud = posicion.coords.latitude;
+ longitud = posicion.coords.longitude;
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 20,
-          center: {lat: -28.024, lng: 140.887}
-        });
+ miUbicacion = new google.maps.Marker({
+     position: {
+         lat: latitud,
+         lng: longitud
+     },
+     map: map,
+     animation: google.maps.Animation.DROP,
+     title: "Yo me encuentro aqui"
+ });
 
 
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ map.setZoom(18);
+ map.setCenter({
+     lat: latitud,
+     lng: longitud
+ });
+}
 
-        var markers = locations.map(function(location, i) {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-          });
-        });
+function buscar() {
+ if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
+ }
+}
 
+buscar();
 
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
-
-      }
+        }
       var locations = [
         {lat: -31.563910, lng: 147.154312},
         {lat: -33.718234, lng: 150.363181},
@@ -623,9 +639,6 @@ $( _ => {
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
-
-
-
   ListarInmuebles();
   ListarDepartamentos().then((response) => {
     $.each( state.data.departamentos, ( key, value ) =>  {
@@ -638,7 +651,7 @@ $( _ => {
   ListarLocales(cod_inmueble,cod_rubro);
   ListarCoordenadas().then((response)=>{
     var arr = state.data.coordenadas;
-    // console.log(filtro(arr,'VACANCY'));
+    console.log(filtro(arr,'VACANCY'));
   });
 
   console.log(state.data);

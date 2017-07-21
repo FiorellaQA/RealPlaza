@@ -61,9 +61,6 @@ $( _ => {
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
-
-
-
   ListarInmuebles();
   ListarDepartamentos().then((response) => {
     $.each( state.data.departamentos, ( key, value ) =>  {
@@ -76,7 +73,7 @@ $( _ => {
   ListarLocales(cod_inmueble,cod_rubro);
   ListarCoordenadas().then((response)=>{
     var arr = state.data.coordenadas;
-    // console.log(filtro(arr,'VACANCY'));
+    console.log(filtro(arr,'VACANCY'));
   });
 
   console.log(state.data);
