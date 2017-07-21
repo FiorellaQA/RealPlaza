@@ -7,20 +7,28 @@ const MapaGrande = (update) => {
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-
-  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
-  const h1          = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input       = $('<input type ="text" id="buscar_comercial" placeholder="Ingrese tienda a buscar"/>');
+  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const input        = $('<input type ="text" id="buscar_comercial" placeholder="Ingrese tienda a buscar"/>');
   const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
-  const result      = $('<div class="result"></div>');
+  const result = $('<div class="result"></div>');
 
   ListarCoordenadas().then((response) => {
+    console.log(response);
+    var c = response;
+    var hash = {};
+    var nuevo = c.filter(function(current) {
+      var exists = !hash[current.DESTINO] || false;
+      hash[current.DESTINO] = true;
+      return exists;
+    });
     input.on('keyup',(e) => {
-        const filteredComercial = filterByName(state.data.coordenadas,input.val());
+        const filteredComercial = filterByName(nuevo,input.val());
+        // console.log(filteredComercial);
         reRender(result,filteredComercial,update);
       });
       // filterByName(state.data.coordenadas,input.val());
-      reRender(result,state.data.coordenadas,update);
+      // console.log(state.data.coordenadas);
+      reRender(result,nuevo,update);
 
 
   });
@@ -29,8 +37,10 @@ const MapaGrande = (update) => {
   row.append(h1,input,mapMall);
 
   container.append(row);
-  section.append(HeaderAll('',10,update));
+  section.append(HeaderAll('mapa grande ',10,update));
   section.append(container,result);
+
+
 
   return section;
 }

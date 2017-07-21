@@ -1,6 +1,8 @@
 @import "colors";
 @import "fonts";
 @import "sizes";
+@import "images";
+
 
 *{
   padding: 0;
@@ -62,6 +64,9 @@ header{
   .col-xs-12{
     padding: 15px;
     border-bottom: 1px solid #eee;
+    background-image: url('../img/sedes-min/'+);
+    background-size: cover;
+    background-position: center;
   }
 }
 

@@ -5,9 +5,8 @@ const ChoiceRegion = (update) => {
   const divChoice = $('<div class="container"></div>');
 
   ListarDepartamentos().then((response) => {
-    // console.log(state.data.departamentos);
     $.each( state.data.departamentos, ( key, value ) =>  {
-      const region = $('<div class="col-xs-12"><p>'+value.NOMBRE_DEPARTAMENTO+'<span class="glyphicon glyphicon-tags pull-right"></span></p></div>');
+      const region = $('<div class="col-xs-12 img-region"><p>'+value.NOMBRE_DEPARTAMENTO+'<span class="glyphicon glyphicon-tags pull-right"></span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
         // console.log(value.COD_DEPARTAMENTO);

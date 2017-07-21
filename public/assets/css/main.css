@@ -51,6 +51,9 @@ header .container .col-xs-2:hover {
 .region .col-xs-12 {
   padding: 15px;
   border-bottom: 1px solid #eee;
+  background-image: url("../img/sedes-min/");
+  background-size: cover;
+  background-position: center;
 }
 
 div.map {
