@@ -492,13 +492,13 @@ const MapaGrande = (update) => {
   console.log(state.selectTienda.COD_INMUEBLE);
 
 
-  const section     = $('<section></section>');
+  const section     = $('<section class="map-svg text-center"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
 
   const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
-  const h1          = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input       = $('<input type ="text" id="buscar_comercial" placeholder="Ingrese tienda a buscar"/>');
+  const h3          = $('<h3 class="text-center">Elige tu tienda <span>favorita</span></h3>');
+  const input       = $('<input type ="text" id="buscar_comercial" placeholder="Escríbela aquí"/>');
   const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
   const result      = $('<div class="result"></div>');
 
@@ -514,7 +514,7 @@ const MapaGrande = (update) => {
   });
 
 
-  row.append(h1,input,mapMall);
+  row.append(h3,input,mapMall);
 
   container.append(row);
   section.append(HeaderAll('',10,update));
@@ -524,7 +524,7 @@ const MapaGrande = (update) => {
 }
 
 const ComercialItem = (tienda,update) => {
-  const item = $('<div class="item col s7 offset-s2 l2 m3 blue-grey lighten-5 section" id=""><p>'+tienda.DESTINO+'</p></div>');
+  const item = $('<div class="item col-xs-6 col-sm-4 blue-grey lighten-5 section" id=""><p>'+tienda.DESTINO+'</p></div>');
   const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
 
   btnIrTienda.on('click',(e) => {
@@ -589,22 +589,24 @@ const MapaLocation = (update) => {
 
 const MapaSVG = (update) => {
 
-  const section  = $('<section></section>');
+  const section  = $('<section class="map-svg"></section>');
+  const h3  = $('<h3 class="text-center">Sigue el camino y llegarás a "<span class="text-shine">'+state.nombreDestino+'</span>"</h3>');
 
   section.append(HeaderAll('',11,update));
+  section.append(h3);
 
   console.log(update);
   console.log(state.nombreDestino);
   console.log(state.codigoInmueble);
 
-  var bg = $(`<div style="width:761px;height:426px;background-color:blue;float:left;background-image: url(assets/img/guardia_civil.png);">`);
+  var bg = $(`<div style="width:761px;height:426px;margin:21px auto 0;background-image: url(assets/img/guardia_civil.png);">`);
   var svg = `<svg xmlns="http://www.w3.org/2000/svg" version='1.1' width="100%" height="100%" >`;
 
   ListarCoordenadas().then((response)=>{
     var pasos = filtro(state.data.coordenadas,state.nombreDestino);
 
     $.each( pasos, ( key, value ) => {
-      const line = `<line id="" x1=`+value.X1+` y1=`+value.Y1+` x2='`+value.X2+`' y2=`+value.Y2+` style='stroke:blue;stroke-width:5'/>`;
+      const line = `<line id="" x1=`+value.X1+` y1=`+value.Y1+` x2='`+value.X2+`' y2=`+value.Y2+` />`;
       svg += line;
     });
     svg += '</svg></div>';
@@ -612,10 +614,12 @@ const MapaSVG = (update) => {
     bg.append(svg);
 
   });
+
   section.append(bg);
 
   return section;
-}
+};
+
 
 'use strict';
 const ComoLlegar = (update) => {
@@ -750,7 +754,7 @@ const render = (root) => {
   root.append(wrapper);
 };
 const state = {
-  page: 0,
+  page: 2,
   data:{},
   selectRegion:null,
   selectTienda:null,

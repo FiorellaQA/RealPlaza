@@ -70,3 +70,33 @@ div.map {
   width:50vw;
   height: 40vh;
 }
+
+line  {
+  stroke: $pink-color;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 6,5;
+  fill: none;
+}
+
+.map-svg {
+  background-color: #efefef;
+  min-height: 100vh;
+  height: auto;
+  h3 {
+    color: $primary-color;
+    span {
+      color: $pink-color;
+    }
+  }
+}
+
+#buscar_comercial {
+  border: none;
+  border-bottom: 2px solid $primary-color;
+  margin: 21px auto;
+  background-color: #efefef;
+  font-weight: bold;
+  width: 250px;
+  outline: none;
+}
