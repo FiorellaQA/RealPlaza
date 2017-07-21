@@ -29,8 +29,13 @@ const render = (root) => {
   }
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap();
+    }, 500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
+
+
   }else if (state.page == 9){
     wrapper.append(ListTiendas(_=>{ render(root) }));
   }else if (state.page == 10){
@@ -41,18 +46,23 @@ const render = (root) => {
     wrapper.append(MapaSVG(_=>{ render(root) }));
   }
 
+
+
+
+
   root.append(wrapper);
 };
 const state = {
-  page: 0,
+  page: 7,
   data:{}
 };
 
 $( _ => {
-
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
+
+
 
   ListarInmuebles();
   ListarDepartamentos().then((response) => {

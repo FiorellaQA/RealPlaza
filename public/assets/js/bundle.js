@@ -146,57 +146,55 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
+const initMap = () => {
 
-'use strict';
-
-const MapaGrande = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
-  const mapMall     = $('<div class="map-mall">imagen</div>');
-  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
-
-  row.append(h1,mapMall,btnIrTienda);
-
-  container.append(row);
-  section.append(HeaderAll('mapa grande ',10,update));
-  section.append(container);
-
-  btnIrTienda.on('click',(e) => {
-    state.page = 12;
-    update();
-  });
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 20,
+          center: {lat: -28.024, lng: 140.887}
+        });
 
 
-  return section;
-}
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-// 'use strict';
-// const MapaMall = (update) => {
-//   const section = $('<section></section>');
-//
-//   const divMap = $('<div></div>');
-//   const mapMall =  $('<div id="map">acá va el mapa</div>');
-//
-//   const divDetails = $('<div></div>');
-//   const detailsMall =  $('<div>acá van los detalles</div>');
-//
-//
-//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
-//
-//   section.append(divMap);
-//   divMap.append(mapMall);
-//
-//   section.append(divDetails);
-//   divDetails.append(detailsMall);
-//
-//
-//
-//   return section;
-//
-// };
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+      }
+      var locations = [
+        {lat: -31.563910, lng: 147.154312},
+        {lat: -33.718234, lng: 150.363181},
+        {lat: -33.727111, lng: 150.371124},
+        {lat: -33.848588, lng: 151.209834},
+        {lat: -33.851702, lng: 151.216968},
+        {lat: -34.671264, lng: 150.863657},
+        {lat: -35.304724, lng: 148.662905},
+        {lat: -36.817685, lng: 175.699196},
+        {lat: -36.828611, lng: 175.790222},
+        {lat: -37.750000, lng: 145.116667},
+        {lat: -37.759859, lng: 145.128708},
+        {lat: -37.765015, lng: 145.133858},
+        {lat: -37.770104, lng: 145.143299},
+        {lat: -37.773700, lng: 145.145187},
+        {lat: -37.774785, lng: 145.137978},
+        {lat: -37.819616, lng: 144.968119},
+        {lat: -38.330766, lng: 144.695692},
+        {lat: -39.927193, lng: 175.053218},
+        {lat: -41.330162, lng: 174.865694},
+        {lat: -42.734358, lng: 147.439506},
+        {lat: -42.734358, lng: 147.501315},
+        {lat: -42.735258, lng: 147.438000},
+        {lat: -43.999792, lng: 170.463352}
+      ]
 
 'use strict';
 
@@ -291,12 +289,11 @@ const ChoiceRegion = (update) => {
 };
 
 'use strict';
-
 const DetalleMall  = (update) => {
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const mapa        = $('<di class=""mapv></div>');
+  const mapa        = $('<div id="map" class="map"></div>');
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
   const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
 
@@ -313,6 +310,9 @@ const DetalleMall  = (update) => {
     state.page = 8;
     update();
   });
+
+
+
   return section;
 }
 
@@ -391,6 +391,32 @@ const ListaCentros  = (update) => {
     state.page = 7;
     update();
   });
+
+  return section;
+}
+
+'use strict';
+
+const MapaGrande = (update) => {
+  const section     = $('<section></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
+  const mapMall     = $('<div class="map-mall">imagen</div>');
+  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
+
+  row.append(h1,mapMall,btnIrTienda);
+
+  container.append(row);
+  section.append(HeaderAll('mapa grande ',10,update));
+  section.append(container);
+
+  btnIrTienda.on('click',(e) => {
+    state.page = 12;
+    update();
+  });
+
 
   return section;
 }
@@ -509,6 +535,31 @@ const Welcome = (update) => {
   return section;
 }
 
+// 'use strict';
+// const MapaMall = (update) => {
+//   const section = $('<section></section>');
+//
+//   const divMap = $('<div></div>');
+//   const mapMall =  $('<div id="map">acá va el mapa</div>');
+//
+//   const divDetails = $('<div></div>');
+//   const detailsMall =  $('<div>acá van los detalles</div>');
+//
+//
+//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
+//
+//   section.append(divMap);
+//   divMap.append(mapMall);
+//
+//   section.append(divDetails);
+//   divDetails.append(detailsMall);
+//
+//
+//
+//   return section;
+//
+// };
+
 'use strict';
 const  filtro= (array, destino) => {
   return state.data.coordenadas.filter((e,i)=>{
@@ -540,8 +591,13 @@ const render = (root) => {
   }
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap();
+    }, 500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
+
+
   }else if (state.page == 9){
     wrapper.append(ListTiendas(_=>{ render(root) }));
   }else if (state.page == 10){
@@ -552,18 +608,23 @@ const render = (root) => {
     wrapper.append(MapaSVG(_=>{ render(root) }));
   }
 
+
+
+
+
   root.append(wrapper);
 };
 const state = {
-  page: 0,
+  page: 7,
   data:{}
 };
 
 $( _ => {
-
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
+
+
 
   ListarInmuebles();
   ListarDepartamentos().then((response) => {
