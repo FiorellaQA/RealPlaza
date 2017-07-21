@@ -9,6 +9,12 @@ function initMap() {
     center: mall
   });
 
+ /* var markadorMall = new google.maps.Marker({
+    position: mall,
+    map: map
+  });*/
+ var marker;
+
 
   var latitud, longitud, myLocation;
   var funcionExito = function(posicion) {
@@ -22,20 +28,19 @@ function initMap() {
 
     map.setZoom(18);
     map.setCenter({lat: latitud, lng: longitud});
-  }
+  };
 
   var funcionError = function(error) {
     alert("Tenemos un problema con encontrar tu ubicación");
   };
 
-  function searchMe() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
-    }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
   }
 
  //encuentra mi ubicación
-  document.getElementById('findMe').addEventListener('click', searchMe);
+  //document.getElementById('findMe').addEventListener('click', searchMe);
 
 
 }
