@@ -364,26 +364,30 @@ const ChoiceRegion = (update) => {
 };
 
 'use strict';
-const DetalleMall  = (update) => {
+const DetalleMall = (update) => {
   console.log(state.selectTienda);
-  const section     = $('<section id="cargarLista"></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
+  const section = $('<section id="cargarLista"></section>');
+  const container = $('<div id="" class="container-fluid"></div>');
+  const row = $('<div class="row"></div>');
+  // const col  =$('<div class="col-xs-12 col-lg-12"></div>');
+  const mapa = $('<div id="map-detail" class="map"></div>');
+  const col1 = $('<div class="col-xs-12 col-lg-offset-3 col-lg-6"></div>');
+  const detalle = $('<div class="info"></div>');
+  const name = $('<h2 class="title-tienda text-center" >' + state.selectTienda.NOM_INMUEBLE + '</h2>');
+  const direccion = $('<div class="subtitle-tienda" ><h3 class="text-center">' + state.selectTienda.DIRECCION + '</h3><p class="texto-tienda text-justify" style="padding:0 15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p</div>');
+  const col2 = $('<div class="col-xs-12 col-lg-12 text-center"></div>');
+  const btnIr = $('<button type="button" class="btn btn-lg btn-map uppercase text-center" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">IR CON WAZE</a></button>');
 
-  const mapa        = $('<div id="map-detail" class="map"></div>');
-  const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const name        = $('<h2>'+state.selectTienda.NOM_INMUEBLE+'</h2>');
-  const direccion   = $('<div><h3>'+state.selectTienda.DIRECCION+'</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p</div>');
-  const btnIr       = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Ir con Waze</a></button>');
 
+  detalle.append(name, direccion);
   row.append(mapa);
-  div.append(name,direccion);
-  row.append(div);
-  row.append(btnIr);
-
+  // row.append(col);
+  col1.append(detalle);
+  row.append(col1);
+  col2.append(btnIr);
+  row.append(col2);
   container.append(row);
-
-  section.append(HeaderAll('',6,update));
+  section.append(HeaderAll('', 6, update));
   section.append(container);
 
   btnIr.on('click', (e) => {
@@ -393,7 +397,6 @@ const DetalleMall  = (update) => {
 
   return section;
 };
-
 'use strict';
 
 const InicioSesion = (update) => {
@@ -425,16 +428,22 @@ const InicioSesion = (update) => {
 
 'use strict';
 
-const ListTiendas  = (update) => {
+const ListTiendas = (update) => {
   // console.log(state.selectTienda.COD_INMUEBLE);;
   const divRubros = $('<div></div>');
   ListarRubro().then((response) => {
-    $.each( state.data.rubros_inmueble, ( key, value ) =>  {
+    $.each(state.data.rubros_inmueble, (key, value) => {
       // console.log(value);
-      const rubro = $('<div><p>'+value.NOM_RUBRO+'<span>&#187;</span></p></div>');
-      const btnIr   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver tiendas de Rubro</button></div>');
-      divRubros.append(rubro,btnIr);
-      btnIr.on('click', (e) => {
+
+      const contenRubro = $('<div class="contenRubro contDiv col-xs-12 col-lg-12" style="display:flex ;padding:20px 0px ; justify-content:space-between;"></div>');
+      const rubro = $('<p>' + value.NOM_RUBRO + '</p>');
+      const img = $('<span class="glyphicon glyphicon-tags pull-right"></span>');
+      // const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver tiendas de Rubro</button>');
+
+      contenRubro.append(rubro)
+      contenRubro.append(img)
+      divRubros.append(contenRubro);
+      contenRubro.on('click', (e) => {
         // console.log(value.COD_RUBRO);
         state.selectRubro = value.COD_RUBRO;
         state.selectRubro = "7";
@@ -443,20 +452,20 @@ const ListTiendas  = (update) => {
         update();
       });
     });
+
+
   });
-  const section     = $('<section id="cargarLista"></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const logo        = $('<div class="col-xs-12"><img src="assets/img/logo.png" alt="Logo de Real Plaza"></div>');
+  const section = $('<section id="cargarLista"></section>');
+  const container = $('<div class="container"></div>');
+  const row = $('<div class="row"></div>');
+  const logo = $('<div class="col-xs-5 col-xs-offset-3 col-lg-3 col-sm-offset-4 text-center"><img class="img-responsive" src="assets/img/logo.png" alt="Logo de Real Plaza"></div>');
 
-  row.append(logo,divRubros);
-
+  row.append(logo, divRubros);
   container.append(row);
-  section.append(HeaderAll('',8,update));
+  section.append(HeaderAll('', 8, update));
   section.append(container);
   return section;
 };
-
 'use strict';
 
 const ListaCentros  = (update) => {
