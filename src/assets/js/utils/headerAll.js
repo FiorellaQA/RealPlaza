@@ -2,11 +2,13 @@
 
 const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
-  const back   = $('<div class="col-xs-2 vertical-align"><span class="glyphicon glyphicon-chevron-left"></span></div>');
-  const title  = $('<div class="col-xs-10 vertical-align"><h3>'+titulo+'</h3></div>');
+  const row    = $('<div class="container vertical-align"></row>');
+  const back   = $('<div class="col-xs-2"><span class="glyphicon glyphicon-chevron-left"></span></div>');
+  const title  = $('<div class="col-xs-10"><h3>'+titulo+'</h3></div>');
 
-  header.append(back);
-  header.append(title);
+  row.append(back);
+  row.append(title);
+  header.append(row);
 
   back.on('click', (e) => {
     e.preventDefault();

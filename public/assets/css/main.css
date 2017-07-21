@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-.no-padding, header .col-xs-2 span {
+.no-padding, header .container .col-xs-2 span {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -21,16 +21,16 @@ header {
   box-shadow: inset 0 0 20px #DDDDDD;
 }
 
-header .col-xs-2 {
+header .container {
   height: 100%;
 }
 
-header .col-xs-2 span {
+header .container .col-xs-2 span {
   font-size: "14px14px";
   color: #000;
 }
 
-header .col-xs-2:hover {
+header .container .col-xs-2:hover {
   cursor: pointer;
 }
 
@@ -46,4 +46,9 @@ header .col-xs-2:hover {
 
 .choiceOption .row:last-child {
   border: 2px solid #6c2774;
+}
+
+.region .col-xs-12 {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
 }

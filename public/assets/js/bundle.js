@@ -130,11 +130,13 @@ const ListarCoordenadas = () => {
 
 const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
-  const back   = $('<div class="col-xs-2 vertical-align"><span class="glyphicon glyphicon-chevron-left"></span></div>');
-  const title  = $('<div class="col-xs-10 vertical-align"><h3>'+titulo+'</h3></div>');
+  const row    = $('<div class="container vertical-align"></row>');
+  const back   = $('<div class="col-xs-2"><span class="glyphicon glyphicon-chevron-left"></span></div>');
+  const title  = $('<div class="col-xs-10"><h3>'+titulo+'</h3></div>');
 
-  header.append(back);
-  header.append(title);
+  row.append(back);
+  row.append(title);
+  header.append(row);
 
   back.on('click', (e) => {
     e.preventDefault();
@@ -216,13 +218,13 @@ const ChoiceOption = (update) => {
 'use strict';
 
 const ChoiceRegion = (update) => {
-  const section = $('<section></section>');
-  const divChoice = $('<div></div>');
+  const section = $('<section class="region"></section>');
+  const divChoice = $('<div class="container"></div>');
 
   ListarDepartamentos().then((response) => {
     console.log(state.data.departamentos);
     $.each( state.data.departamentos, ( key, value ) =>  {
-      const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
+      const region = $('<div class="col-xs-12"><p>'+value.NOMBRE_DEPARTAMENTO+'<span class="glyphicon glyphicon-tags pull-right"></span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
         e.preventDefault();
@@ -246,7 +248,7 @@ const DetalleMall  = (update) => {
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const mapa        = $('<di class=""mapv></div>');
+  const mapa        = $('<div class=""mapv></div>');
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
   const btnIr       = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
 
@@ -321,7 +323,7 @@ const ListaCentros  = (update) => {
   const row         = $('<div class="row"></div>');
   const logo        = $('<div class="col-xs-12"><img src="assets/img/logo.png" alt="Logo de Real Plaza"></div>');
   const btnElegirCC = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-tienda uppercase" name="button" id="elegirCC">tiendas</button></div>');
-  const btnInfo   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button></div>');
+  const btnInfo     = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button></div>');
 
   row.append(logo);
   row.append(btnInfo);

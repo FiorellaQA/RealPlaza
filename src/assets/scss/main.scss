@@ -24,15 +24,17 @@ header{
   -moz-box-shadow:    inset 0 0 20px #DDDDDD;
   -webkit-box-shadow: inset 0 0 20px #DDDDDD;
   box-shadow:         inset 0 0 20px #DDDDDD;
-  .col-xs-2{
+  .container{
     height: 100%;
-    span{
-      @extend .no-padding;
-      font-size: $primary-font-size + 14px;
-      color: #000;
-    }
-    &:hover{
-      cursor: pointer;
+    .col-xs-2{
+      span{
+        @extend .no-padding;
+        font-size: $primary-font-size + 14px;
+        color: #000;
+      }
+      &:hover{
+        cursor: pointer;
+      }
     }
   }
 }
@@ -52,5 +54,13 @@ header{
   .row:last-child{
     @extend .vertical-align ;
     border: 2px solid $primary-color;
+  }
+}
+
+// Region
+.region{
+  .col-xs-12{
+    padding: 15px;
+    border-bottom: 1px solid #eee;
   }
 }
