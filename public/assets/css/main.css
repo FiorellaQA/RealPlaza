@@ -52,3 +52,8 @@ header .container .col-xs-2:hover {
   padding: 15px;
   border-bottom: 1px solid #eee;
 }
+
+div.map {
+  width: 50vw;
+  height: 40vh;
+}

@@ -1,11 +1,5 @@
 'use strict';
-const  filtro= (array, destino) => {
-  return state.data.coordenadas.filter((e,i)=>{
-      if(e.DESTINO.indexOf(destino) !== -1){
-        return e;
-      }
-  });
-};
+
 
 const render = (root) => {
   root.empty();
@@ -21,6 +15,9 @@ const render = (root) => {
     wrapper.append(ChoiceRegion(_=>{ render(root) }));
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap("map-location",laboratoriaLima);
+    },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   }
@@ -29,6 +26,9 @@ const render = (root) => {
   }
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap('map-detail',RPChorrillos);
+    },500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
   }else if (state.page == 9){
@@ -45,7 +45,13 @@ const render = (root) => {
 };
 const state = {
   page: 0,
-  data:{}
+  data:{},
+  selectRegion:null,
+  selectTienda:null,
+  selectRubro:null,
+  codigoInmueble: null,
+  nombreDestino: null
+
 };
 
 $( _ => {
@@ -69,7 +75,7 @@ $( _ => {
     // console.log(filtro(arr,'VACANCY'));
   });
 
-  console.log(state.data);
+  // console.log(state.data);
   const root = $("#root");
   render(root);
 });
