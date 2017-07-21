@@ -18,7 +18,7 @@ const render = (root) => {
   } else if (state.page == 2){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   } else if (state.page == 3){
-    wrapper.append(ListMall(_=>{ render(root) }));
+    wrapper.append(ChoiceMall(_=>{ render(root) }));
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
   }else if (state.page == 5){
