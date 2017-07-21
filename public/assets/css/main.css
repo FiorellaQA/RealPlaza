@@ -58,6 +58,7 @@ div.map {
   height: 40vh;
 }
 
+<<<<<<< HEAD
 .login__bg {
   background-image: url("../img/salaverry2.jpg");
 }
@@ -182,4 +183,36 @@ div.map {
   color: white;
   font-style: 20px;
   font-weight: lighter;
+=======
+line {
+  stroke: #e11383;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 6,5;
+  fill: none;
+}
+
+.map-svg {
+  background-color: #efefef;
+  min-height: 100vh;
+  height: auto;
+}
+
+.map-svg h3 {
+  color: #6c2774;
+}
+
+.map-svg h3 span {
+  color: #e11383;
+}
+
+#buscar_comercial {
+  border: none;
+  border-bottom: 2px solid #6c2774;
+  margin: 21px auto;
+  background-color: #efefef;
+  font-weight: bold;
+  width: 250px;
+  outline: none;
+>>>>>>> 3e246f14d213e2101b1405326fd63039d5837ff2
 }
