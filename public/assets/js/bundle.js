@@ -79,7 +79,7 @@ const ListarCoordenadas = () => {
 
 'use strict';
 
-const HeaderAll = (titulo,update) => {
+const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
   const back = $('<span> &#171; </span>');
   const title = $('<h3>'+titulo+'</h3>');
@@ -89,7 +89,8 @@ const HeaderAll = (titulo,update) => {
 
   back.on('click', (e) => {
     e.preventDefault();
-    state.page--;
+    state.page = number--;
+    console.log(state.page);
     update();
   });
 
@@ -116,21 +117,22 @@ const ChoiceProv = (update) => {
   });
   const divChoice = $('<div></div>');
 
-
-  section.append(HeaderAll('Elige tu Real Plaza preferido',update));
+  section.append(HeaderAll('Elige tu Real Plaza preferido',3,update));
 
   section.append(divChoice);
-
-
 
   return section;
 
 };
 
-/*const AllLima = (update) => {
-  const divLima = $('<div></div>');
-};*/
+const MapaLocation = (update) => {
+  const section = $('<section></section>');
 
+  section.append(HeaderAll('Mapa de todos los Mall',4,update));
+
+  return section;
+
+};
 
 const ChoiceMall = (update) => {
   const section = $('<section></section>');
@@ -138,7 +140,7 @@ const ChoiceMall = (update) => {
   const divMall = $('<div></div>');
   const mall = $('<div><p>Real Plaza Chorrillos</p></div>');
 
-  section.append(HeaderAll('Lima',update));
+  section.append(HeaderAll('Lima',5,update));
 
   section.append(divMall);
   divMall.append(mall);
@@ -154,8 +156,6 @@ const ChoiceMall = (update) => {
 
 };
 
-'use strict';
-
 const MapaMall = (update) => {
   const section = $('<section></section>');
 
@@ -166,7 +166,7 @@ const MapaMall = (update) => {
   const detailsMall =  $('<div>acá van los detalles</div>');
 
 
-  section.append(HeaderAll('Real Plaza Chorrillos',update));
+  section.append(HeaderAll('Real Plaza Chorrillos',6,update));
 
   section.append(divMap);
   divMap.append(mapMall);
@@ -214,8 +214,6 @@ const ChoiceOption = (update) => {
     e.preventDefault();
     state.page = 1;
     update();
-
-
   });
 
   return section;
@@ -223,6 +221,7 @@ const ChoiceOption = (update) => {
 
 
 };
+
 'use strict';
  const Header = (update) => {
    const header = $('<header></header>');
@@ -242,19 +241,26 @@ const render = (root) => {
   root.empty();
   const wrapper = $('<div class="wrapper">hjjhj</div>');
 
-  if(state.page == null){
+  if(state.page == 0){
     wrapper.append(ChoiceOption(_=>{ render(root) }));
   } else if (state.page == 1){
     wrapper.append(ChoiceProv(_=>{ render(root) }));
   } else if (state.page == 2){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   } else if (state.page == 3){
+    wrapper.append(ListMall(_=>{ render(root) }));
+  }else if (state.page == 4){
+    wrapper.append(MapaLocation(_=>{ render(root) }));
+  }else if (state.page == 5){
+    wrapper.append(MapaMall(_=>{ render(root) }));
+  }else if (state.page == 6){
     wrapper.append(MapaMall(_=>{ render(root) }));
   }
+
   root.append(wrapper);
 };
 const state = {
-  page: null,
+  page: 0,
   data:{}
 };
 

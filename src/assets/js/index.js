@@ -11,19 +11,26 @@ const render = (root) => {
   root.empty();
   const wrapper = $('<div class="wrapper">hjjhj</div>');
 
-  if(state.page == null){
+  if(state.page == 0){
     wrapper.append(ChoiceOption(_=>{ render(root) }));
   } else if (state.page == 1){
     wrapper.append(ChoiceProv(_=>{ render(root) }));
   } else if (state.page == 2){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   } else if (state.page == 3){
+    wrapper.append(ListMall(_=>{ render(root) }));
+  }else if (state.page == 4){
+    wrapper.append(MapaLocation(_=>{ render(root) }));
+  }else if (state.page == 5){
+    wrapper.append(MapaMall(_=>{ render(root) }));
+  }else if (state.page == 6){
     wrapper.append(MapaMall(_=>{ render(root) }));
   }
+
   root.append(wrapper);
 };
 const state = {
-  page: null,
+  page: 0,
   data:{}
 };
 

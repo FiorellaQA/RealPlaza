@@ -17,21 +17,22 @@ const ChoiceProv = (update) => {
   });
   const divChoice = $('<div></div>');
 
-
-  section.append(HeaderAll('Elige tu Real Plaza preferido',update));
+  section.append(HeaderAll('Elige tu Real Plaza preferido',3,update));
 
   section.append(divChoice);
-
-
 
   return section;
 
 };
 
-/*const AllLima = (update) => {
-  const divLima = $('<div></div>');
-};*/
+const MapaLocation = (update) => {
+  const section = $('<section></section>');
 
+  section.append(HeaderAll('Mapa de todos los Mall',4,update));
+
+  return section;
+
+};
 
 const ChoiceMall = (update) => {
   const section = $('<section></section>');
@@ -39,7 +40,7 @@ const ChoiceMall = (update) => {
   const divMall = $('<div></div>');
   const mall = $('<div><p>Real Plaza Chorrillos</p></div>');
 
-  section.append(HeaderAll('Lima',update));
+  section.append(HeaderAll('Lima',5,update));
 
   section.append(divMall);
   divMall.append(mall);
@@ -55,8 +56,6 @@ const ChoiceMall = (update) => {
 
 };
 
-'use strict';
-
 const MapaMall = (update) => {
   const section = $('<section></section>');
 
@@ -67,7 +66,7 @@ const MapaMall = (update) => {
   const detailsMall =  $('<div>acá van los detalles</div>');
 
 
-  section.append(HeaderAll('Real Plaza Chorrillos',update));
+  section.append(HeaderAll('Real Plaza Chorrillos',6,update));
 
   section.append(divMap);
   divMap.append(mapMall);

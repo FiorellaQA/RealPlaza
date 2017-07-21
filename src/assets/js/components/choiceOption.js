@@ -32,8 +32,6 @@ const ChoiceOption = (update) => {
     e.preventDefault();
     state.page = 1;
     update();
-
-
   });
 
   return section;
