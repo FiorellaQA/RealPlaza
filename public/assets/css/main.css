@@ -48,11 +48,6 @@ header .container .col-xs-2:hover {
   border: 2px solid #250d28;
 }
 
-.region .col-xs-12 {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-}
-
 div.map {
   width: 50vw;
   height: 40vh;
@@ -182,4 +177,113 @@ div.map {
   color: white;
   font-style: 20px;
   font-weight: lighter;
+}
+
+.region .col-xs-12:nth-child(1) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/arequipa.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(2) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/cajamarca.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(3) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/trujillo.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(4) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/chimbote.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(5) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/huanuco.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(6) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/juliaca.JPG");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(7) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/piura.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(8) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/primavera.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(9) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/pro.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(10) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/pucallpa.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(11) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/santa-clara.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12:nth-child(12) {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/puruchuco.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 25vh;
+}
+
+.region .col-xs-12 {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #fff;
+  font-weight: bold;
+  font-size: 2rem;
+  background: rgba(225, 18, 130, 0.2);
+}
+
+.region .col-xs-12:hover {
+  opacity: .2;
 }

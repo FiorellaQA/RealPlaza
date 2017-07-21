@@ -1,6 +1,7 @@
 @import "colors";
 @import "fonts";
 @import "sizes";
+@import "mixins";
 
 *{
   padding: 0;
@@ -53,13 +54,6 @@ header{
   }
 }
 
-// Region
-.region{
-  .col-xs-12{
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-  }
-}
 
 // Map
 div.map {
@@ -179,3 +173,28 @@ div.map {
 	font-style: 20px;
 	font-weight: lighter;
 }
+
+
+// Region
+$img: "../img/sedes-min/arequipa.jpg", "../img/sedes-min/cajamarca.jpg", "../img/sedes-min/trujillo.jpg","../img/sedes-min/chimbote.jpg", "../img/sedes-min/huanuco.jpg", "../img/sedes-min/juliaca.JPG", "../img/sedes-min/piura.jpg",
+"../img/sedes-min/primavera.jpg", "../img/sedes-min/pro.jpg", "../img/sedes-min/pucallpa.jpg", "../img/sedes-min/santa-clara.jpg",  "../img/sedes-min/puruchuco.jpg";
+.region{
+	@for $i from 1 through length($img)  {
+		.col-xs-12:nth-child(#{$i}){
+			@include backgroundImages(nth($img, $i));
+		}
+	}
+	.col-xs-12{
+		padding: 15px;
+		border-bottom: 1px solid #eee;
+		color: #fff;
+		font-weight: bold;
+		font-size: 2rem;
+		background: rgba(225, 18, 130, .2);
+		// background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/banner.jpg');
+		&:hover{
+			opacity: .2;
+		}
+	}
+}
+
