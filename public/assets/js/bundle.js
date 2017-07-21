@@ -1,78 +1,151 @@
-'use strict';
-const  filtro= (array, destino) => {
-  return state.data.coordenadas.filter((e,i)=>{
-      if(e.DESTINO.indexOf(destino) !== -1){
-        return e;
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+const getJSON = (url) => {
+  return new Promise((resolve,reject) => {
+    $.get(url,(res,req,error) => {
+      if (error.status !== 200){
+        reject(new Error('Error loading JSON from ' + url + '(' + xhr.status + ')'));
+      }else{
+        resolve(res);
       }
-  });
-};
-
-const render = (root) => {
-  root.empty();
-  const wrapper = $('<div class="wrapper"></div>');
-
-  if(state.page == 0){
-    wrapper.append(Welcome(_=>{ render(root) }));
-  }else if(state.page == 1){
-    wrapper.append(InicioSesion(_=>{ render(root) }));
-  }else if (state.page == 2){
-    wrapper.append(ChoiceOption(_=>{ render(root) }));
-  }else if (state.page == 3){
-    wrapper.append(ChoiceRegion(_=>{ render(root) }));
-  }else if (state.page == 4){
-    wrapper.append(MapaLocation(_=>{ render(root) }));
-  }else if (state.page == 5){
-    wrapper.append(ChoiceMall(_=>{ render(root) }));
-  }
-  else if (state.page == 6){
-    wrapper.append(ListaCentros(_=>{ render(root) }));
-  }
-  else if (state.page == 7){
-    wrapper.append(DetalleMall(_=>{ render(root) }));
-  }else if (state.page == 8){
-    wrapper.append(ComoLlegar(_=>{ render(root) }));
-  }else if (state.page == 9){
-    wrapper.append(ListTiendas(_=>{ render(root) }));
-  }else if (state.page == 10){
-    wrapper.append(TiendaElegida(_=>{ render(root) }));
-  }else if (state.page == 11){
-    wrapper.append(MapaGrande(_=>{ render(root) }));
-  }else if (state.page == 12){
-    wrapper.append(MapaSVG(_=>{ render(root) }));
-  }
-
-  root.append(wrapper);
-};
-const state = {
-  page: 0,
-  data:{}
-};
-
-$( _ => {
-
-  const cod_depa = 15;
-  const cod_inmueble = 16;
-  const cod_rubro = 17;
-
-  ListarInmuebles();
-  ListarDepartamentos().then((response) => {
-    $.each( state.data.departamentos, ( key, value ) =>  {
-
-      // alert( key + ": " + value );
     });
   });
-  ListarInmueble(cod_depa);
-  ListarRubro(cod_inmueble);
-  ListarLocales(cod_inmueble,cod_rubro);
-  ListarCoordenadas().then((response)=>{
-    var arr = state.data.coordenadas;
-    // console.log(filtro(arr,'VACANCY'));
+}
+const getJSONID = (url,obj) => {
+  return new Promise((resolve,reject) => {
+    $.get(url+obj,(res,req,error) => {
+      if (error.status !== 200){
+        reject(new Error('Error loading JSON from ' + url + '(' + xhr.status + ')'));
+      }else{
+        resolve(res);
+      }
+    });
+  });
+}
+
+const ListarDepartamentos = () => {
+  return new Promise((resolve,reject) => {
+    getJSON('data/ListarDepartamentos.json').then((response) => {
+      state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
+      resolve(state.data.departamentos);
+    });
+  });
+};
+
+const ListarInmuebles = () => {
+  return new Promise((resolve,reject) => {
+    getJSON('data/ListarInmuebles.json').then((response) => {
+      state.data.inmuebles = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
+      resolve(state.data.inmuebles);
+    });
+  });
+};
+const ListarInmueble = (cod_depa) => {
+  return new Promise((resolve,reject) => {
+    getJSON('data/ListarInmueble.json').then((response) => {
+      state.data.inm_departamento = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
+      resolve(state.data.inm_departamento);
+    });
+  });
+};
+const ListarRubro = (cod_inmueble) => {
+  return new Promise((resolve,reject) => {
+    getJSON('data/ListarRubro.json').then((response) => {
+      state.data.rubros_inmueble = response.metodLabListarRubroResult["diffgr:diffgram"]['DsLabListarRubro']['DtLabListarRubro'];
+      resolve(state.data.rubros_inmueble);
+    });
+  });
+};
+const ListarLocales = (cod_inmueble,cod_rubro) => {
+  return new Promise((resolve,reject) => {
+    getJSON('data/ListarLocales.json').then((response) => {
+      state.data.locales = response.metodLabListarLocalesResult["diffgr:diffgram"]['DsLabListarLocales']['DtLabListarLocales'];
+      resolve(state.data.locales);
+    });
+  });
+};
+const ListarCoordenadas = () => {
+  return new Promise((resolve,reject) => {
+    getJSON('data/ListarCoordenadas.json').then((response) => {
+      state.data.coordenadas = response.metodLabListarCoordenadasResult['diffgr:diffgram']['DsLabListarCoordenadas']['DtLabListarCoordenadas'];
+      resolve(state.data.coordenadas);
+    });
+  });
+};
+// const ListarDepartamentos = () => {
+//   return new Promise((resolve,reject) => {
+//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarDepartamento&json={}').then((response) => {
+//       state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
+//       resolve(state.data.departamentos);
+//     });
+//   });
+// };
+// const ListarInmuebles = () => {
+//   return new Promise((resolve,reject) => {
+//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarInmueble&json={"ps_cod_departamento":""}').then((response) => {
+//       state.data.inmuebles = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
+//       resolve(state.data.inmuebles);
+//     });
+//   });
+// };
+// const ListarInmueble = (cod_depa) => {
+//   return new Promise((resolve,reject) => {
+//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarInmueble&json={"ps_cod_departamento":"'+cod_depa+'"}').then((response) => {
+//       state.data.inm_departamento = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
+//       resolve(state.data.inm_departamento);
+//     });
+//   });
+// };
+// const ListarRubro = (cod_inmueble) => {
+//   return new Promise((resolve,reject) => {
+//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarRubro&json={"pi_cod_inmueble":'+cod_inmueble+'}').then((response) => {
+//       state.data.rubros_inmueble = response.metodLabListarRubroResult["diffgr:diffgram"]['DsLabListarRubro']['DtLabListarRubro'];
+//       resolve(state.data.rubros_inmueble);
+//     });
+//   });
+// };
+// const ListarLocales = (cod_inmueble,cod_rubro) => {
+//   return new Promise((resolve,reject) => {
+//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarLocales&json={"pi_cod_inmueble":'+cod_inmueble+',"pi_cod_rubro":'+cod_rubro+'}').then((response) => {
+//       state.data.locales = response.metodLabListarLocalesResult["diffgr:diffgram"]['DsLabListarLocales']['DtLabListarLocales'];
+//       resolve(state.data.locales);
+//     });
+//   });
+// };
+// const ListarCoordenadas = () => {
+//   return new Promise((resolve,reject) => {
+//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarCoordenadas&json={}').then((response) => {
+//       state.data.coordenadas = response.metodLabListarCoordenadasResult['diffgr:diffgram']['DsLabListarCoordenadas']['DtLabListarCoordenadas'];
+//       resolve(state.data.coordenadas);
+//       // var arr = state.data.coordenadas;
+//       // // console.log(state.data.coordenadas);
+//       // console.log(filtro(arr,'VACANCY'));
+//       // $.each(arr,( index, value )=> {
+//       //   // console.log(value.DESTINO);
+//       // });
+//     });
+//   });
+// };
+
+'use strict';
+
+const HeaderAll = (titulo,number,update) => {
+  const header = $('<header></header>');
+  const back = $('<span> &#171; </span>');
+  const title = $('<h3>'+titulo+'</h3>');
+
+  header.append(back);
+  header.append(title);
+
+  back.on('click', (e) => {
+    e.preventDefault();
+    state.page = number;
+    console.log(state.page);
+    update();
   });
 
-  console.log(state.data);
-  const root = $("#root");
-  render(root);
-});
+  return header;
+};
+
 
 'use strict';
 
@@ -436,150 +509,80 @@ const Welcome = (update) => {
   return section;
 }
 
-const getJSON = (url) => {
-  return new Promise((resolve,reject) => {
-    $.get(url,(res,req,error) => {
-      if (error.status !== 200){
-        reject(new Error('Error loading JSON from ' + url + '(' + xhr.status + ')'));
-      }else{
-        resolve(res);
-      }
-    });
-  });
-}
-const getJSONID = (url,obj) => {
-  return new Promise((resolve,reject) => {
-    $.get(url+obj,(res,req,error) => {
-      if (error.status !== 200){
-        reject(new Error('Error loading JSON from ' + url + '(' + xhr.status + ')'));
-      }else{
-        resolve(res);
-      }
-    });
-  });
-}
-
-const ListarDepartamentos = () => {
-  return new Promise((resolve,reject) => {
-    getJSON('data/ListarDepartamentos.json').then((response) => {
-      state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
-      resolve(state.data.departamentos);
-    });
-  });
-};
-
-const ListarInmuebles = () => {
-  return new Promise((resolve,reject) => {
-    getJSON('data/ListarInmuebles.json').then((response) => {
-      state.data.inmuebles = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
-      resolve(state.data.inmuebles);
-    });
-  });
-};
-const ListarInmueble = (cod_depa) => {
-  return new Promise((resolve,reject) => {
-    getJSON('data/ListarInmueble.json').then((response) => {
-      state.data.inm_departamento = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
-      resolve(state.data.inm_departamento);
-    });
-  });
-};
-const ListarRubro = (cod_inmueble) => {
-  return new Promise((resolve,reject) => {
-    getJSON('data/ListarRubro.json').then((response) => {
-      state.data.rubros_inmueble = response.metodLabListarRubroResult["diffgr:diffgram"]['DsLabListarRubro']['DtLabListarRubro'];
-      resolve(state.data.rubros_inmueble);
-    });
-  });
-};
-const ListarLocales = (cod_inmueble,cod_rubro) => {
-  return new Promise((resolve,reject) => {
-    getJSON('data/ListarLocales.json').then((response) => {
-      state.data.locales = response.metodLabListarLocalesResult["diffgr:diffgram"]['DsLabListarLocales']['DtLabListarLocales'];
-      resolve(state.data.locales);
-    });
-  });
-};
-const ListarCoordenadas = () => {
-  return new Promise((resolve,reject) => {
-    getJSON('data/ListarCoordenadas.json').then((response) => {
-      state.data.coordenadas = response.metodLabListarCoordenadasResult['diffgr:diffgram']['DsLabListarCoordenadas']['DtLabListarCoordenadas'];
-      resolve(state.data.coordenadas);
-    });
-  });
-};
-// const ListarDepartamentos = () => {
-//   return new Promise((resolve,reject) => {
-//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarDepartamento&json={}').then((response) => {
-//       state.data.departamentos = response.metodLabListarDepartamentoResult["diffgr:diffgram"]['DsLabListarDepartamento']['DtLabListarDepartamento'];
-//       resolve(state.data.departamentos);
-//     });
-//   });
-// };
-// const ListarInmuebles = () => {
-//   return new Promise((resolve,reject) => {
-//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarInmueble&json={"ps_cod_departamento":""}').then((response) => {
-//       state.data.inmuebles = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
-//       resolve(state.data.inmuebles);
-//     });
-//   });
-// };
-// const ListarInmueble = (cod_depa) => {
-//   return new Promise((resolve,reject) => {
-//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarInmueble&json={"ps_cod_departamento":"'+cod_depa+'"}').then((response) => {
-//       state.data.inm_departamento = response.metodLabListarInmuebleResult["diffgr:diffgram"]['DsLabListarInmueble']['DtLabListarInmueble'];
-//       resolve(state.data.inm_departamento);
-//     });
-//   });
-// };
-// const ListarRubro = (cod_inmueble) => {
-//   return new Promise((resolve,reject) => {
-//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarRubro&json={"pi_cod_inmueble":'+cod_inmueble+'}').then((response) => {
-//       state.data.rubros_inmueble = response.metodLabListarRubroResult["diffgr:diffgram"]['DsLabListarRubro']['DtLabListarRubro'];
-//       resolve(state.data.rubros_inmueble);
-//     });
-//   });
-// };
-// const ListarLocales = (cod_inmueble,cod_rubro) => {
-//   return new Promise((resolve,reject) => {
-//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarLocales&json={"pi_cod_inmueble":'+cod_inmueble+',"pi_cod_rubro":'+cod_rubro+'}').then((response) => {
-//       state.data.locales = response.metodLabListarLocalesResult["diffgr:diffgram"]['DsLabListarLocales']['DtLabListarLocales'];
-//       resolve(state.data.locales);
-//     });
-//   });
-// };
-// const ListarCoordenadas = () => {
-//   return new Promise((resolve,reject) => {
-//     getJSON('http://190.81.175.52:9797/middleware/api/middleware/1?method=metodLabListarCoordenadas&json={}').then((response) => {
-//       state.data.coordenadas = response.metodLabListarCoordenadasResult['diffgr:diffgram']['DsLabListarCoordenadas']['DtLabListarCoordenadas'];
-//       resolve(state.data.coordenadas);
-//       // var arr = state.data.coordenadas;
-//       // // console.log(state.data.coordenadas);
-//       // console.log(filtro(arr,'VACANCY'));
-//       // $.each(arr,( index, value )=> {
-//       //   // console.log(value.DESTINO);
-//       // });
-//     });
-//   });
-// };
-
 'use strict';
-
-const HeaderAll = (titulo,number,update) => {
-  const header = $('<header></header>');
-  const back = $('<span> &#171; </span>');
-  const title = $('<h3>'+titulo+'</h3>');
-
-  header.append(back);
-  header.append(title);
-
-  back.on('click', (e) => {
-    e.preventDefault();
-    state.page = number;
-    console.log(state.page);
-    update();
+const  filtro= (array, destino) => {
+  return state.data.coordenadas.filter((e,i)=>{
+      if(e.DESTINO.indexOf(destino) !== -1){
+        return e;
+      }
   });
-
-  return header;
 };
 
+const render = (root) => {
+  root.empty();
+  const wrapper = $('<div class="wrapper"></div>');
+
+  if(state.page == 0){
+    wrapper.append(Welcome(_=>{ render(root) }));
+  }else if(state.page == 1){
+    wrapper.append(InicioSesion(_=>{ render(root) }));
+  }else if (state.page == 2){
+    wrapper.append(ChoiceOption(_=>{ render(root) }));
+  }else if (state.page == 3){
+    wrapper.append(ChoiceRegion(_=>{ render(root) }));
+  }else if (state.page == 4){
+    wrapper.append(MapaLocation(_=>{ render(root) }));
+  }else if (state.page == 5){
+    wrapper.append(ChoiceMall(_=>{ render(root) }));
+  }
+  else if (state.page == 6){
+    wrapper.append(ListaCentros(_=>{ render(root) }));
+  }
+  else if (state.page == 7){
+    wrapper.append(DetalleMall(_=>{ render(root) }));
+  }else if (state.page == 8){
+    wrapper.append(ComoLlegar(_=>{ render(root) }));
+  }else if (state.page == 9){
+    wrapper.append(ListTiendas(_=>{ render(root) }));
+  }else if (state.page == 10){
+    wrapper.append(TiendaElegida(_=>{ render(root) }));
+  }else if (state.page == 11){
+    wrapper.append(MapaGrande(_=>{ render(root) }));
+  }else if (state.page == 12){
+    wrapper.append(MapaSVG(_=>{ render(root) }));
+  }
+
+  root.append(wrapper);
+};
+const state = {
+  page: 0,
+  data:{}
+};
+
+$( _ => {
+
+  const cod_depa = 15;
+  const cod_inmueble = 16;
+  const cod_rubro = 17;
+
+  ListarInmuebles();
+  ListarDepartamentos().then((response) => {
+    $.each( state.data.departamentos, ( key, value ) =>  {
+
+      // alert( key + ": " + value );
+    });
+  });
+  ListarInmueble(cod_depa);
+  ListarRubro(cod_inmueble);
+  ListarLocales(cod_inmueble,cod_rubro);
+  ListarCoordenadas().then((response)=>{
+    var arr = state.data.coordenadas;
+    // console.log(filtro(arr,'VACANCY'));
+  });
+
+  console.log(state.data);
+  const root = $("#root");
+  render(root);
+});
+
+},{}]},{},[1])
