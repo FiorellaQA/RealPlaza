@@ -1,0 +1,239 @@
+{
+  "@xmlns": "http://rpovhserv10:1001",
+  "metodLabListarLocalesResult": {
+    "xs:schema": {
+      "@id": "DsLabListarLocales",
+      "@xmlns:xs": "http://www.w3.org/2001/XMLSchema",
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "xs:element": {
+        "@name": "DsLabListarLocales",
+        "@msdata:IsDataSet": "true",
+        "@msdata:UseCurrentLocale": "true",
+        "xs:complexType": {
+          "xs:choice": {
+            "@minOccurs": "0",
+            "@maxOccurs": "unbounded",
+            "xs:element": {
+              "@name": "DtLabListarLocales",
+              "xs:complexType": {
+                "xs:sequence": {
+                  "xs:element": [
+                    {
+                      "@name": "NRO_CONTRATO",
+                      "@type": "xs:int",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "VERSION",
+                      "@type": "xs:unsignedByte",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "MODIFICACION",
+                      "@type": "xs:unsignedByte",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_INMUEBLE",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "TIPO_LOCAL",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "LOCAL",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "METRAJE",
+                      "@type": "xs:decimal",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "FECHA_INICIO",
+                      "@type": "xs:dateTime",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "FECHA_FIN",
+                      "@type": "xs:dateTime",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_RUBRO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "RUC",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "CLIENTE",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_COMERCIAL",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "diffgr:diffgram": {
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "@xmlns:diffgr": "urn:schemas-microsoft-com:xml-diffgram-v1",
+      "DsLabListarLocales": {
+        "DtLabListarLocales": [
+          {
+            "@diffgr:id": "DtLabListarLocales1",
+            "@msdata:rowOrder": "0",
+            "NRO_CONTRATO": "3028",
+            "VERSION": "1",
+            "MODIFICACION": "1",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-401",
+            "METRAJE": "545.16",
+            "FECHA_INICIO": "2014-08-01T00:00:00-07:00",
+            "FECHA_FIN": "2020-08-31T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20553224145",
+            "CLIENTE": "BEBE & MAS S.A.C.",
+            "NOM_COMERCIAL": "NUÃ"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales2",
+            "@msdata:rowOrder": "1",
+            "NRO_CONTRATO": "3028",
+            "VERSION": "2",
+            "MODIFICACION": "0",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-401",
+            "METRAJE": "545.16",
+            "FECHA_INICIO": "2020-09-01T00:00:00-07:00",
+            "FECHA_FIN": "2022-08-31T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20553224145",
+            "CLIENTE": "BEBE & MAS S.A.C.",
+            "NOM_COMERCIAL": "NUÃ"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales3",
+            "@msdata:rowOrder": "2",
+            "NRO_CONTRATO": "3343",
+            "VERSION": "1",
+            "MODIFICACION": "2",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-302",
+            "METRAJE": "686.50",
+            "FECHA_INICIO": "2014-04-25T00:00:00-07:00",
+            "FECHA_FIN": "2017-12-31T00:00:00-08:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20493020618",
+            "CLIENTE": "TIENDAS PERUANAS S.A.",
+            "NOM_COMERCIAL": "SFERA"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales4",
+            "@msdata:rowOrder": "3",
+            "NRO_CONTRATO": "3468",
+            "VERSION": "1",
+            "MODIFICACION": "1",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-202",
+            "METRAJE": "649.52",
+            "FECHA_INICIO": "2014-04-15T00:00:00-07:00",
+            "FECHA_FIN": "2019-04-30T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20516463121",
+            "CLIENTE": "KOMAX PERU S.A.C.",
+            "NOM_COMERCIAL": "GAP"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales5",
+            "@msdata:rowOrder": "4",
+            "NRO_CONTRATO": "3469",
+            "VERSION": "1",
+            "MODIFICACION": "0",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-201",
+            "METRAJE": "2005.79",
+            "FECHA_INICIO": "2014-05-15T00:00:00-07:00",
+            "FECHA_FIN": "2034-05-14T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20544353714",
+            "CLIENTE": "IBEROTEX S.A.C.",
+            "NOM_COMERCIAL": "ZARA"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales6",
+            "@msdata:rowOrder": "5",
+            "NRO_CONTRATO": "3769",
+            "VERSION": "1",
+            "MODIFICACION": "0",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-304",
+            "METRAJE": "387.45",
+            "FECHA_INICIO": "2014-06-20T00:00:00-07:00",
+            "FECHA_FIN": "2020-06-30T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20501057682",
+            "CLIENTE": "TRADING FASHION LINE S.A.",
+            "NOM_COMERCIAL": "TOPI TOP"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales7",
+            "@msdata:rowOrder": "6",
+            "NRO_CONTRATO": "3917",
+            "VERSION": "1",
+            "MODIFICACION": "0",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-303",
+            "METRAJE": "1192.88",
+            "FECHA_INICIO": "2014-09-25T00:00:00-07:00",
+            "FECHA_FIN": "2024-09-30T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20556200832",
+            "CLIENTE": "SISAL PERU S.A.C.",
+            "NOM_COMERCIAL": "FOREVER 21"
+          },
+          {
+            "@diffgr:id": "DtLabListarLocales8",
+            "@msdata:rowOrder": "7",
+            "NRO_CONTRATO": "4358",
+            "VERSION": "1",
+            "MODIFICACION": "0",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "TIPO_LOCAL": "T.INTERMEDIA",
+            "LOCAL": "LH-305",
+            "METRAJE": "524.97",
+            "FECHA_INICIO": "2015-11-01T00:00:00-07:00",
+            "FECHA_FIN": "2021-04-30T00:00:00-07:00",
+            "NOM_RUBRO": "MODA",
+            "RUC": "20101030882",
+            "CLIENTE": "VALDITEX S A",
+            "NOM_COMERCIAL": "CALVIN KLEIN"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "@xmlns": "http://rpovhserv10:1001",
+  "metodLabListarRubroResult": {
+    "xs:schema": {
+      "@id": "DsLabListarRubro",
+      "@xmlns:xs": "http://www.w3.org/2001/XMLSchema",
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "xs:element": {
+        "@name": "DsLabListarRubro",
+        "@msdata:IsDataSet": "true",
+        "@msdata:UseCurrentLocale": "true",
+        "xs:complexType": {
+          "xs:choice": {
+            "@minOccurs": "0",
+            "@maxOccurs": "unbounded",
+            "xs:element": {
+              "@name": "DtLabListarRubro",
+              "xs:complexType": {
+                "xs:sequence": {
+                  "xs:element": [
+                    {
+                      "@name": "COD_RUBRO",
+                      "@type": "xs:unsignedByte",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_RUBRO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "diffgr:diffgram": {
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "@xmlns:diffgr": "urn:schemas-microsoft-com:xml-diffgram-v1",
+      "DsLabListarRubro": {
+        "DtLabListarRubro": [
+          {
+            "@diffgr:id": "DtLabListarRubro1",
+            "@msdata:rowOrder": "0",
+            "COD_RUBRO": "17",
+            "NOM_RUBRO": "ACCESORIOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro2",
+            "@msdata:rowOrder": "1",
+            "COD_RUBRO": "32",
+            "NOM_RUBRO": "ALMACEN"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro3",
+            "@msdata:rowOrder": "2",
+            "COD_RUBRO": "55",
+            "NOM_RUBRO": "ANTENA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro4",
+            "@msdata:rowOrder": "3",
+            "COD_RUBRO": "52",
+            "NOM_RUBRO": "AREA CEDIDA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro5",
+            "@msdata:rowOrder": "4",
+            "COD_RUBRO": "25",
+            "NOM_RUBRO": "CAJERO"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro6",
+            "@msdata:rowOrder": "5",
+            "COD_RUBRO": "15",
+            "NOM_RUBRO": "CALZADO"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro7",
+            "@msdata:rowOrder": "6",
+            "COD_RUBRO": "40",
+            "NOM_RUBRO": "CINE"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro8",
+            "@msdata:rowOrder": "7",
+            "COD_RUBRO": "29",
+            "NOM_RUBRO": "COMIDA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro9",
+            "@msdata:rowOrder": "8",
+            "COD_RUBRO": "23",
+            "NOM_RUBRO": "COMIDA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro10",
+            "@msdata:rowOrder": "9",
+            "COD_RUBRO": "16",
+            "NOM_RUBRO": "DEPORTE Y OUTDOOR"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro11",
+            "@msdata:rowOrder": "10",
+            "COD_RUBRO": "63",
+            "NOM_RUBRO": "DEPORTE Y OUTDOOR"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro12",
+            "@msdata:rowOrder": "11",
+            "COD_RUBRO": "24",
+            "NOM_RUBRO": "GENERAL"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro13",
+            "@msdata:rowOrder": "12",
+            "COD_RUBRO": "8",
+            "NOM_RUBRO": "HOGAR"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro14",
+            "@msdata:rowOrder": "13",
+            "COD_RUBRO": "39",
+            "NOM_RUBRO": "HOME CENTER"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro15",
+            "@msdata:rowOrder": "14",
+            "COD_RUBRO": "10",
+            "NOM_RUBRO": "JUEGOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro16",
+            "@msdata:rowOrder": "15",
+            "COD_RUBRO": "61",
+            "NOM_RUBRO": "LAVADO DE AUTOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro17",
+            "@msdata:rowOrder": "16",
+            "COD_RUBRO": "20",
+            "NOM_RUBRO": "LIBRERÃA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro18",
+            "@msdata:rowOrder": "17",
+            "COD_RUBRO": "36",
+            "NOM_RUBRO": "MAQUINA EXPENDEDORA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro19",
+            "@msdata:rowOrder": "18",
+            "COD_RUBRO": "7",
+            "NOM_RUBRO": "MODA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro20",
+            "@msdata:rowOrder": "19",
+            "COD_RUBRO": "14",
+            "NOM_RUBRO": "MODA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro21",
+            "@msdata:rowOrder": "20",
+            "COD_RUBRO": "65",
+            "NOM_RUBRO": "OFICINA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro22",
+            "@msdata:rowOrder": "21",
+            "COD_RUBRO": "18",
+            "NOM_RUBRO": "Ã“PTICAS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro23",
+            "@msdata:rowOrder": "22",
+            "COD_RUBRO": "26",
+            "NOM_RUBRO": "PATIO DE COMIDAS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro24",
+            "@msdata:rowOrder": "23",
+            "COD_RUBRO": "27",
+            "NOM_RUBRO": "RESTAURANTE"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro25",
+            "@msdata:rowOrder": "24",
+            "COD_RUBRO": "30",
+            "NOM_RUBRO": "RETAIL"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro26",
+            "@msdata:rowOrder": "25",
+            "COD_RUBRO": "28",
+            "NOM_RUBRO": "SERVICIOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro27",
+            "@msdata:rowOrder": "26",
+            "COD_RUBRO": "22",
+            "NOM_RUBRO": "SERVICIOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro28",
+            "@msdata:rowOrder": "27",
+            "COD_RUBRO": "13",
+            "NOM_RUBRO": "SERVICIOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro29",
+            "@msdata:rowOrder": "28",
+            "COD_RUBRO": "38",
+            "NOM_RUBRO": "SUPERMERCADOS"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro30",
+            "@msdata:rowOrder": "29",
+            "COD_RUBRO": "19",
+            "NOM_RUBRO": "TECNOLOGÃA Y MÃšSICA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro31",
+            "@msdata:rowOrder": "30",
+            "COD_RUBRO": "53",
+            "NOM_RUBRO": "TELEFONO PUBLICO"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro32",
+            "@msdata:rowOrder": "31",
+            "COD_RUBRO": "31",
+            "NOM_RUBRO": "TERRAZA"
+          },
+          {
+            "@diffgr:id": "DtLabListarRubro33",
+            "@msdata:rowOrder": "32",
+            "COD_RUBRO": "37",
+            "NOM_RUBRO": "TIENDA POR DEPARTAMENTOS"
+          }
+        ]
+      }
+    }
+  }
+}

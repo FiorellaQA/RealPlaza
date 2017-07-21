@@ -1,0 +1,242 @@
+{
+  "@xmlns": "http://rpovhserv10:1001",
+  "metodLabListarInmuebleResult": {
+    "xs:schema": {
+      "@id": "DsLabListarInmueble",
+      "@xmlns:xs": "http://www.w3.org/2001/XMLSchema",
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "xs:element": {
+        "@name": "DsLabListarInmueble",
+        "@msdata:IsDataSet": "true",
+        "@msdata:UseCurrentLocale": "true",
+        "xs:complexType": {
+          "xs:choice": {
+            "@minOccurs": "0",
+            "@maxOccurs": "unbounded",
+            "xs:element": {
+              "@name": "DtLabListarInmueble",
+              "xs:complexType": {
+                "xs:sequence": {
+                  "xs:element": [
+                    {
+                      "@name": "COD_INMUEBLE",
+                      "@type": "xs:int",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_INMUEBLE",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "ABREVIATURA",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "DIRECCION",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "TELEFONO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "COD_UBIGEO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_DISTRITO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_PROVINCIA",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOM_DEPARTAMENTO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "COD_DEPARTAMENTO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "LATITUD",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "LONGITUD",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "diffgr:diffgram": {
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "@xmlns:diffgr": "urn:schemas-microsoft-com:xml-diffgram-v1",
+      "DsLabListarInmueble": {
+        "DtLabListarInmueble": [
+          {
+            "@diffgr:id": "DtLabListarInmueble1",
+            "@msdata:rowOrder": "0",
+            "COD_INMUEBLE": "2",
+            "NOM_INMUEBLE": "REAL PLAZA CENTRO CIVICO",
+            "ABREVIATURA": "RP-CCL",
+            "DIRECCION": "AV. GARCILASO DE LA VEGA NRO. 1337",
+            "TELEFONO": "01-4248919",
+            "COD_UBIGEO": "150101",
+            "NOM_DISTRITO": "LIMA",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-12.056807",
+            "LONGITUD": "-77.038048"
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble2",
+            "@msdata:rowOrder": "1",
+            "COD_INMUEBLE": "4",
+            "NOM_INMUEBLE": "REAL PLAZA ESTACION CENTRAL",
+            "ABREVIATURA": "RP-LEC",
+            "DIRECCION": "AV. PASEO DE LA REPUBLICA S/N CUADRA 1 Y 2",
+            "TELEFONO": null,
+            "COD_UBIGEO": "150101",
+            "NOM_DISTRITO": "LIMA",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": null,
+            "LONGITUD": null
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble3",
+            "@msdata:rowOrder": "2",
+            "COD_INMUEBLE": "5",
+            "NOM_INMUEBLE": "REAL PLAZA GUARDIA CIVIL",
+            "ABREVIATURA": "RP-GCIV",
+            "DIRECCION": "AV. GUARDIA CIVIL NRO. 1035 (NUMEROS 1001 1005 1009 1025 1045)",
+            "TELEFONO": "01-2489436",
+            "COD_UBIGEO": "150108",
+            "NOM_DISTRITO": "CHORRILLOS",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-12.172645",
+            "LONGITUD": "-76.992717"
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble4",
+            "@msdata:rowOrder": "3",
+            "COD_INMUEBLE": "8",
+            "NOM_INMUEBLE": "REAL PLAZA LIMA ESTE",
+            "ABREVIATURA": "RP-EST",
+            "DIRECCION": "AV. NICOLAS AYLLON NRO. 4770",
+            "TELEFONO": null,
+            "COD_UBIGEO": "150103",
+            "NOM_DISTRITO": "ATE",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": null,
+            "LONGITUD": null
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble5",
+            "@msdata:rowOrder": "4",
+            "COD_INMUEBLE": "11",
+            "NOM_INMUEBLE": "REAL PLAZA PRIMAVERA",
+            "ABREVIATURA": "RP-PRI",
+            "DIRECCION": "AV. AVIACION ESQ PRIMAVERA NRO. S/N (ANGAMOS ESTE 2681)",
+            "TELEFONO": "01-2262859",
+            "COD_UBIGEO": "150130",
+            "NOM_DISTRITO": "SAN BORJA",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-12.111029",
+            "LONGITUD": "-77.001937"
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble6",
+            "@msdata:rowOrder": "5",
+            "COD_INMUEBLE": "12",
+            "NOM_INMUEBLE": "REAL PLAZA PRO",
+            "ABREVIATURA": "RP-PRO",
+            "DIRECCION": "AV. ALFREDO MENDIOLA NRO. 7042 (7038 - 7026)",
+            "TELEFONO": null,
+            "COD_UBIGEO": "150135",
+            "NOM_DISTRITO": "SAN MARTIN DE PORRES",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-11.939511",
+            "LONGITUD": "-77.069716"
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble7",
+            "@msdata:rowOrder": "6",
+            "COD_INMUEBLE": "16",
+            "NOM_INMUEBLE": "REAL PLAZA SALAVERRY",
+            "ABREVIATURA": "RP-SAL",
+            "DIRECCION": "AVENIDA GENERAL FELIPE SALAVERRY NÂ° 2370",
+            "TELEFONO": null,
+            "COD_UBIGEO": "150113",
+            "NOM_DISTRITO": "JESUS MARIA",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-12.089431",
+            "LONGITUD": "-77.052561"
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble8",
+            "@msdata:rowOrder": "7",
+            "COD_INMUEBLE": "13",
+            "NOM_INMUEBLE": "REAL PLAZA SANTA CLARA",
+            "ABREVIATURA": "RP-SCLA",
+            "DIRECCION": "AV. NICOLÃS AYLLÃ“N 8694, KM. 10.5 CARRETERA CENTRAL, FUNDO LA ESTRELLA",
+            "TELEFONO": "01-3563916",
+            "COD_UBIGEO": "150103",
+            "NOM_DISTRITO": "ATE",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-12.014995",
+            "LONGITUD": "-76.885518"
+          },
+          {
+            "@diffgr:id": "DtLabListarInmueble9",
+            "@msdata:rowOrder": "8",
+            "COD_INMUEBLE": "75",
+            "NOM_INMUEBLE": "REAL PLAZA VILLA MARÃA",
+            "ABREVIATURA": "RP-LA CURVA",
+            "DIRECCION": "Av. Pachacutec No. 3721 - 3781, P.J. CÃ©sar Vallejo â€“ Nueva Esperanza",
+            "TELEFONO": "1",
+            "COD_UBIGEO": "150133",
+            "NOM_DISTRITO": "SAN JUAN DE MIRAFLORES",
+            "NOM_PROVINCIA": "LIMA",
+            "NOM_DEPARTAMENTO": "LIMA",
+            "COD_DEPARTAMENTO": "15",
+            "LATITUD": "-12.180199",
+            "LONGITUD": "-76.942500"
+          }
+        ]
+      }
+    }
+  }
+}
