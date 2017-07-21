@@ -1,6 +1,7 @@
 'use strict';
 
 const ListaCentros  = (update) => {
+  console.log(state.selectTienda);
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');

@@ -5,11 +5,13 @@ const ChoiceRegion = (update) => {
   const divChoice = $('<div></div>');
 
   ListarDepartamentos().then((response) => {
-    console.log(state.data.departamentos);
+    // console.log(state.data.departamentos);
     $.each( state.data.departamentos, ( key, value ) =>  {
       const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
+        console.log(value.COD_DEPARTAMENTO);
+        state.selectRegion = "15";
         e.preventDefault();
         state.page = 5;
         update();

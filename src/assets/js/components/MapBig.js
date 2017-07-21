@@ -17,6 +17,7 @@ const MapaGrande = (update) => {
 
   btnIrTienda.on('click',(e) => {
     state.page = 12;
+    state.selectTienda = 'VACANCY';
     update();
   });
 

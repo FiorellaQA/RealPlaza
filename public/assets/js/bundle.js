@@ -128,6 +128,16 @@ const ListarCoordenadas = () => {
 
 'use strict';
 
+const  filtro= (array, destino) => {
+  return state.data.coordenadas.filter((e,i)=>{
+      if(e.DESTINO.indexOf(destino) !== -1){
+        return e;
+      }
+  });
+};
+
+'use strict';
+
 const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
   const back = $('<span> &#171; </span>');
@@ -146,6 +156,62 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
+const initMap = (mapa) => {
+
+       var map = new google.maps.Map(document.getElementById(mapa), {
+         zoom: 3,
+         center: {lat: -12.172645, lng: -76.992717}
+       });
+
+       // Create an array of alphabetical characters used to label the markers.
+       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+       // Add some markers to the map.
+       // Note: The code uses the JavaScript Array.prototype.map() method to
+       // create an array of markers based on a given "locations" array.
+       // The map() method here has nothing to do with the Google Maps API.
+       var markers = locations.map(function(location, i) {
+         return new google.maps.Marker({
+           position: location,
+           label: labels[i % labels.length]
+         });
+       });
+
+       // Add a marker clusterer to manage the markers.
+       var markerCluster = new MarkerClusterer(map, markers,
+           {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+     }
+     var locations = [
+       {lat: -31.563910, lng: 147.154312},
+       {lat: -33.718234, lng: 150.363181},
+       {lat: -33.727111, lng: 150.371124},
+       {lat: -33.848588, lng: 151.209834},
+       {lat: -33.851702, lng: 151.216968},
+       {lat: -34.671264, lng: 150.863657},
+       {lat: -35.304724, lng: 148.662905},
+       {lat: -36.817685, lng: 175.699196},
+       {lat: -36.828611, lng: 175.790222},
+       {lat: -37.750000, lng: 145.116667},
+       {lat: -37.759859, lng: 145.128708},
+       {lat: -37.765015, lng: 145.133858},
+       {lat: -37.770104, lng: 145.143299},
+       {lat: -37.773700, lng: 145.145187},
+       {lat: -37.774785, lng: 145.137978},
+       {lat: -37.819616, lng: 144.968119},
+       {lat: -38.330766, lng: 144.695692},
+       {lat: -39.927193, lng: 175.053218},
+       {lat: -41.330162, lng: 174.865694},
+       {lat: -42.734358, lng: 147.439506},
+       {lat: -42.734358, lng: 147.501315},
+       {lat: -42.735258, lng: 147.438000},
+       {lat: -43.999792, lng: 170.463352}
+     ]
+
+$( _ => {
+  const mapa = $('<div id="map"></div>');
+  $('.root').append(mapa);
+  initMap();
+ });
 
 'use strict';
 
@@ -166,37 +232,13 @@ const MapaGrande = (update) => {
 
   btnIrTienda.on('click',(e) => {
     state.page = 12;
+    state.selectTienda = 'VACANCY';
     update();
   });
 
 
   return section;
 }
-
-// 'use strict';
-// const MapaMall = (update) => {
-//   const section = $('<section></section>');
-//
-//   const divMap = $('<div></div>');
-//   const mapMall =  $('<div id="map">acá va el mapa</div>');
-//
-//   const divDetails = $('<div></div>');
-//   const detailsMall =  $('<div>acá van los detalles</div>');
-//
-//
-//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
-//
-//   section.append(divMap);
-//   divMap.append(mapMall);
-//
-//   section.append(divDetails);
-//   divDetails.append(detailsMall);
-//
-//
-//
-//   return section;
-//
-// };
 
 'use strict';
 
@@ -243,22 +285,29 @@ const ChoiceOption = (update) => {
 
 'use strict';
 const ChoiceMall = (update) => {
-  const section = $('<section></section>');
-
+  console.log(state.selectRegion);
   const divMall = $('<div></div>');
-  const mall = $('<div><p>Real Plaza Chorrillos...</p></div>');
-  const btnNext = $('<button>Next</button>');
+  ListarInmueble().then((response) => {
+    // console.log(state.data.inm_departamento);
+    $.each(state.data.inm_departamento, ( key, value ) =>  {
+      const name = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
+      const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
+      const btnNext = $('<button>Ver Detalle</button>');
+      btnNext.on('click',(e)=>{
+        state.selectTienda = value;
+        e.preventDefault();
+        state.page = 6;
+        update();
+      });
+      divMall.append(name,direccion,btnNext);
+    });
+  });
+  const section = $('<section></section>');
 
   section.append(HeaderAll('lista de las tiendas de cada departamento',3,update));
 
   section.append(divMall);
-  divMall.append(mall,btnNext);
 
-  btnNext.on('click', (e) => {
-    e.preventDefault();
-    state.page = 6;
-    update();
-  });
   return section;
 
 };
@@ -270,11 +319,13 @@ const ChoiceRegion = (update) => {
   const divChoice = $('<div></div>');
 
   ListarDepartamentos().then((response) => {
-    console.log(state.data.departamentos);
+    // console.log(state.data.departamentos);
     $.each( state.data.departamentos, ( key, value ) =>  {
       const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
+        console.log(value.COD_DEPARTAMENTO);
+        state.selectRegion = "15";
         e.preventDefault();
         state.page = 5;
         update();
@@ -291,12 +342,11 @@ const ChoiceRegion = (update) => {
 };
 
 'use strict';
-
 const DetalleMall  = (update) => {
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const mapa        = $('<di class=""mapv></div>');
+  const mapa        = $('<div id="map-detail" class="map"></div>');
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
   const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
 
@@ -313,6 +363,9 @@ const DetalleMall  = (update) => {
     state.page = 8;
     update();
   });
+
+
+
   return section;
 }
 
@@ -366,6 +419,7 @@ const ListTiendas  = (update) => {
 'use strict';
 
 const ListaCentros  = (update) => {
+  console.log(state.selectTienda);
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
@@ -397,23 +451,24 @@ const ListaCentros  = (update) => {
 
 'use strict';
 const MapaLocation = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1          = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
-  const btnNext    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const section   = $('<section></section>');
+  const container = $('<div class="container"></div>');
+  const row       = $('<div class="row"></div>');
+  const h1        = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
+  const divMap    = $('<div id="map-location" class="map"></div>');
+  const btnNext   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
 
-  row.append(h1,btnNext);
+  row.append(h1,divMap,btnNext);
 
   container.append(row);
   section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
   section.append(container);
 
+
   btnNext.on('click',() => {
     state.page = 5;
     update();
   });
-
 
   return section;
 
@@ -421,10 +476,26 @@ const MapaLocation = (update) => {
 
 'use strict';
 
-const MapaSVG = (update) => {
+const MapaSVG = (destino,update) => {
   const section     = $('<section>Mapa SVG</section>');
 
+  var bg = $(`<div style="width:761px;height:426px;background-color:blue;float:left;background-image: url(assets/img/guardia_civil.png);">`);
+  var svg = `<svg xmlns="http://www.w3.org/2000/svg" version='1.1' width="100%" height="100%" >`;
+
   section.append(HeaderAll('mapa svg ',11,update));
+        ListarCoordenadas().then((response)=>{
+          var pasos = filtro(state.data.coordenadas,destino);
+
+          $.each( pasos, ( key, value ) => {
+            const line = `<line id="" x1=`+value.X1+` y1=`+value.Y1+` x2='`+value.X2+`' y2=`+value.Y2+` style='stroke:blue;stroke-width:5'/>`;
+            svg += line;
+          });
+          svg += '</svg></div>';
+          console.log(bg);
+          bg.append(svg);
+
+        });
+        section.append(bg);
 
   return section;
 }
@@ -510,13 +581,7 @@ const Welcome = (update) => {
 }
 
 'use strict';
-const  filtro= (array, destino) => {
-  return state.data.coordenadas.filter((e,i)=>{
-      if(e.DESTINO.indexOf(destino) !== -1){
-        return e;
-      }
-  });
-};
+
 
 const render = (root) => {
   root.empty();
@@ -532,6 +597,9 @@ const render = (root) => {
     wrapper.append(ChoiceRegion(_=>{ render(root) }));
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap("map-location");
+    },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   }
@@ -540,6 +608,9 @@ const render = (root) => {
   }
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
+    setTimeout(function(){
+      initMap('map-detail');
+    },500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
   }else if (state.page == 9){
@@ -549,14 +620,16 @@ const render = (root) => {
   }else if (state.page == 11){
     wrapper.append(MapaGrande(_=>{ render(root) }));
   }else if (state.page == 12){
-    wrapper.append(MapaSVG(_=>{ render(root) }));
+    wrapper.append(MapaSVG(state.selectTienda,_=>{ render(root) }));
   }
 
   root.append(wrapper);
 };
 const state = {
-  page: 0,
-  data:{}
+  page: 2,
+  data:{},
+  selectRegion:null,
+  selectTienda:null
 };
 
 $( _ => {
@@ -580,7 +653,7 @@ $( _ => {
     // console.log(filtro(arr,'VACANCY'));
   });
 
-  console.log(state.data);
+  // console.log(state.data);
   const root = $("#root");
   render(root);
 });

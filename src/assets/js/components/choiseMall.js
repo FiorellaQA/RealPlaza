@@ -1,21 +1,28 @@
 'use strict';
 const ChoiceMall = (update) => {
-  const section = $('<section></section>');
-
+  console.log(state.selectRegion);
   const divMall = $('<div></div>');
-  const mall = $('<div><p>Real Plaza Chorrillos...</p></div>');
-  const btnNext = $('<button>Next</button>');
+  ListarInmueble().then((response) => {
+    // console.log(state.data.inm_departamento);
+    $.each(state.data.inm_departamento, ( key, value ) =>  {
+      const name = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
+      const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
+      const btnNext = $('<button>Ver Detalle</button>');
+      btnNext.on('click',(e)=>{
+        state.selectTienda = value;
+        e.preventDefault();
+        state.page = 6;
+        update();
+      });
+      divMall.append(name,direccion,btnNext);
+    });
+  });
+  const section = $('<section></section>');
 
   section.append(HeaderAll('lista de las tiendas de cada departamento',3,update));
 
   section.append(divMall);
-  divMall.append(mall,btnNext);
 
-  btnNext.on('click', (e) => {
-    e.preventDefault();
-    state.page = 6;
-    update();
-  });
   return section;
 
 };
