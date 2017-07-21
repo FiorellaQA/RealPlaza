@@ -1,6 +1,7 @@
 'use strict';
 
 const MapaSVG = (update) => {
+  console.log(update);
   console.log(state.nombreDestino);
   console.log(state.codigoInmueble);
   const section     = $('<section>Mapa SVG</section>');

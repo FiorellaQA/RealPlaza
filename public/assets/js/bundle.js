@@ -168,62 +168,98 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
-const initMap = (mapa) => {
 
-       var map = new google.maps.Map(document.getElementById(mapa), {
-         zoom: 3,
-         center: {lat: -12.172645, lng: -76.992717}
-       });
+//centros
+const laboratoriaLima = { lat: -12.1191427, lng: -77.0349046};
+const RPChorrillos = {lat: -12.172645, lng: -76.992717};
+let myLocation;
 
-       // Create an array of alphabetical characters used to label the markers.
-       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const initMap = (mapa,centro) => {
 
-       // Add some markers to the map.
-       // Note: The code uses the JavaScript Array.prototype.map() method to
-       // create an array of markers based on a given "locations" array.
-       // The map() method here has nothing to do with the Google Maps API.
-       var markers = locations.map(function(location, i) {
-         return new google.maps.Marker({
-           position: location,
-           label: labels[i % labels.length]
-         });
-       });
+  var map = new google.maps.Map(document.getElementById(mapa), {
+    zoom: 18,
+    center: centro,
+  });
 
-       // Add a marker clusterer to manage the markers.
-       var markerCluster = new MarkerClusterer(map, markers,
-           {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-     }
-     var locations = [
-       {lat: -31.563910, lng: 147.154312},
-       {lat: -33.718234, lng: 150.363181},
-       {lat: -33.727111, lng: 150.371124},
-       {lat: -33.848588, lng: 151.209834},
-       {lat: -33.851702, lng: 151.216968},
-       {lat: -34.671264, lng: 150.863657},
-       {lat: -35.304724, lng: 148.662905},
-       {lat: -36.817685, lng: 175.699196},
-       {lat: -36.828611, lng: 175.790222},
-       {lat: -37.750000, lng: 145.116667},
-       {lat: -37.759859, lng: 145.128708},
-       {lat: -37.765015, lng: 145.133858},
-       {lat: -37.770104, lng: 145.143299},
-       {lat: -37.773700, lng: 145.145187},
-       {lat: -37.774785, lng: 145.137978},
-       {lat: -37.819616, lng: 144.968119},
-       {lat: -38.330766, lng: 144.695692},
-       {lat: -39.927193, lng: 175.053218},
-       {lat: -41.330162, lng: 174.865694},
-       {lat: -42.734358, lng: 147.439506},
-       {lat: -42.734358, lng: 147.501315},
-       {lat: -42.735258, lng: 147.438000},
-       {lat: -43.999792, lng: 170.463352}
-     ]
+  var marker;
+  var functionLocalization = function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    //map.setCenter(pos);
+    map.setZoom(18);
 
+    marker = new google.maps.Marker({
+      position: pos,
+      map: map
+    });
+  };
+
+  var functionNotFounded = function(error) {
+    alert("Encontramos un inconveniente para ver tu ubicación");
+  };
+
+  if (navigator.geolocation) {
+    myLocation = navigator.geolocation.getCurrentPosition(functionLocalization, functionNotFounded);
+    return myLocation;
+  }
+
+
+};
+
+
+
+
+/*var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+ var markers = locations.map(function(location, i) {
+ return new google.maps.Marker({
+ position: location,
+ label: labels[i % labels.length]
+ });
+ });
+
+
+ // Add a marker clusterer to manage the markers.
+ var markerCluster = new MarkerClusterer(map, markers,
+ {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+ */
+/*
+  var locations = [
+    {lat: -31.563910, lng: 147.154312},
+    {lat: -33.718234, lng: 150.363181},
+    {lat: -33.727111, lng: 150.371124},
+    {lat: -33.848588, lng: 151.209834},
+    {lat: -33.851702, lng: 151.216968},
+    {lat: -34.671264, lng: 150.863657},
+    {lat: -35.304724, lng: 148.662905},
+    {lat: -36.817685, lng: 175.699196},
+    {lat: -36.828611, lng: 175.790222},
+    {lat: -37.750000, lng: 145.116667},
+    {lat: -37.759859, lng: 145.128708},
+    {lat: -37.765015, lng: 145.133858},
+    {lat: -37.770104, lng: 145.143299},
+    {lat: -37.773700, lng: 145.145187},
+    {lat: -37.774785, lng: 145.137978},
+    {lat: -37.819616, lng: 144.968119},
+    {lat: -38.330766, lng: 144.695692},
+    {lat: -39.927193, lng: 175.053218},
+    {lat: -41.330162, lng: 174.865694},
+    {lat: -42.734358, lng: 147.439506},
+    {lat: -42.734358, lng: 147.501315},
+    {lat: -42.735258, lng: 147.438000},
+    {lat: -43.999792, lng: 170.463352}
+  ];
+*/
+
+
+/*
 $( _ => {
   const mapa = $('<div id="map"></div>');
   $('.root').append(mapa);
   initMap();
- });
+ });*/
 
 'use strict';
 
@@ -400,7 +436,7 @@ const DetalleMall  = (update) => {
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
   const name   = $('<h2>'+state.selectTienda.NOM_INMUEBLE+'</h2>');
   const direccion = $('<div><h3>'+state.selectTienda.DIRECCION+'</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit   anim id est laborum.</p</div>');
-  const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir</button>');
+  const btnIr     = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Ir con Waze</a></button>');
 
   row.append(mapa);
   div.append(name,direccion);
@@ -417,10 +453,8 @@ const DetalleMall  = (update) => {
     update();
   });
 
-
-
   return section;
-}
+};
 
 'use strict';
 
@@ -536,7 +570,8 @@ const MapaLocation = (update) => {
     });
   });
 
-  row.append(h1,divMap,divMall);
+  const irRP      = $('<button><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Usar Waze</a></button>');
+  row.append(h1,divMap,divMall,irRP);
 
   container.append(row);
   section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
@@ -549,6 +584,7 @@ const MapaLocation = (update) => {
 'use strict';
 
 const MapaSVG = (update) => {
+  console.log(update);
   console.log(state.nombreDestino);
   console.log(state.codigoInmueble);
   const section     = $('<section>Mapa SVG</section>');
@@ -681,7 +717,7 @@ const render = (root) => {
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
     setTimeout(function(){
-      initMap("map-location");
+      initMap("map-location",laboratoriaLima);
     },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
@@ -692,7 +728,7 @@ const render = (root) => {
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
     setTimeout(function(){
-      initMap('map-detail');
+      initMap('map-detail',RPChorrillos);
     },500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
@@ -703,7 +739,7 @@ const render = (root) => {
   }else if (state.page == 11){
     wrapper.append(MapaGrande(_=>{ render(root) }));
   }else if (state.page == 12){
-    wrapper.append(MapaSVG(state.selectTienda,_=>{ render(root) }));
+    wrapper.append(MapaSVG(_=>{ render(root) }));
   }
 
   root.append(wrapper);

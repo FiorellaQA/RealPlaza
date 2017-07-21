@@ -16,7 +16,7 @@ const render = (root) => {
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
     setTimeout(function(){
-      initMap("map-location");
+      initMap("map-location",laboratoriaLima);
     },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
@@ -27,7 +27,7 @@ const render = (root) => {
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
     setTimeout(function(){
-      initMap('map-detail');
+      initMap('map-detail',RPChorrillos);
     },500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
@@ -38,7 +38,7 @@ const render = (root) => {
   }else if (state.page == 11){
     wrapper.append(MapaGrande(_=>{ render(root) }));
   }else if (state.page == 12){
-    wrapper.append(MapaSVG(state.selectTienda,_=>{ render(root) }));
+    wrapper.append(MapaSVG(_=>{ render(root) }));
   }
 
   root.append(wrapper);

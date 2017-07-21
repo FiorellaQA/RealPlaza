@@ -22,7 +22,8 @@ const MapaLocation = (update) => {
     });
   });
 
-  row.append(h1,divMap,divMall);
+  const irRP      = $('<button><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Usar Waze</a></button>');
+  row.append(h1,divMap,divMall,irRP);
 
   container.append(row);
   section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
