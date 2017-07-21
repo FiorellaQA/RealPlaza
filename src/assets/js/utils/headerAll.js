@@ -8,5 +8,11 @@ const HeaderAll = (titulo,update) => {
   header.append(back);
   header.append(title);
 
+  back.on('click', (e) => {
+    e.preventDefault();
+    state.page--;
+    update();
+  });
+
   return header;
 };

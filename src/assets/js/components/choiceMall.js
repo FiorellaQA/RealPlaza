@@ -3,21 +3,25 @@
 const ChoiceProv = (update) => {
   const section = $('<section></section>');
 
+  ListarDepartamentos().then((response) => {
+    console.log(state.data.departamentos);
+    $.each( state.data.departamentos, ( key, value ) =>  {
+      const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
+      divChoice.append(region);
+      region.on('click', (e) => {
+        e.preventDefault();
+        state.page = 2;
+        update();
+      });
+    });
+  });
   const divChoice = $('<div></div>');
-  const lima = $('<div><p>Lima</p></div>');
-  const prov = $('<div><p>Provincia</p></div>');
 
-  section.append(HeaderAll('Elige tu Real Plaza preferido'));
+
+  section.append(HeaderAll('Elige tu Real Plaza preferido',update));
 
   section.append(divChoice);
-  divChoice.append(lima);
-  divChoice.append(prov);
 
-  lima.on('click', (e) => {
-    e.preventDefault();
-    state.page = 2;
-    update();
-  });
 
 
   return section;
@@ -28,7 +32,6 @@ const ChoiceProv = (update) => {
   const divLima = $('<div></div>');
 };*/
 
-'use strict';
 
 const ChoiceMall = (update) => {
   const section = $('<section></section>');
@@ -36,7 +39,7 @@ const ChoiceMall = (update) => {
   const divMall = $('<div></div>');
   const mall = $('<div><p>Real Plaza Chorrillos</p></div>');
 
-  section.append(HeaderAll('Lima'));
+  section.append(HeaderAll('Lima',update));
 
   section.append(divMall);
   divMall.append(mall);
@@ -64,7 +67,7 @@ const MapaMall = (update) => {
   const detailsMall =  $('<div>acá van los detalles</div>');
 
 
-  section.append(HeaderAll('Real Plaza Chorrillos'));
+  section.append(HeaderAll('Real Plaza Chorrillos',update));
 
   section.append(divMap);
   divMap.append(mapMall);

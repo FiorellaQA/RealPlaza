@@ -87,29 +87,40 @@ const HeaderAll = (titulo,update) => {
   header.append(back);
   header.append(title);
 
+  back.on('click', (e) => {
+    e.preventDefault();
+    state.page--;
+    update();
+  });
+
   return header;
 };
+
 
 'use strict';
 
 const ChoiceProv = (update) => {
   const section = $('<section></section>');
 
+  ListarDepartamentos().then((response) => {
+    console.log(state.data.departamentos);
+    $.each( state.data.departamentos, ( key, value ) =>  {
+      const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
+      divChoice.append(region);
+      region.on('click', (e) => {
+        e.preventDefault();
+        state.page = 2;
+        update();
+      });
+    });
+  });
   const divChoice = $('<div></div>');
-  const lima = $('<div><p>Lima</p></div>');
-  const prov = $('<div><p>Provincia</p></div>');
 
-  section.append(HeaderAll('Elige tu Real Plaza preferido'));
+
+  section.append(HeaderAll('Elige tu Real Plaza preferido',update));
 
   section.append(divChoice);
-  divChoice.append(lima);
-  divChoice.append(prov);
 
-  lima.on('click', (e) => {
-    e.preventDefault();
-    state.page = 2;
-    update();
-  });
 
 
   return section;
@@ -120,7 +131,6 @@ const ChoiceProv = (update) => {
   const divLima = $('<div></div>');
 };*/
 
-'use strict';
 
 const ChoiceMall = (update) => {
   const section = $('<section></section>');
@@ -128,7 +138,7 @@ const ChoiceMall = (update) => {
   const divMall = $('<div></div>');
   const mall = $('<div><p>Real Plaza Chorrillos</p></div>');
 
-  section.append(HeaderAll('Lima'));
+  section.append(HeaderAll('Lima',update));
 
   section.append(divMall);
   divMall.append(mall);
@@ -156,7 +166,7 @@ const MapaMall = (update) => {
   const detailsMall =  $('<div>acá van los detalles</div>');
 
 
-  section.append(HeaderAll('Real Plaza Chorrillos'));
+  section.append(HeaderAll('Real Plaza Chorrillos',update));
 
   section.append(divMap);
   divMap.append(mapMall);
@@ -169,6 +179,7 @@ const MapaMall = (update) => {
   return section;
 
 };
+
 'use strict';
 
 const ChoiceOption = (update) => {
@@ -220,7 +231,6 @@ const ChoiceOption = (update) => {
 
 'use strict';
 const  filtro= (array, destino) => {
-  console.log(state.data);
   return state.data.coordenadas.filter((e,i)=>{
       if(e.DESTINO.indexOf(destino) !== -1){
         return e;
@@ -234,8 +244,6 @@ const render = (root) => {
 
   if(state.page == null){
     wrapper.append(ChoiceOption(_=>{ render(root) }));
-
-    //wrapper.append(ChoiceMall(_=>{ render(root) }));
   } else if (state.page == 1){
     wrapper.append(ChoiceProv(_=>{ render(root) }));
   } else if (state.page == 2){
@@ -257,14 +265,18 @@ $( _ => {
   const cod_rubro = 17;
 
   ListarInmuebles();
-  ListarDepartamentos();
+  ListarDepartamentos().then((response) => {
+    $.each( state.data.departamentos, ( key, value ) =>  {
+
+      // alert( key + ": " + value );
+    });
+  });
   ListarInmueble(cod_depa);
   ListarRubro(cod_inmueble);
   ListarLocales(cod_inmueble,cod_rubro);
   ListarCoordenadas().then((response)=>{
-    console.log(state.data.coordenadas);
     var arr = state.data.coordenadas;
-    console.log(filtro(arr,'VACANCY'));
+    // console.log(filtro(arr,'VACANCY'));
   });
 
   const root = $("#root");
