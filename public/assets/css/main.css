@@ -8,40 +8,38 @@
   padding-left: 0 !important;
 }
 
-#inicioSesion {
-  height: 100vh;
+#login .login__bg {
+  height: 70vh;
+  background-image: url("../img/bg2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
+  box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
 }
 
-#inicioSesion img {
-  height: 125px;
-}
-
-#inicioSesion .contentButton {
-  height: 216px;
+#login .contentButton {
+  height: 200px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
 
-#inicioSesion .contentButton :nth-child(1) {
+#login .contentButton :nth-child(1) {
+  color: white;
   margin-bottom: 10px;
   width: 63%;
-  background-color: #f0b339;
+  background-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(240, 179, 57, 0.66), 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
 }
 
-#inicioSesion .contentButton :nth-child(2) {
-  width: 63%;
-  background-color: #f0b339;
-}
-
-.ejemplo {
-  /*Chrome, Safari*/
-  -webkit-transition: width 8ms linear 1s;
-  /*Firefox*/
-  -moz-transition: width 8ms linear 1s;
-  /*Opera*/
-  -o-transition: width 8ms linear 1s;
-  /*Standard*/
-  transition: width 8ms linear 1s;
+#login .contentButton :nth-child(1):hover {
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
