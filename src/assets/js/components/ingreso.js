@@ -2,24 +2,24 @@
 
 const InicioSesion = (update) => {
 	const section = $('<section></section>');
-	const container = $('<div class="container"></div>');
+	const container = $('<div id="inicioSesion" class="container-fluid"></div>');
 
 	const rowImage = $('<div class="row"></div>');
 
-	const col1 = $('<div class="col-xs-4"></div>');
-	const col2 = $('<div class="col-xs-4"></div>');
-	const col3 = $('<div class="col-xs-4"></div>');
+	const col1 = $('<div class="no-padding col-xs-4"></div>');
+	const col2 = $('<div class="no-padding col-xs-4"></div>');
+	const col3 = $('<div class="no-padding col-xs-4"></div>');
 
-	const imgTienda1 = $('<img src="assets/img/tienda.png" alt="Centro Comercial Salaverry">');
-	const imgTienda2 = $('<img src="assets/img/tienda2.png" alt="Centro Comercial Salaverry">');
-	const imgTienda3 = $('<img src="assets/img/tienda3.png" alt="Centro Comercial Salaverry">');
-	const imgTienda4 = $('<img src="assets/img/tienda4.png" alt="Centro Comercial Salaverry">');
-	const imgTienda5 = $('<img src="assets/img/tienda5.png" alt="Centro Comercial Salaverry">');
+	const imgTienda1 = $('<img class="img-responsive" src="assets/img/tienda.png" alt="Centro Comercial Salaverry">');
+	const imgTienda2 = $('<img class="img-responsive" src="assets/img/tienda2.png" alt="Centro Comercial Salaverry">');
+	const imgTienda3 = $('<img class="img-responsive" src="assets/img/tienda3.png" alt="Centro Comercial Salaverry">');
+	const imgTienda4 = $('<img class="img-responsive" src="assets/img/tienda4.png" alt="Centro Comercial Salaverry">');
+	const imgTienda5 = $('<img class="img-responsive" src="assets/img/tienda5.png" alt="Centro Comercial Salaverry">');
 
-	const logo1 = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
-	const logo2 = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
-	const logo3 = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
-	const logo4 = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
+	const logo1 = $('<img class="img-responsive" src="assets/img/logo.jpg" alt="Logo Real Plaza">');
+	const logo2 = $('<img class="img-responsive" src="assets/img/logo.jpg" alt="Logo Real Plaza">');
+	const logo3 = $('<img class="img-responsive" src="assets/img/logo.jpg" alt="Logo Real Plaza">');
+	const logo4 = $('<img class="img-responsive" src="assets/img/logo.jpg" alt="Logo Real Plaza">');
 
 	col1.append(imgTienda1);
 	col1.append(logo1);
@@ -38,10 +38,10 @@ const InicioSesion = (update) => {
 	rowImage.append(col3);
 
 
-	const rowBtn = $('<div class="row"></div>');
+	const rowBtn = $('<div class="row contentButton"></div>');
 
-	const btnNext1 = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
-	const btnNext2 = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+	const btnNext1 = $('<button type="button" class="btn btn-warning btn-connect btn-lg uppercase" name="button">Facebook</button>');
+	const btnNext2 = $('<button type="button" class="btn btn-warning btn-connect btn-lg uppercase" name="button">Google</button>');
 
 	rowBtn.append(btnNext1);
 	rowBtn.append(btnNext2);

@@ -1,7 +1,7 @@
 'use strict';
 
 const HeaderAll = (titulo,number,update) => {
-  const header = $('<header></header>');
+  const header = $('<header class="col-xs-12"></header>');
   const back = $('<span> &#171; </span>');
   const title = $('<h3>'+titulo+'</h3>');
 
