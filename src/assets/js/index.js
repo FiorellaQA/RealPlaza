@@ -2,10 +2,10 @@
 
 const render = (root) => {
   root.empty();
-  const wrapper = $('<div class="wrapper">hjjhj</div>');
+  const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == null){
-    wrapper.append(Header(_=>{ render(root) }));
+    wrapper.append(IniciarSesion(_=>{ render(root) }));
   }
 
   root.append(wrapper);
@@ -30,7 +30,7 @@ $( _ => {
   ListarRubro(cod_inmueble);
   ListarLocales(cod_inmueble,cod_rubro);
 
-  // console.log(state.data);
-  // const root = $("#root");
-  // render(root);
+  console.log(state.data);
+  const root = $("#root");
+  render(root);
 });

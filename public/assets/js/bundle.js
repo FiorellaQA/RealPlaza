@@ -40,19 +40,125 @@ const ListarLocales = (cod_inmueble,cod_rubro) => {
 };
 
 'use strict';
- const Header = (update) => {
-   const header = $('<header></header>');
-   return header;
- };
+
+const IniciarSesion = (update) => {
+  const section     = $('<section></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+  const logo        = $('<div class="col-xs-12 text-center"><img src="assets/img/logo.png" class="img-responsive" alt="Logo de Real Plaza"></div>');
+  const btnSignUp   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">sign up</button></div>');
+  const btnLogIn    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+
+  row.append(logo);
+  row.append(btnSignUp);
+  row.append(btnLogIn);
+
+  container.append(row);
+  section.append(container);
+
+  $('.btn-connect').on('click',() => {
+    state.page = 2;
+  });
+
+
+  return section;
+}
+
+'use strict';
+
+const ListaCC  = () => {
+  const section     = $('<section id="cargarLista"></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+  const logo        = $('<div class="col-xs-12"><img src="assets/img/logo.png" alt="Logo de Real Plaza"></div>');
+  const btnElegirCC = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-tienda uppercase" name="button" id="elegirCC">tiendas</button></div>');
+  const btnLocate   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button></div>');
+
+  row.append(logo);
+  row.append(btnLocate);
+  row.append(btnElegirCC);
+
+  container.append(row);
+  section.append(container);
+
+  $('.btn-tienda').on('click', () => {
+    state.page = 10;
+  });
+
+  $('.btn-informacion').on('click', () => {
+    state.page = 8;
+  });
+
+  return section;
+}
+
+'use strict';
+
+const Rubros = (update) => {
+  const section     = $('<section></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+
+  container.append(row);
+  section.append(container);
+
+  $.each(state.data,(index,json) => {
+    let rubro = createRubro(json);
+    container.append(rubro);
+  });
+
+  return section;
+}
+
+const createRubro = (json) => {
+  const row       = $('<div class="content-history row"></div>');
+  const texto     = $('<div class="col-xs-12"><label class="texto">'+ +'</label></div>');
+  const tiendas   = $('<div class="col-xs-12"><a href="" class="pull-right comentar" data-id="">Ver tiendas</a></div>');
+
+  row.append(texto);
+  row.append(comentar);
+
+  return row;
+
+  $('.comentar').on('click',() => {
+    state.page = 12;
+  });
+
+}
+
+'use strict';
+
+const Tiendas = (update) => {
+  const section     = $('<section></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+  const logo        = $('<div class="col-xs-12 text-center"><img src="assets/img/logo.png" class="img-responsive" alt="Logo de Real Plaza"></div>');
+  const btnSignUp   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">sign up</button></div>');
+  const btnLogIn    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+
+  row.append(logo);
+  row.append(btnSignUp);
+  row.append(btnLogIn);
+
+  container.append(row);
+  section.append(container);
+
+  $('.btn-connect').on('click',() => {
+    state.page = 2;
+  });
+
+
+  return section;
+}
 
 'use strict';
 
 const render = (root) => {
   root.empty();
-  const wrapper = $('<div class="wrapper">hjjhj</div>');
+  const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == null){
-    wrapper.append(Header(_=>{ render(root) }));
+    wrapper.append(IniciarSesion(_=>{ render(root) }));
   }
 
   root.append(wrapper);
@@ -77,9 +183,9 @@ $( _ => {
   ListarRubro(cod_inmueble);
   ListarLocales(cod_inmueble,cod_rubro);
 
-  // console.log(state.data);
-  // const root = $("#root");
-  // render(root);
+  console.log(state.data);
+  const root = $("#root");
+  render(root);
 });
 
 },{}]},{},[1])

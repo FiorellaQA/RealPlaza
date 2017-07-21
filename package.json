@@ -2,7 +2,7 @@
   "name": "real-plaza",
   "version": "1.0.0",
   "description": "Cómo llegar al mall más cercano y luego a la tienda que quiero ir",
-  "main": "server.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
