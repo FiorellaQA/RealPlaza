@@ -1,18 +1,29 @@
-'use strict';
+''use strict';
 
 const Welcome = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const logo        = $('<div class="col-xs-12 text-center"><img src="assets/img/logo.png" class="img-responsive" alt="Logo de Real Plaza"></div>');
-  const btnSignUp   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">sign up</button></div>');
-  const btnLogIn    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const section = $('<section></section>');
+  const container = $('<div id="welcome" class="container-fluid"></div>');
 
-  row.append(logo);
-  row.append(btnSignUp);
-  row.append(btnLogIn);
+  const rowImage = $('<div class="welcome__bg row"></div>');
+  const rowBtn = $('<div class="welcome_btn contentButton row"></div>');
 
-  container.append(row);
+  const div =$('<div class="content_logo"></div>');
+  const logo = $('<img src="assets/img/logoRealPlaza.png" width="200" alt="Logo Real Plaza">');
+
+  const btnSignUp = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Sign up</button>');
+  const btnLogIn = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Log in</button>');
+
+  div.append(logo);
+  rowImage.append(div);
+
+  rowBtn
+    .append(btnSignUp)
+    .append(btnLogIn);
+
+  container
+    .append(rowImage)
+    .append(rowBtn);
+
   section.append(container);
 
   btnSignUp.on('click',(e) => {
@@ -25,4 +36,4 @@ const Welcome = (update) => {
   });
 
   return section;
-}
+};

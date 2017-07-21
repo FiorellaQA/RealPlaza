@@ -100,3 +100,67 @@ line  {
   width: 250px;
   outline: none;
 }
+
+.welcome__bg{
+  background-image: url("../img/salaverry.jpg");
+}
+.login__bg,
+.welcome__bg{
+  height: 70vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  -webkit-box-shadow: inset -2px -6px 91px 9px rgba(0,0,0,0.66);
+  -moz-box-shadow: inset -2px -6px 91px 9px rgba(0,0,0,0.66);
+  box-shadow: inset -2px -6px 91px 9px rgba(0,0,0,0.66);
+  .content_logo {
+    height: 187px;
+    border: 7px solid white;
+    margin: 93px;
+    img {
+      left: 67px;
+      position: absolute;
+      top: 107px;
+    }
+  }
+}
+.contentButton{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  :nth-child(1){
+    color: white;
+    margin-bottom: 10px;
+    width: 63%;
+    background-color: #000000 ;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgb(80, 77, 77), 0 3px 6px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover{
+      color: white;
+      transform: translateY(1px);
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+  }
+  :nth-child(2){
+    color: white;
+    margin-bottom: 10px;
+    width: 63%;
+    background-color: #000000 ;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgb(80, 77, 77), 0 3px 6px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover{
+      color: white;
+      transform: translateY(1px);
+      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+  }
+}

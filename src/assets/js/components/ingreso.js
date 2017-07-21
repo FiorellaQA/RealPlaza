@@ -1,22 +1,28 @@
 'use strict';
 
 const InicioSesion = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1          = $('<h1>Inicio de Seccion con Facebook y Gmail</h1>');
-  const btnNext     = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const section = $('<section></section>');
+  const container = $('<div id="login" class="container-fluid"></div>');
 
-  row.append(h1,btnNext);
+  const rowImage = $('<div class="login__bg row"></div>');
+  const rowBtn = $('<div class="login_btn contentButton row"></div>');
 
-  container.append(row);
-  section.append(HeaderAll('',0,update));
+  const btn = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Facebook</button>');
+
+  rowBtn.append(btn);
+
+  container
+    .append(rowImage)
+    .append(rowBtn);
+
+  /*section.append(HeaderAll('Logeate',0,update));*/
   section.append(container);
 
-  btnNext.on('click',(e) => {
+  btn.on('click',(e) => {
+    console.log('click');
     state.page = 2;
     update();
   });
 
   return section;
-}
+};

@@ -291,7 +291,6 @@ const ChoiceMall = (update) => {
   return section;
 
 };
-
 'use strict';
 
 const ChoiceOption = (update) => {
@@ -645,14 +644,13 @@ const ComoLlegar = (update) => {
   return section;
 
 };
-
 'use strict';
 
 const TiendaElegida = (update) => {
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const h1          = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
   const divComercial= $('<div></div>');
   ListarLocales().then((response) => {
     $.each( state.data.locales, ( key, value ) =>  {
@@ -667,7 +665,7 @@ const TiendaElegida = (update) => {
     });
   });
   const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
-  const info_tienda     = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
+  const info_tienda = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
 
   row.append(h1,mapMall,divComercial);
 
@@ -678,22 +676,31 @@ const TiendaElegida = (update) => {
 
   return section;
 }
-
 'use strict';
 
 const Welcome = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const logo        = $('<div class="col-xs-12 text-center"><img src="assets/img/logo.png" class="img-responsive" alt="Logo de Real Plaza"></div>');
-  const btnSignUp   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">sign up</button></div>');
-  const btnLogIn    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const section = $('<section></section>');
+  const container = $('<div id="welcome" class="container-fluid"></div>');
 
-  row.append(logo);
-  row.append(btnSignUp);
-  row.append(btnLogIn);
+  const rowImage = $('<div class="welcome__bg row"></div>');
+  const rowBtn = $('<div class="welcome_btn contentButton row"></div>');
 
-  container.append(row);
+  //const logo = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
+
+
+  const btnSignUp = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Sign up</button>');
+  const btnLogIn = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Log in</button>');
+
+
+  rowBtn
+    .append(btnSignUp)
+    .append(btnLogIn);
+
+  container
+    .append(rowImage)
+    .append(rowBtn);
+
+  /*section.append(HeaderAll('Logeate',0,update));*/
   section.append(container);
 
   btnSignUp.on('click',(e) => {
@@ -706,8 +713,7 @@ const Welcome = (update) => {
   });
 
   return section;
-}
-
+};
 'use strict';
 
 
@@ -754,7 +760,7 @@ const render = (root) => {
   root.append(wrapper);
 };
 const state = {
-  page: 2,
+  page: 0,
   data:{},
   selectRegion:null,
   selectTienda:null,
