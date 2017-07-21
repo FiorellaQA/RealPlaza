@@ -14,7 +14,7 @@ const ListaCentros  = (update) => {
 
   container.append(row);
 
-  section.append(HeaderAll('Mall elegirdo: infoy tiendas(rubros)',5,update));
+  section.append(HeaderAll('',5,update));
   section.append(container);
 
   btnElegirCC.on('click', (e) => {

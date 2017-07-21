@@ -12,7 +12,7 @@ const TiendaElegida = (update) => {
   row.append(h1,mapMall,info_tienda,btnVerMapaGrande);
 
   container.append(row);
-  section.append(HeaderAll('tienda elegida mapa e info',9,update));
+  section.append(HeaderAll('',9,update));
   section.append(container);
 
   btnVerMapaGrande.on('click',(e) => {

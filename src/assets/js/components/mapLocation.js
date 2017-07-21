@@ -9,7 +9,7 @@ const MapaLocation = (update) => {
   row.append(h1,btnNext);
 
   container.append(row);
-  section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
+  section.append(HeaderAll('',2,update));
   section.append(container);
 
   btnNext.on('click',() => {

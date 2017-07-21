@@ -17,7 +17,7 @@ const ChoiceRegion = (update) => {
     });
   });
 
-  section.append(HeaderAll('Elige tu tu departamento',2,update));
+  section.append(HeaderAll('',2,update));
 
   section.append(divChoice);
 

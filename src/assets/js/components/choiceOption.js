@@ -1,26 +1,29 @@
 'use strict';
 
 const ChoiceOption = (update) => {
-  const section = $('<section></section>');
+  const section   = $('<section class="choiceOption"></section>');
+  const container = $('<div class="container-fluid"></div>')
 
-  const divDetails = $('<div></div>');
-  const title = $('<h2>REAL PLAZA</h2>');
-  const subtitle = $('<h2>19 | centros comerciales EN TODO EL PERÚ</h2>');
-  const detailsRP = $('<p>Descubre todo lo que tenemos para ti</p>');
+  const rowDetails = $('<div class="row"></div>');
+  const title      = $('<h2>REAL PLAZA</h2>');
+  const subtitle   = $('<h2>Encuentra tu centro comercial más cercano</h2>');
+  const detailsRP  = $('<p>Descubre todo lo que tenemos para ti</p>');
 
-  const divChoiceOption = $('<div></div>');
-  const btnChoiceRP = $('<button>Ingresa a tu Real Plaza preferido</button>');
+  const rowBtn         = $('<div class="row"></div>');
+  const btnChoiceRP    = $('<button>Busca tu Real Plaza preferido</button>');
   const btnUseLocation = $('<button>Prefiero usar mi ubicación</button>');
 
   // section.append(HeaderAll('Elige una opción',1,update));
-  section.append(divDetails);
-  divDetails.append(title);
-  divDetails.append(subtitle);
-  divDetails.append(detailsRP);
+  section.append(container);
 
-  section.append(divChoiceOption);
-  divChoiceOption.append(btnUseLocation);
-  divChoiceOption.append(btnChoiceRP);
+  container.append(rowDetails);
+  rowDetails.append(title);
+  rowDetails.append(subtitle);
+  rowDetails.append(detailsRP);
+
+  container.append(rowBtn);
+  rowBtn.append(btnUseLocation);
+  rowBtn.append(btnChoiceRP);
 
   btnChoiceRP.on('click', (e) => {
     e.preventDefault();
@@ -36,7 +39,5 @@ const ChoiceOption = (update) => {
   });
 
   return section;
-
-
 
 };

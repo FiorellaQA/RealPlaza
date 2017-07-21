@@ -12,7 +12,7 @@ const ComoLlegar = (update) => {
   row.append(btnLlegue);
 
   container.append(row);
-  section.append(HeaderAll('Bontones de como llegar con uber o Waze',7,update));
+  section.append(HeaderAll('',7,update));
   section.append(container);
 
   btnLlegue.on('click', (e) => {

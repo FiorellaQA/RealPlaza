@@ -130,8 +130,8 @@ const ListarCoordenadas = () => {
 
 const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
-  const back = $('<span> &#171; </span>');
-  const title = $('<h3>'+titulo+'</h3>');
+  const back   = $('<div class="col-xs-2 vertical-align"><span class="glyphicon glyphicon-chevron-left"></span></div>');
+  const title  = $('<div class="col-xs-10 vertical-align"><h3>'+titulo+'</h3></div>');
 
   header.append(back);
   header.append(title);
@@ -148,79 +148,53 @@ const HeaderAll = (titulo,number,update) => {
 
 
 'use strict';
+const ChoiceMall = (update) => {
+  const section = $('<section></section>');
 
-const MapaGrande = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
-  const mapMall     = $('<div class="map-mall">imagen</div>');
-  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
+  const divMall = $('<div></div>');
+  const mall = $('<div><p>Real Plaza Chorrillos...</p></div>');
+  const btnNext = $('<button>Next</button>');
 
-  row.append(h1,mapMall,btnIrTienda);
+  section.append(HeaderAll('',3,update));
 
-  container.append(row);
-  section.append(HeaderAll('mapa grande ',10,update));
-  section.append(container);
+  section.append(divMall);
+  divMall.append(mall,btnNext);
 
-  btnIrTienda.on('click',(e) => {
-    state.page = 12;
+  btnNext.on('click', (e) => {
+    e.preventDefault();
+    state.page = 6;
     update();
   });
-
-
   return section;
-}
 
-// 'use strict';
-// const MapaMall = (update) => {
-//   const section = $('<section></section>');
-//
-//   const divMap = $('<div></div>');
-//   const mapMall =  $('<div id="map">acá va el mapa</div>');
-//
-//   const divDetails = $('<div></div>');
-//   const detailsMall =  $('<div>acá van los detalles</div>');
-//
-//
-//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
-//
-//   section.append(divMap);
-//   divMap.append(mapMall);
-//
-//   section.append(divDetails);
-//   divDetails.append(detailsMall);
-//
-//
-//
-//   return section;
-//
-// };
+};
 
 'use strict';
 
 const ChoiceOption = (update) => {
-  const section = $('<section></section>');
+  const section   = $('<section class="choiceOption"></section>');
+  const container = $('<div class="container-fluid"></div>')
 
-  const divDetails = $('<div></div>');
-  const title = $('<h2>REAL PLAZA</h2>');
-  const subtitle = $('<h2>19 | centros comerciales EN TODO EL PERÚ</h2>');
-  const detailsRP = $('<p>Descubre todo lo que tenemos para ti</p>');
+  const rowDetails = $('<div class="row"></div>');
+  const title      = $('<h2>REAL PLAZA</h2>');
+  const subtitle   = $('<h2>Encuentra tu centro comercial más cercano</h2>');
+  const detailsRP  = $('<p>Descubre todo lo que tenemos para ti</p>');
 
-  const divChoiceOption = $('<div></div>');
-  const btnChoiceRP = $('<button>Ingresa a tu Real Plaza preferido</button>');
+  const rowBtn         = $('<div class="row"></div>');
+  const btnChoiceRP    = $('<button>Busca tu Real Plaza preferido</button>');
   const btnUseLocation = $('<button>Prefiero usar mi ubicación</button>');
 
   // section.append(HeaderAll('Elige una opción',1,update));
-  section.append(divDetails);
-  divDetails.append(title);
-  divDetails.append(subtitle);
-  divDetails.append(detailsRP);
+  section.append(container);
 
-  section.append(divChoiceOption);
-  divChoiceOption.append(btnUseLocation);
-  divChoiceOption.append(btnChoiceRP);
+  container.append(rowDetails);
+  rowDetails.append(title);
+  rowDetails.append(subtitle);
+  rowDetails.append(detailsRP);
+
+  container.append(rowBtn);
+  rowBtn.append(btnUseLocation);
+  rowBtn.append(btnChoiceRP);
 
   btnChoiceRP.on('click', (e) => {
     e.preventDefault();
@@ -235,30 +209,6 @@ const ChoiceOption = (update) => {
 
   });
 
-  return section;
-
-
-
-};
-
-'use strict';
-const ChoiceMall = (update) => {
-  const section = $('<section></section>');
-
-  const divMall = $('<div></div>');
-  const mall = $('<div><p>Real Plaza Chorrillos...</p></div>');
-  const btnNext = $('<button>Next</button>');
-
-  section.append(HeaderAll('lista de las tiendas de cada departamento',3,update));
-
-  section.append(divMall);
-  divMall.append(mall,btnNext);
-
-  btnNext.on('click', (e) => {
-    e.preventDefault();
-    state.page = 6;
-    update();
-  });
   return section;
 
 };
@@ -282,7 +232,7 @@ const ChoiceRegion = (update) => {
     });
   });
 
-  section.append(HeaderAll('Elige tu tu departamento',2,update));
+  section.append(HeaderAll('',2,update));
 
   section.append(divChoice);
 
@@ -298,7 +248,7 @@ const DetalleMall  = (update) => {
   const row         = $('<div class="row"></div>');
   const mapa        = $('<di class=""mapv></div>');
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
+  const btnIr       = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
 
   row.append(mapa);
   row.append(div);
@@ -306,7 +256,7 @@ const DetalleMall  = (update) => {
 
   container.append(row);
 
-  section.append(HeaderAll('Mapa e Info',6,update));
+  section.append(HeaderAll('',6,update));
   section.append(container);
 
   btnIr.on('click', (e) => {
@@ -323,12 +273,12 @@ const InicioSesion = (update) => {
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
   const h1          = $('<h1>Inicio de Seccion con Facebook y Gmail</h1>');
-  const btnNext    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const btnNext     = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
 
   row.append(h1,btnNext);
 
   container.append(row);
-  section.append(HeaderAll('Logeate',0,update));
+  section.append(HeaderAll('',0,update));
   section.append(container);
 
   btnNext.on('click',(e) => {
@@ -347,13 +297,13 @@ const ListTiendas  = (update) => {
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
   const logo        = $('<div class="col-xs-12"><img src="assets/img/logo.png" alt="Logo de Real Plaza"></div>');
-  const btnIr   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a Tienda Elegida</button></div>');
+  const btnIr       = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a Tienda Elegida</button></div>');
 
   row.append(logo);
   row.append(btnIr);
 
   container.append(row);
-  section.append(HeaderAll('Listado de las tienda o rubros del mall',8,update));
+  section.append(HeaderAll('',8,update));
   section.append(container);
 
   btnIr.on('click', (e) => {
@@ -379,7 +329,7 @@ const ListaCentros  = (update) => {
 
   container.append(row);
 
-  section.append(HeaderAll('Mall elegirdo: infoy tiendas(rubros)',5,update));
+  section.append(HeaderAll('',5,update));
   section.append(container);
 
   btnElegirCC.on('click', (e) => {
@@ -396,6 +346,32 @@ const ListaCentros  = (update) => {
 }
 
 'use strict';
+
+const MapaGrande = (update) => {
+  const section     = $('<section></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+  const h1          = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const input       = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
+  const mapMall     = $('<div class="map-mall">imagen</div>');
+  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
+
+  row.append(h1,mapMall,btnIrTienda);
+
+  container.append(row);
+  section.append(HeaderAll('',10,update));
+  section.append(container);
+
+  btnIrTienda.on('click',(e) => {
+    state.page = 12;
+    update();
+  });
+
+
+  return section;
+}
+
+'use strict';
 const MapaLocation = (update) => {
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
@@ -406,7 +382,7 @@ const MapaLocation = (update) => {
   row.append(h1,btnNext);
 
   container.append(row);
-  section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
+  section.append(HeaderAll('',2,update));
   section.append(container);
 
   btnNext.on('click',() => {
@@ -422,9 +398,9 @@ const MapaLocation = (update) => {
 'use strict';
 
 const MapaSVG = (update) => {
-  const section     = $('<section>Mapa SVG</section>');
+  const section  = $('<section></section>');
 
-  section.append(HeaderAll('mapa svg ',11,update));
+  section.append(HeaderAll('',11,update));
 
   return section;
 }
@@ -443,7 +419,7 @@ const ComoLlegar = (update) => {
   row.append(btnLlegue);
 
   container.append(row);
-  section.append(HeaderAll('Bontones de como llegar con uber o Waze',7,update));
+  section.append(HeaderAll('',7,update));
   section.append(container);
 
   btnLlegue.on('click', (e) => {
@@ -468,7 +444,7 @@ const TiendaElegida = (update) => {
   row.append(h1,mapMall,info_tienda,btnVerMapaGrande);
 
   container.append(row);
-  section.append(HeaderAll('tienda elegida mapa e info',9,update));
+  section.append(HeaderAll('',9,update));
   section.append(container);
 
   btnVerMapaGrande.on('click',(e) => {
@@ -508,6 +484,31 @@ const Welcome = (update) => {
 
   return section;
 }
+
+// 'use strict';
+// const MapaMall = (update) => {
+//   const section = $('<section></section>');
+//
+//   const divMap = $('<div></div>');
+//   const mapMall =  $('<div id="map">acá va el mapa</div>');
+//
+//   const divDetails = $('<div></div>');
+//   const detailsMall =  $('<div>acá van los detalles</div>');
+//
+//
+//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
+//
+//   section.append(divMap);
+//   divMap.append(mapMall);
+//
+//   section.append(divDetails);
+//   divDetails.append(detailsMall);
+//
+//
+//
+//   return section;
+//
+// };
 
 'use strict';
 const  filtro= (array, destino) => {

@@ -1,0 +1,56 @@
+@import "colors";
+@import "fonts";
+@import "sizes";
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.no-padding{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.vertical-align{
+  display: flex;
+  align-items: center;
+}
+
+// Header
+header{
+  height: $primary-height/15;
+  background-color: #eee;
+  -moz-box-shadow:    inset 0 0 20px #DDDDDD;
+  -webkit-box-shadow: inset 0 0 20px #DDDDDD;
+  box-shadow:         inset 0 0 20px #DDDDDD;
+  .col-xs-2{
+    height: 100%;
+    span{
+      @extend .no-padding;
+      font-size: $primary-font-size + 14px;
+      color: #000;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+//Welcome
+
+//LogIn
+
+//ChoiceOption
+.choiceOption{
+  height: $primary-height;
+  .row:first-child{
+    background-image: url('../img/fachada-inte.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .row:last-child{
+    @extend .vertical-align ;
+    border: 2px solid $primary-color;
+  }
+}
