@@ -572,7 +572,7 @@ const MapaLocation = (update) => {
       const divMall   = $('<div class="col-xs-12"></div>');
       const name      = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
       const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
-      const btnNext = $('<button class="push-right">Ver Detalle</button>');
+      const btnNext   = $('<button class="push-right">Ver Detalle</button>');
       btnNext.on('click',(e)=>{
         state.selectTienda = value;
         e.preventDefault();
@@ -672,7 +672,7 @@ const TiendaElegida = (update) => {
     });
   });
   const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
-  const info_tienda     = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
+  const info_tienda = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
 
   row.append(h1,mapMall,divComercial);
 

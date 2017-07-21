@@ -19,7 +19,7 @@ const TiendaElegida = (update) => {
     });
   });
   const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
-  const info_tienda     = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
+  const info_tienda = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
 
   row.append(h1,mapMall,divComercial);
 
