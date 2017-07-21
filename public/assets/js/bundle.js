@@ -368,7 +368,7 @@ const ChoiceRegion = (update) => {
 'use strict';
 const DetalleMall  = (update) => {
   console.log(state.selectTienda);
-  const section     = $('<section id="cargarLista"></section>');
+  const section     = $('<section id=""></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
 
