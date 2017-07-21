@@ -295,29 +295,28 @@ const ChoiceMall = (update) => {
 'use strict';
 
 const ChoiceOption = (update) => {
-  const section   = $('<section class="choiceOption"></section>');
-  const container = $('<div class="container-fluid"></div>')
+  const section = $('<section class="choiceOption_bg container-fluid"></section>');
 
-  const rowDetails = $('<div class="row"></div>');
-  const title      = $('<h2>REAL PLAZA</h2>');
-  const subtitle   = $('<h2>Encuentra tu centro comercial más cercano</h2>');
-  const detailsRP  = $('<p>Descubre todo lo que tenemos para ti</p>');
+  const divDetails = $('<div class="row"></div>');
+  const colTexto = $('<div class="col-xs-12"></div>');
+  const title = $('<h2 class="localizacion__title">Encuentra tu centro comercial más cercano</h2>');
+  const subtitle = $('<p class="localizacion__subtitle">Vive la experiencia de comprar usando tu localización</p>');
 
-  const rowBtn         = $('<div class="row"></div>');
-  const btnChoiceRP    = $('<button>Busca tu Real Plaza preferido</button>');
-  const btnUseLocation = $('<button>Prefiero usar mi ubicación</button>');
+  const divChoiceOption = $('<div class="row"></div>');
+  const colBtn = $('<div class="col-xs-12 choiceOption_groupBtn"></div>');
+  const btnChoiceRP = $('<button class="btn btn-connect btn-lg uppercase">Ubícame</button>');
+  const btnUseLocation = $('<p class="text">Listado de centros comerciales</p>');
 
-  // section.append(HeaderAll('Elige una opción',1,update));
-  section.append(container);
+  divChoiceOption.append(colBtn);
+  colBtn.append(btnChoiceRP);
+  colBtn.append(btnUseLocation);
 
-  container.append(rowDetails);
-  rowDetails.append(title);
-  rowDetails.append(subtitle);
-  rowDetails.append(detailsRP);
+  divDetails.append(colTexto);
+  colTexto.append(title);
+  colTexto.append(subtitle);
 
-  container.append(rowBtn);
-  rowBtn.append(btnUseLocation);
-  rowBtn.append(btnChoiceRP);
+  section.append(divChoiceOption)
+  section.append(divDetails);
 
   btnChoiceRP.on('click', (e) => {
     e.preventDefault();
@@ -398,19 +397,25 @@ const DetalleMall  = (update) => {
 'use strict';
 
 const InicioSesion = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1          = $('<h1>Inicio de Seccion con Facebook y Gmail</h1>');
-  const btnNext     = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+	const section = $('<section></section>');
+	const container = $('<div id="login" class="container-fluid"></div>');
 
-  row.append(h1,btnNext);
+	const rowImage = $('<div class="login__bg row"></div>');
+	const rowBtn = $('<div class="login_btn contentButton row"></div>');
 
-  container.append(row);
-  section.append(HeaderAll('',0,update));
-  section.append(container);
+	const btn = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Facebook</button>');
 
-  btnNext.on('click',(e) => {
+	rowBtn.append(btn);
+
+  	container
+		.append(rowImage)
+		.append(rowBtn);
+
+  /*section.append(HeaderAll('Logeate',0,update));*/
+  	section.append(container);
+
+  btn.on('click',(e) => {
+    console.log('click');
     state.page = 2;
     update();
   });
@@ -657,7 +662,7 @@ const TiendaElegida = (update) => {
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const h1          = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
   const divComercial= $('<div></div>');
   ListarLocales().then((response) => {
     $.each( state.data.locales, ( key, value ) =>  {
@@ -687,19 +692,29 @@ const TiendaElegida = (update) => {
 'use strict';
 
 const Welcome = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const logo        = $('<div class="col-xs-12 text-center"><img src="assets/img/logo.png" class="img-responsive" alt="Logo de Real Plaza"></div>');
-  const btnSignUp   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">sign up</button></div>');
-  const btnLogIn    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+	const section = $('<section></section>');
+	const container = $('<div id="welcome" class="container-fluid"></div>');
 
-  row.append(logo);
-  row.append(btnSignUp);
-  row.append(btnLogIn);
+	const rowImage = $('<div class="welcome__bg row"></div>');
+	const rowBtn = $('<div class="welcome_btn contentButton row"></div>');
 
-  container.append(row);
-  section.append(container);
+	//const logo = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
+
+
+	const btnSignUp = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Sign up</button>');
+	const btnLogIn = $('<button type="button" class="btn btn-connect btn-lg uppercase" name="button">Log in</button>');
+
+
+	rowBtn
+        .append(btnSignUp)
+        .append(btnLogIn);
+
+	container
+		.append(rowImage)
+		.append(rowBtn);
+
+  /*section.append(HeaderAll('Logeate',0,update));*/
+	section.append(container);
 
   btnSignUp.on('click',(e) => {
     state.page = 1;
@@ -711,7 +726,7 @@ const Welcome = (update) => {
   });
 
   return section;
-}
+};
 
 'use strict';
 

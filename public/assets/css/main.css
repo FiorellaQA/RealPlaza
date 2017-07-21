@@ -45,18 +45,141 @@ header .container .col-xs-2:hover {
 }
 
 .choiceOption .row:last-child {
-  border: 2px solid #6c2774;
+  border: 2px solid #250d28;
 }
 
 .region .col-xs-12 {
   padding: 15px;
   border-bottom: 1px solid #eee;
-  background-image: url("../img/sedes-min/");
-  background-size: cover;
-  background-position: center;
 }
 
 div.map {
   width: 50vw;
   height: 40vh;
+}
+
+.login__bg {
+  background-image: url("../img/salaverry2.jpg");
+}
+
+.welcome__bg {
+  background-image: url("../img/salaverry.jpg");
+}
+
+.login__bg,
+.welcome__bg {
+  height: 70vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  -webkit-box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
+  box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
+}
+
+.contentButton {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contentButton :nth-child(1) {
+  color: white;
+  margin-bottom: 10px;
+  width: 63%;
+  background-color: #250d28;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px #504d4d, 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contentButton :nth-child(1):hover {
+  color: white;
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.contentButton :nth-child(2) {
+  color: white;
+  margin-bottom: 10px;
+  width: 63%;
+  background-color: #250d28;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px #504d4d, 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contentButton :nth-child(2):hover {
+  color: white;
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.choiceOption_bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/madreHijo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  height: 100vh !important;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+}
+
+.choiceOption_bg .localizacion__title {
+  font-size: 34px;
+}
+
+.choiceOption_bg .localizacion__subtitle {
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.choiceOption_bg .choiceOption_groupBtn {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choiceOption_bg .choiceOption_groupBtn button {
+  color: white;
+  margin-bottom: 10px;
+  width: 63%;
+  background: #250d28;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px #504d4d, 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.choiceOption_bg .choiceOption_groupBtn button:hover {
+  color: white;
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.choiceOption_bg .choiceOption_groupBtn .text {
+  color: white;
+  border-bottom: 0.5px solid white;
+}
+
+.localizacion__title {
+  color: white;
+  font-style: 30px;
+  font-weight: bold;
+}
+
+.localizacion__subtitle {
+  color: white;
+  font-style: 20px;
+  font-weight: lighter;
 }

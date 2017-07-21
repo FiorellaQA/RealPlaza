@@ -4,7 +4,7 @@ const TiendaElegida = (update) => {
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const h1          = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
   const divComercial= $('<div></div>');
   ListarLocales().then((response) => {
     $.each( state.data.locales, ( key, value ) =>  {
