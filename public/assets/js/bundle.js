@@ -97,58 +97,52 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
+function initMap() {
+  var mall = {
+    lat: -12.172645,
+    lng: -76.992717
+  };
 
-'use strict';
-
-const MapaGrande = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
-  const mapMall     = $('<div class="map-mall">imagen</div>');
-  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
-
-  row.append(h1,mapMall,btnIrTienda);
-
-  container.append(row);
-  section.append(HeaderAll('mapa grande ',10,update));
-  section.append(container);
-
-  btnIrTienda.on('click',(e) => {
-    state.page = 12;
-    update();
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 18,
+    center: mall
   });
 
+ /* var markadorMall = new google.maps.Marker({
+    position: mall,
+    map: map
+  });*/
+ var marker;
 
-  return section;
+
+  var latitud, longitud, myLocation;
+  var funcionExito = function(posicion) {
+    latitud = posicion.coords.latitude;
+    longitud = posicion.coords.longitude;
+
+    myLocation = new google.maps.Marker({
+      position: { lat: latitud, lng: longitud},
+      map: map
+    });
+
+    map.setZoom(18);
+    map.setCenter({lat: latitud, lng: longitud});
+  };
+
+  var funcionError = function(error) {
+    alert("Tenemos un problema con encontrar tu ubicación");
+  };
+
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(funcionExito, funcionError);
+  }
+
+ //encuentra mi ubicación
+  //document.getElementById('findMe').addEventListener('click', searchMe);
+
+
 }
-
-// 'use strict';
-// const MapaMall = (update) => {
-//   const section = $('<section></section>');
-//
-//   const divMap = $('<div></div>');
-//   const mapMall =  $('<div id="map">acá va el mapa</div>');
-//
-//   const divDetails = $('<div></div>');
-//   const detailsMall =  $('<div>acá van los detalles</div>');
-//
-//
-//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
-//
-//   section.append(divMap);
-//   divMap.append(mapMall);
-//
-//   section.append(divDetails);
-//   divDetails.append(detailsMall);
-//
-//
-//
-//   return section;
-//
-// };
-
 'use strict';
 
 const ChoiceOption = (update) => {
@@ -191,7 +185,6 @@ const ChoiceOption = (update) => {
 
 
 };
-
 'use strict';
 const ChoiceMall = (update) => {
   const section = $('<section></section>');
@@ -342,6 +335,32 @@ const ListaCentros  = (update) => {
     state.page = 7;
     update();
   });
+
+  return section;
+}
+
+'use strict';
+
+const MapaGrande = (update) => {
+  const section     = $('<section></section>');
+  const container   = $('<div class="container"></div>');
+  const row         = $('<div class="row"></div>');
+  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
+  const mapMall     = $('<div class="map-mall">imagen</div>');
+  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
+
+  row.append(h1,mapMall,btnIrTienda);
+
+  container.append(row);
+  section.append(HeaderAll('mapa grande ',10,update));
+  section.append(container);
+
+  btnIrTienda.on('click',(e) => {
+    state.page = 12;
+    update();
+  });
+
 
   return section;
 }

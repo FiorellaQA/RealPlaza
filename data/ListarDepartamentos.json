@@ -1,0 +1,120 @@
+{
+  "@xmlns": "http://rpovhserv10:1001",
+  "metodLabListarDepartamentoResult": {
+    "xs:schema": {
+      "@id": "DsLabListarDepartamento",
+      "@xmlns:xs": "http://www.w3.org/2001/XMLSchema",
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "xs:element": {
+        "@name": "DsLabListarDepartamento",
+        "@msdata:IsDataSet": "true",
+        "@msdata:UseCurrentLocale": "true",
+        "xs:complexType": {
+          "xs:choice": {
+            "@minOccurs": "0",
+            "@maxOccurs": "unbounded",
+            "xs:element": {
+              "@name": "DtLabListarDepartamento",
+              "xs:complexType": {
+                "xs:sequence": {
+                  "xs:element": [
+                    {
+                      "@name": "COD_DEPARTAMENTO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    },
+                    {
+                      "@name": "NOMBRE_DEPARTAMENTO",
+                      "@type": "xs:string",
+                      "@minOccurs": "0"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "diffgr:diffgram": {
+      "@xmlns:msdata": "urn:schemas-microsoft-com:xml-msdata",
+      "@xmlns:diffgr": "urn:schemas-microsoft-com:xml-diffgram-v1",
+      "DsLabListarDepartamento": {
+        "DtLabListarDepartamento": [
+          {
+            "@diffgr:id": "DtLabListarDepartamento1",
+            "@msdata:rowOrder": "0",
+            "COD_DEPARTAMENTO": "02",
+            "NOMBRE_DEPARTAMENTO": "ANCASH"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento2",
+            "@msdata:rowOrder": "1",
+            "COD_DEPARTAMENTO": "04",
+            "NOMBRE_DEPARTAMENTO": "AREQUIPA"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento3",
+            "@msdata:rowOrder": "2",
+            "COD_DEPARTAMENTO": "06",
+            "NOMBRE_DEPARTAMENTO": "CAJAMARCA"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento4",
+            "@msdata:rowOrder": "3",
+            "COD_DEPARTAMENTO": "08",
+            "NOMBRE_DEPARTAMENTO": "CUSCO"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento5",
+            "@msdata:rowOrder": "4",
+            "COD_DEPARTAMENTO": "10",
+            "NOMBRE_DEPARTAMENTO": "HUANUCO"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento6",
+            "@msdata:rowOrder": "5",
+            "COD_DEPARTAMENTO": "12",
+            "NOMBRE_DEPARTAMENTO": "JUNIN"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento7",
+            "@msdata:rowOrder": "6",
+            "COD_DEPARTAMENTO": "13",
+            "NOMBRE_DEPARTAMENTO": "LA LIBERTAD"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento8",
+            "@msdata:rowOrder": "7",
+            "COD_DEPARTAMENTO": "14",
+            "NOMBRE_DEPARTAMENTO": "LAMBAYEQUE"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento9",
+            "@msdata:rowOrder": "8",
+            "COD_DEPARTAMENTO": "15",
+            "NOMBRE_DEPARTAMENTO": "LIMA"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento10",
+            "@msdata:rowOrder": "9",
+            "COD_DEPARTAMENTO": "20",
+            "NOMBRE_DEPARTAMENTO": "PIURA"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento11",
+            "@msdata:rowOrder": "10",
+            "COD_DEPARTAMENTO": "21",
+            "NOMBRE_DEPARTAMENTO": "PUNO"
+          },
+          {
+            "@diffgr:id": "DtLabListarDepartamento12",
+            "@msdata:rowOrder": "11",
+            "COD_DEPARTAMENTO": "25",
+            "NOMBRE_DEPARTAMENTO": "UCAYALI"
+          }
+        ]
+      }
+    }
+  }
+}
