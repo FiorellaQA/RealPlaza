@@ -8,9 +8,17 @@
   padding-left: 0 !important;
 }
 
-#login .login__bg {
+.login__bg {
+  background-image: url("../img/salaverry2.jpg");
+}
+
+.welcome__bg {
+  background-image: url("../img/salaverry.jpg");
+}
+
+.login__bg,
+.welcome__bg {
   height: 70vh;
-  background-image: url("../img/bg2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,7 +27,7 @@
   box-shadow: inset -2px -6px 91px 9px rgba(0, 0, 0, 0.66);
 }
 
-#login .contentButton {
+.contentButton {
   height: 200px;
   display: flex;
   justify-content: center;
@@ -27,7 +35,7 @@
   align-items: center;
 }
 
-#login .contentButton :nth-child(1) {
+.contentButton :nth-child(1) {
   color: white;
   margin-bottom: 10px;
   width: 63%;
@@ -39,7 +47,26 @@
   letter-spacing: 1.5px;
 }
 
-#login .contentButton :nth-child(1):hover {
+.contentButton :nth-child(1):hover {
+  color: white;
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.contentButton :nth-child(2) {
+  color: white;
+  margin-bottom: 10px;
+  width: 63%;
+  background-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(240, 179, 57, 0.66), 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+}
+
+.contentButton :nth-child(2):hover {
+  color: white;
   transform: translateY(1px);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
