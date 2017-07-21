@@ -602,7 +602,7 @@ const MapaSVG = (update) => {
   console.log(state.nombreDestino);
   console.log(state.codigoInmueble);
 
-  var bg = $(`<div style="width:761px;height:426px;margin:21px auto 0;background-image: url(assets/img/guardia_civil.png);">`);
+  var bg = $(`<div id="map-svg" style="width:761px;height:426px;margin:21px auto 0;background-image: url(assets/img/guardia_civil.png);">`);
   var svg = `<svg xmlns="http://www.w3.org/2000/svg" version='1.1' width="100%" height="100%" >`;
 
   ListarCoordenadas().then((response)=>{
