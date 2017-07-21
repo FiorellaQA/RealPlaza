@@ -149,57 +149,6 @@ const HeaderAll = (titulo,number,update) => {
 
 'use strict';
 
-const MapaGrande = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
-  const mapMall     = $('<div class="map-mall">imagen</div>');
-  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
-
-  row.append(h1,mapMall,btnIrTienda);
-
-  container.append(row);
-  section.append(HeaderAll('mapa grande ',10,update));
-  section.append(container);
-
-  btnIrTienda.on('click',(e) => {
-    state.page = 12;
-    update();
-  });
-
-
-  return section;
-}
-
-// 'use strict';
-// const MapaMall = (update) => {
-//   const section = $('<section></section>');
-//
-//   const divMap = $('<div></div>');
-//   const mapMall =  $('<div id="map">acá va el mapa</div>');
-//
-//   const divDetails = $('<div></div>');
-//   const detailsMall =  $('<div>acá van los detalles</div>');
-//
-//
-//   section.append(HeaderAll('Real Plaza Chorrillos',6,update));
-//
-//   section.append(divMap);
-//   divMap.append(mapMall);
-//
-//   section.append(divDetails);
-//   divDetails.append(detailsMall);
-//
-//
-//
-//   return section;
-//
-// };
-
-'use strict';
-
 const ChoiceOption = (update) => {
   const section = $('<section></section>');
 
@@ -296,7 +245,7 @@ const DetalleMall  = (update) => {
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const mapa        = $('<di class=""mapv></div>');
+  const mapa        = $('<div class="map"></div>');
   const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
   const btnIr   = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
 
@@ -396,28 +345,104 @@ const ListaCentros  = (update) => {
 }
 
 'use strict';
-const MapaLocation = (update) => {
+
+const MapaGrande = (update) => {
   const section     = $('<section></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
-  const h1          = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
-  const btnNext    = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
+  const input        = $('<h1 class="col-xs-12 text-center">Buscar </h1>');
+  const mapMall     = $('<div class="map-mall">imagen</div>');
+  const btnIrTienda = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ir a la Tienda</button>');
 
-  row.append(h1,btnNext);
+  row.append(h1,mapMall,btnIrTienda);
+
+  container.append(row);
+  section.append(HeaderAll('mapa grande ',10,update));
+  section.append(container);
+
+  btnIrTienda.on('click',(e) => {
+    state.page = 12;
+    update();
+  });
+
+
+  return section;
+}
+
+'use strict';
+const MapaLocation = (update) => {
+  const section   = $('<section></section>');
+  const container = $('<div class="container"></div>');
+  const row       = $('<div class="row"></div>');
+  const h1        = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
+  const divMap    = $('<div id="map"></div>');
+  const btnNext   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+
+  row.append(h1,divMap,btnNext);
 
   container.append(row);
   section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
   section.append(container);
+
 
   btnNext.on('click',() => {
     state.page = 5;
     update();
   });
 
+  $(() => {
+    const map = new GMaps({
+      div: '#map',
+      lat: -12.172645,
+      lng: -76.992717,
+      zoom: 12
+    });
+/*
+    /!*map.addMarker({
+      lat: -12.172645,
+      lng: -76.992717,
+      //title: state.selectedStation.name,
+      infoWindow: {
+        content: 'Grifo '
+      }
+    });*!/
 
+    var latitud, longitud;
+
+    GMaps.geolocate({
+      success: function(position) {
+        latitud = position.coords.latitude;
+        longitud = position.coords.longitude;
+
+        map.addMarker({
+          lat: latitud,
+          lng: longitud,
+          title: 'Mi ubicación',
+          infoWindow: {
+            content: 'Mi ubicación',
+          }
+        });
+        map.drawRoute({
+          origin: [latitud, longitud],
+          //destination: [state.selectedStation.lat, state.selectedStation.long],
+          travelMode: 'driving',
+          strokeColor: '#131540',
+          strokeOpacity: 0.6,
+          strokeWeight: 6
+        });
+      },
+      error: function(error) {
+        alert('Tenemos un problema con encontrar su ubicación');
+      }
+    });*/
+
+
+  });
   return section;
 
 };
+
 
 'use strict';
 
