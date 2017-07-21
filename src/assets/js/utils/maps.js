@@ -11,6 +11,7 @@ var funcionExito = function(posicion) {
  latitud = posicion.coords.latitude;
  longitud = posicion.coords.longitude;
 
+console.log(posicion.coords.latitude);
  miUbicacion = new google.maps.Marker({
      position: {
          lat: latitud,
