@@ -53,7 +53,16 @@ header .container .col-xs-2:hover {
   border-bottom: 1px solid #eee;
 }
 
-div.map {
-  width: 50vw;
+.map, .map-mall {
+  width: 100vw;
   height: 40vh;
+}
+
+.btn-map {
+  box-shadow: 0 7px 14px #504d4d, 0 3px 6px rgba(0, 0, 0, 0.08);
+  background: #000;
+}
+
+.btn-map a {
+  color: #fff;
 }

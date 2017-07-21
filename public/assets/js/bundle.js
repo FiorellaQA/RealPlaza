@@ -152,7 +152,7 @@ const  filtro= (array, destino) => {
 
 const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
-  const row    = $('<div class="container vertical-align"></row>');
+  const row    = $('<div class="container vertical-align"></div>');
   const back   = $('<div class="col-xs-2"><span class="glyphicon glyphicon-chevron-left"></span></div>');
   const title  = $('<div class="col-xs-10"><h3>'+titulo+'</h3></div>');
 
@@ -366,34 +366,38 @@ const ChoiceRegion = (update) => {
 };
 
 'use strict';
-const DetalleMall  = (update) => {
-  console.log(state.selectTienda);
-  const section     = $('<section id=""></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
+const DetalleMall = (update) => {
+    console.log(state.selectTienda);
+    const section = $('<section id="cargarLista"></section>');
+    const container = $('<div id="" class="container-fluid"></div>');
+    const row = $('<div class="row"></div>');
+    // const col  =$('<div class="col-xs-12 col-lg-12"></div>');
+    const mapa = $('<div id="map-detail" class="map"></div>');
+    const col1 = $('<div class="col-xs-12 col-lg-offset-3 col-lg-6"></div>');
+    const detalle = $('<div class="info"></div>');
+    const name = $('<h2 class="title-tienda text-center" >' + state.selectTienda.NOM_INMUEBLE + '</h2>');
+    const direccion = $('<div class="subtitle-tienda" ><h3 class="text-center">' + state.selectTienda.DIRECCION + '</h3><p class="texto-tienda text-justify" style="padding:0 15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p</div>');
+    const col2 = $('<div class="col-xs-12 col-lg-12 text-center"></div>');
+    const btnIr = $('<button type="button" class="btn btn-lg btn-map uppercase text-center" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">IR CON WAZE</a></button>');
 
-  const mapa        = $('<div id="map-detail" class="map"></div>');
-  const div         = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const name        = $('<h2>'+state.selectTienda.NOM_INMUEBLE+'</h2>');
-  const direccion   = $('<div><h3>'+state.selectTienda.DIRECCION+'</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p</div>');
-  const btnIr       = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Ir con Waze</a></button>');
 
-  row.append(mapa);
-  div.append(name,direccion);
-  row.append(div);
-  row.append(btnIr);
+    detalle.append(name, direccion);
+    row.append(mapa);
+    // row.append(col);
+    col1.append(detalle);
+    row.append(col1);
+    col2.append(btnIr);
+    row.append(col2);
+    container.append(row);
+    section.append(HeaderAll('', 6, update));
+    section.append(container);
 
-  container.append(row);
+    btnIr.on('click', (e) => {
+        state.page = 8;
+        update();
+    });
 
-  section.append(HeaderAll('',6,update));
-  section.append(container);
-
-  btnIr.on('click', (e) => {
-    state.page = 8;
-    update();
-  });
-
-  return section;
+    return section;
 };
 
 'use strict';
@@ -645,34 +649,34 @@ const ComoLlegar = (update) => {
 'use strict';
 
 const TiendaElegida = (update) => {
-  const section     = $('<section></section>');
-  const container   = $('<div class="container"></div>');
-  const row         = $('<div class="row"></div>');
-  const h1        = $('<h1 class="col-xs-12 text-center">Tienda Elegida </h1>');
-  const divComercial= $('<div></div>');
-  ListarLocales().then((response) => {
-    $.each( state.data.locales, ( key, value ) =>  {
-      // console.log(value);
-      const comercial = $('<div><p>'+value.CLIENTE+'<span>&#187;</span></p></div>');
-      const btnVerMapaGrande = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver mapa grande</button>');
-      divComercial.append(comercial,btnVerMapaGrande);
-      btnVerMapaGrande.on('click',(e) => {
-        state.page = 11;
-        update();
-      });
+    const section = $('<section class="tienda-elegida"></section>');
+    const container = $('<div class="container"></div>');
+    const row = $('<div class="row"></div>');
+    const col = $('<div class="col-xs-12 col-lg-12"></div>');
+    const mapMall = $('<div class="map-mall"><img class="map-mall" src="assets/img/guardia_civil.png"></div>');
+    const info_tienda = $('<div class="info-tienda"></div>');
+    const divComercial = $('<div class="col-xs-12 col-lg-12"></div>');
+    col.append(mapMall);
+    row.append(col, divComercial);
+
+    ListarLocales().then((response) => {
+        $.each(state.data.locales, (key, value) => {
+            const comercial = $('<div><p>' + value.CLIENTE + '<span>&#187;</span></p></div>');
+            const btnVerMapaGrande = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">Ver mapa grande</button>');
+            divComercial.append(comercial, btnVerMapaGrande);
+            btnVerMapaGrande.on('click', (e) => {
+                state.page = 11;
+                update();
+            });
+        });
     });
-  });
-  const mapMall     = $('<div class="map-mall"><img src="assets/img/guardia_civil.png"></div>');
-  const info_tienda     = $('<div class="info-tienda">Lorem hjhhghghkffau</div>');
 
-  row.append(h1,mapMall,divComercial);
-
-  container.append(row);
-  section.append(HeaderAll('',9,update));
-  section.append(container);
+    container.append(row);
+    section.append(HeaderAll('', 9, update));
+    section.append(container);
 
 
-  return section;
+    return section;
 }
 
 'use strict';

@@ -66,7 +66,17 @@ header{
 }
 
 // Map
-div.map {
-  width:50vw;
+.map , .map-mall{
+  width:100vw;
   height: 40vh;
+}
+
+.btn-map {
+  box-shadow: 0 7px 14px rgb(80, 77, 77), 0 3px 6px rgba(0, 0, 0, 0.08);
+  background: #000 ;
+
+
+  a{
+      color: #fff;
+  }
 }
