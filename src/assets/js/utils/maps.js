@@ -1,27 +1,61 @@
-const initMap = (mapa) => {
+
+//centros
+const laboratoriaLima = { lat: -12.1191427, lng: -77.0349046};
+const RPChorrillos = {lat: -12.172645, lng: -76.992717};
+let myLocation;
+
+const initMap = (mapa,centro) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
-    zoom: 12,
-    center: {lat: -12.172645, lng: -76.992717}
+    zoom: 18,
+    center: centro,
   });
 
+  var marker;
+  var functionLocalization = function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    //map.setCenter(pos);
+    map.setZoom(18);
 
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-    var markers = locations.map(function(location, i) {
-      return new google.maps.Marker({
-        position: location,
-        label: labels[i % labels.length]
-      });
+    marker = new google.maps.Marker({
+      position: pos,
+      map: map
     });
-
-
-    // Add a marker clusterer to manage the markers.
-    var markerCluster = new MarkerClusterer(map, markers,
-        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
-
   };
+
+  var functionNotFounded = function(error) {
+    alert("Encontramos un inconveniente para ver tu ubicación");
+  };
+
+  if (navigator.geolocation) {
+    myLocation = navigator.geolocation.getCurrentPosition(functionLocalization, functionNotFounded);
+    return myLocation;
+  }
+
+
+};
+
+
+
+
+/*var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+ var markers = locations.map(function(location, i) {
+ return new google.maps.Marker({
+ position: location,
+ label: labels[i % labels.length]
+ });
+ });
+
+
+ // Add a marker clusterer to manage the markers.
+ var markerCluster = new MarkerClusterer(map, markers,
+ {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+ */
+/*
   var locations = [
     {lat: -31.563910, lng: 147.154312},
     {lat: -33.718234, lng: 150.363181},
@@ -47,3 +81,12 @@ const initMap = (mapa) => {
     {lat: -42.735258, lng: 147.438000},
     {lat: -43.999792, lng: 170.463352}
   ];
+*/
+
+
+/*
+$( _ => {
+  const mapa = $('<div id="map"></div>');
+  $('.root').append(mapa);
+  initMap();
+ });*/

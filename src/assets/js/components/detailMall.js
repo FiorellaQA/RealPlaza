@@ -1,12 +1,11 @@
 'use strict';
-
-const DetalleMall  = (update) => {
-  const section    = $('<section id="cargarLista"></section>');
-  const container  = $('<div class="container"></div>');
-  const row        = $('<div class="row"></div>');
-  const mapa       = $('<div id="map-detail" class="map"></div>');
-  const div        = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const btnIr      = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
+const DetalleMall = (update) => {
+  const section   = $('<section id="cargarLista"></section>');
+  const container = $('<div class="container"></div>');
+  const row       = $('<div class="row"></div>');
+  const mapa      = $('<div id="map-detail" class="map"></div>');
+  const div       = $('<div class="info-">Detalle Mall y mapa info</div>');
+  const btnIr     = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Ir con Waze</a></button>');
 
   row.append(mapa);
   row.append(div);
@@ -22,7 +21,5 @@ const DetalleMall  = (update) => {
     update();
   });
 
-
-
   return section;
-}
+};

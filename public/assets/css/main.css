@@ -1,4 +1,4 @@
-.map {
-  width: 50%;
-  height: 80vh;
+div.map {
+  width: 50vw;
+  height: 40vh;
 }

@@ -128,6 +128,16 @@ const ListarCoordenadas = () => {
 
 'use strict';
 
+const  filtro= (array, destino) => {
+  return state.data.coordenadas.filter((e,i)=>{
+      if(e.DESTINO.indexOf(destino) !== -1){
+        return e;
+      }
+  });
+};
+
+'use strict';
+
 const HeaderAll = (titulo,number,update) => {
   const header = $('<header></header>');
   const back = $('<span> &#171; </span>');
@@ -146,30 +156,64 @@ const HeaderAll = (titulo,number,update) => {
   return header;
 };
 
-const initMap = (mapa) => {
+
+//centros
+const laboratoriaLima = { lat: -12.1191427, lng: -77.0349046};
+const RPChorrillos = {lat: -12.172645, lng: -76.992717};
+let myLocation;
+
+const initMap = (mapa,centro) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
-    zoom: 12,
-    center: {lat: -12.172645, lng: -76.992717}
+    zoom: 18,
+    center: centro,
   });
 
+  var marker;
+  var functionLocalization = function(position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    //map.setCenter(pos);
+    map.setZoom(18);
 
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-    var markers = locations.map(function(location, i) {
-      return new google.maps.Marker({
-        position: location,
-        label: labels[i % labels.length]
-      });
+    marker = new google.maps.Marker({
+      position: pos,
+      map: map
     });
-
-
-    // Add a marker clusterer to manage the markers.
-    var markerCluster = new MarkerClusterer(map, markers,
-        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
-
   };
+
+  var functionNotFounded = function(error) {
+    alert("Encontramos un inconveniente para ver tu ubicación");
+  };
+
+  if (navigator.geolocation) {
+    myLocation = navigator.geolocation.getCurrentPosition(functionLocalization, functionNotFounded);
+    return myLocation;
+  }
+
+
+};
+
+
+
+
+/*var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+ var markers = locations.map(function(location, i) {
+ return new google.maps.Marker({
+ position: location,
+ label: labels[i % labels.length]
+ });
+ });
+
+
+ // Add a marker clusterer to manage the markers.
+ var markerCluster = new MarkerClusterer(map, markers,
+ {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+ */
+/*
   var locations = [
     {lat: -31.563910, lng: 147.154312},
     {lat: -33.718234, lng: 150.363181},
@@ -195,6 +239,15 @@ const initMap = (mapa) => {
     {lat: -42.735258, lng: 147.438000},
     {lat: -43.999792, lng: 170.463352}
   ];
+*/
+
+
+/*
+$( _ => {
+  const mapa = $('<div id="map"></div>');
+  $('.root').append(mapa);
+  initMap();
+ });*/
 
 'use strict';
 
@@ -241,22 +294,29 @@ const ChoiceOption = (update) => {
 
 'use strict';
 const ChoiceMall = (update) => {
-  const section = $('<section></section>');
-
+  console.log(state.selectRegion);
   const divMall = $('<div></div>');
-  const mall = $('<div><p>Real Plaza Chorrillos...</p></div>');
-  const btnNext = $('<button>Next</button>');
+  ListarInmueble().then((response) => {
+    // console.log(state.data.inm_departamento);
+    $.each(state.data.inm_departamento, ( key, value ) =>  {
+      const name = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
+      const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
+      const btnNext = $('<button>Ver Detalle</button>');
+      btnNext.on('click',(e)=>{
+        state.selectTienda = value;
+        e.preventDefault();
+        state.page = 6;
+        update();
+      });
+      divMall.append(name,direccion,btnNext);
+    });
+  });
+  const section = $('<section></section>');
 
   section.append(HeaderAll('lista de las tiendas de cada departamento',3,update));
 
   section.append(divMall);
-  divMall.append(mall,btnNext);
 
-  btnNext.on('click', (e) => {
-    e.preventDefault();
-    state.page = 6;
-    update();
-  });
   return section;
 
 };
@@ -268,11 +328,13 @@ const ChoiceRegion = (update) => {
   const divChoice = $('<div></div>');
 
   ListarDepartamentos().then((response) => {
-    console.log(state.data.departamentos);
+    // console.log(state.data.departamentos);
     $.each( state.data.departamentos, ( key, value ) =>  {
       const region = $('<div><p>'+value.NOMBRE_DEPARTAMENTO+'<span>&#187;</span></p></div>');
       divChoice.append(region);
       region.on('click', (e) => {
+        console.log(value.COD_DEPARTAMENTO);
+        state.selectRegion = "15";
         e.preventDefault();
         state.page = 5;
         update();
@@ -289,14 +351,13 @@ const ChoiceRegion = (update) => {
 };
 
 'use strict';
-
-const DetalleMall  = (update) => {
-  const section    = $('<section id="cargarLista"></section>');
-  const container  = $('<div class="container"></div>');
-  const row        = $('<div class="row"></div>');
-  const mapa       = $('<div id="map-detail" class="map"></div>');
-  const div        = $('<div class="info-">Detalle Mall y mapa info</div>');
-  const btnIr      = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar">información</button>');
+const DetalleMall = (update) => {
+  const section   = $('<section id="cargarLista"></section>');
+  const container = $('<div class="container"></div>');
+  const row       = $('<div class="row"></div>');
+  const mapa      = $('<div id="map-detail" class="map"></div>');
+  const div       = $('<div class="info-">Detalle Mall y mapa info</div>');
+  const btnIr     = $('<button type="button" class="btn btn-warning btn-informacion uppercase" name="button" id="localizar"><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Ir con Waze</a></button>');
 
   row.append(mapa);
   row.append(div);
@@ -312,10 +373,9 @@ const DetalleMall  = (update) => {
     update();
   });
 
-
-
   return section;
-}
+};
+
 'use strict';
 
 const InicioSesion = (update) => {
@@ -366,6 +426,7 @@ const ListTiendas  = (update) => {
 'use strict';
 
 const ListaCentros  = (update) => {
+  console.log(state.selectTienda);
   const section     = $('<section id="cargarLista"></section>');
   const container   = $('<div class="container"></div>');
   const row         = $('<div class="row"></div>');
@@ -414,6 +475,7 @@ const MapaGrande = (update) => {
 
   btnIrTienda.on('click',(e) => {
     state.page = 12;
+    state.selectTienda = 'VACANCY';
     update();
   });
 
@@ -429,8 +491,9 @@ const MapaLocation = (update) => {
   const h1        = $('<h1>Mapa de Location con Maps y lista de los real placa cerca</h1>');
   const divMap    = $('<div id="map-location" class="map"></div>');
   const btnNext   = $('<div class="col-xs-12 col-md-6 text-center"><button type="button" class="btn btn-warning btn-connect uppercase" name="button">log in</button></div>');
+  const irRP      = $('<button><a href="https://www.waze.com/ul?preview_venue_id=185468558.1854751119.2213539" target="_blank">Usar Waze</a></button>');
 
-  row.append(h1,divMap,btnNext);
+  row.append(h1,divMap,btnNext,irRP);
 
   container.append(row);
   section.append(HeaderAll('mi ubicacion y lista de todos los Real Plaza en mapa y marcadores',2,update));
@@ -449,10 +512,26 @@ const MapaLocation = (update) => {
 
 'use strict';
 
-const MapaSVG = (update) => {
+const MapaSVG = (destino,update) => {
   const section     = $('<section>Mapa SVG</section>');
 
+  var bg = $(`<div style="width:761px;height:426px;background-color:blue;float:left;background-image: url(assets/img/guardia_civil.png);">`);
+  var svg = `<svg xmlns="http://www.w3.org/2000/svg" version='1.1' width="100%" height="100%" >`;
+
   section.append(HeaderAll('mapa svg ',11,update));
+        ListarCoordenadas().then((response)=>{
+          var pasos = filtro(state.data.coordenadas,destino);
+
+          $.each( pasos, ( key, value ) => {
+            const line = `<line id="" x1=`+value.X1+` y1=`+value.Y1+` x2='`+value.X2+`' y2=`+value.Y2+` style='stroke:blue;stroke-width:5'/>`;
+            svg += line;
+          });
+          svg += '</svg></div>';
+          console.log(bg);
+          bg.append(svg);
+
+        });
+        section.append(bg);
 
   return section;
 }
@@ -538,13 +617,7 @@ const Welcome = (update) => {
 }
 
 'use strict';
-const  filtro= (array, destino) => {
-  return state.data.coordenadas.filter((e,i)=>{
-    if(e.DESTINO.indexOf(destino) !== -1){
-      return e;
-    }
-  });
-};
+
 
 const render = (root) => {
   root.empty();
@@ -561,8 +634,8 @@ const render = (root) => {
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
     setTimeout(function(){
-      initMap('map-location');
-    }, 200);
+      initMap("map-location",laboratoriaLima);
+    },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));
   }
@@ -572,12 +645,10 @@ const render = (root) => {
   else if (state.page == 7){
     wrapper.append(DetalleMall(_=>{ render(root) }));
     setTimeout(function(){
-      initMap('map-detail');
-    }, 200);
+      initMap('map-detail',RPChorrillos);
+    },500);
   }else if (state.page == 8){
     wrapper.append(ComoLlegar(_=>{ render(root) }));
-
-
   }else if (state.page == 9){
     wrapper.append(ListTiendas(_=>{ render(root) }));
   }else if (state.page == 10){
@@ -585,26 +656,23 @@ const render = (root) => {
   }else if (state.page == 11){
     wrapper.append(MapaGrande(_=>{ render(root) }));
   }else if (state.page == 12){
-    wrapper.append(MapaSVG(_=>{ render(root) }));
+    wrapper.append(MapaSVG(state.selectTienda,_=>{ render(root) }));
   }
-
-
-
-
 
   root.append(wrapper);
 };
 const state = {
-  page: 0,
-  data:{}
+  page: 2,
+  data:{},
+  selectRegion:null,
+  selectTienda:null
 };
 
 $( _ => {
+
   const cod_depa = 15;
   const cod_inmueble = 16;
   const cod_rubro = 17;
-
-
 
   ListarInmuebles();
   ListarDepartamentos().then((response) => {
@@ -621,7 +689,7 @@ $( _ => {
     // console.log(filtro(arr,'VACANCY'));
   });
 
-  console.log(state.data);
+  // console.log(state.data);
   const root = $("#root");
   render(root);
 });
