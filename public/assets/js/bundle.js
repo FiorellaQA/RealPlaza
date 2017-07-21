@@ -277,11 +277,11 @@ const InicioSesion = (update) => {
 	const col2 = $('<div class="col-xs-4"></div>');
 	const col3 = $('<div class="col-xs-4"></div>');
 
-	const imgTienda1 = $('<img src="" alt="">');
-	const imgTienda2 = $('<img src="" alt="">');
-	const imgTienda3 = $('<img src="" alt="">');
-	const imgTienda4 = $('<img src="" alt="">');
-	const imgTienda5 = $('<img src="" alt="">');
+	const imgTienda1 = $('<img src="assets/img/tienda.png" alt="Centro Comercial Salaverry">');
+	const imgTienda2 = $('<img src="assets/img/tienda2.png" alt="Centro Comercial Salaverry">');
+	const imgTienda3 = $('<img src="assets/img/tienda3.png" alt="Centro Comercial Salaverry">');
+	const imgTienda4 = $('<img src="assets/img/tienda4.png" alt="Centro Comercial Salaverry">');
+	const imgTienda5 = $('<img src="assets/img/tienda5.png" alt="Centro Comercial Salaverry">');
 
 	const logo1 = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
 	const logo2 = $('<img src="assets/img/logo.png" alt="Logo Real Plaza">');
