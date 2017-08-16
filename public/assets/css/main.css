@@ -54,7 +54,7 @@ div.map {
 }
 
 .login__bg {
-  background-image: url("../img/salaverry2.jpg");
+  background-image: url("../img/fachada-inte.jpg");
 }
 
 .welcome__bg {
@@ -180,7 +180,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(1) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/arequipa.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/chimbote.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -188,7 +188,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(2) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/cajamarca.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/arequipa.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -196,7 +196,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(3) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/trujillo.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/cajamarca.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -204,7 +204,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(4) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/chimbote.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/primavera.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -228,7 +228,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(7) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/piura.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/trujillo.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -236,7 +236,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(8) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/primavera.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/pucallpa.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -252,7 +252,7 @@ div.map {
 }
 
 .region .col-xs-12:nth-child(10) {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/pucallpa.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/sedes-min/piura.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

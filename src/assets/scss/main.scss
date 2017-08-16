@@ -63,7 +63,7 @@ div.map {
 
 //Login
 .login__bg{
-	background-image: url("../img/salaverry2.jpg");
+	background-image: url("../img/fachada-inte.jpg");
 }
 .welcome__bg{
 	background-image: url("../img/salaverry.jpg");
@@ -176,8 +176,9 @@ div.map {
 
 
 // Region
-$img: "../img/sedes-min/arequipa.jpg", "../img/sedes-min/cajamarca.jpg", "../img/sedes-min/trujillo.jpg","../img/sedes-min/chimbote.jpg", "../img/sedes-min/huanuco.jpg", "../img/sedes-min/juliaca.JPG", "../img/sedes-min/piura.jpg",
-"../img/sedes-min/primavera.jpg", "../img/sedes-min/pro.jpg", "../img/sedes-min/pucallpa.jpg", "../img/sedes-min/santa-clara.jpg",  "../img/sedes-min/puruchuco.jpg";
+$img: "../img/sedes-min/chimbote.jpg", "../img/sedes-min/arequipa.jpg", "../img/sedes-min/cajamarca.jpg", "../img/sedes-min/primavera.jpg", "../img/sedes-min/huanuco.jpg",
+"../img/sedes-min/juliaca.JPG", "../img/sedes-min/trujillo.jpg", "../img/sedes-min/pucallpa.jpg", "../img/sedes-min/pro.jpg", "../img/sedes-min/piura.jpg",
+"../img/sedes-min/santa-clara.jpg",  "../img/sedes-min/puruchuco.jpg";
 .region{
 	@for $i from 1 through length($img)  {
 		.col-xs-12:nth-child(#{$i}){

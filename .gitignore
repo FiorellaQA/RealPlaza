@@ -4,5 +4,8 @@
 #map css
 main.css.map
 
-# Dependency directories
+#Dependency directories
 node_modules/
+
+#ideas WebStorm
+.idea/
