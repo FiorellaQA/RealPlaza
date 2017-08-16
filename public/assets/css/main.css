@@ -165,6 +165,7 @@ div.map {
 .choiceOption_bg .choiceOption_groupBtn .text {
   color: white;
   border-bottom: 0.5px solid white;
+  cursor: pointer;
 }
 
 .localizacion__title {

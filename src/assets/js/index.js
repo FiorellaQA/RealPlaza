@@ -16,7 +16,7 @@ const render = (root) => {
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
     setTimeout(function(){
-      initMap("map-location",laboratoriaLima);
+      initMap("map-location", laboratoriaLima);
     },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));

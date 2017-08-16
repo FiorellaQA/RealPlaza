@@ -11,7 +11,8 @@ const ChoiceOption = (update) => {
   const divChoiceOption = $('<div class="row"></div>');
   const colBtn = $('<div class="col-xs-12 choiceOption_groupBtn"></div>');
   const btnChoiceRP = $('<button class="btn btn-connect btn-lg uppercase">Ubícame</button>');
-  const btnUseLocation = $('<p class="text">Listado de centros comerciales</p>');
+  const btnUseLocation = $('<span class="text">Listado de centros comerciales</span>');
+
 
   divChoiceOption.append(colBtn);
   colBtn.append(btnChoiceRP);
@@ -21,18 +22,18 @@ const ChoiceOption = (update) => {
   colTexto.append(title);
   colTexto.append(subtitle);
 
-  section.append(divChoiceOption)
+  section.append(divChoiceOption);
   section.append(divDetails);
 
   btnChoiceRP.on('click', (e) => {
     e.preventDefault();
-    state.page = 3;
+    state.page = 4;
     update();
   });
 
   btnUseLocation.on('click', (e) => {
     e.preventDefault();
-    state.page = 4;
+    state.page = 3;
     update();
 
   });

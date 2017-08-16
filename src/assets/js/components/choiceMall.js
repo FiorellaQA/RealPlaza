@@ -19,7 +19,7 @@ const ChoiceMall = (update) => {
   });
   const section = $('<section></section>');
 
-  section.append(HeaderAll('',3,update));
+  section.append(HeaderAll('lista de las tiendas de cada departamento',3,update));
 
   section.append(divMall);
 

@@ -179,10 +179,11 @@ var initMap = (mapa,centro) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,
-    center: centro,
+   center: centro,
   });
 
-  var marker;
+  var markerLocation;
+  var markerCC;
   var functionLocalization = function(position) {
     var pos = {
       lat: position.coords.latitude,
@@ -191,11 +192,18 @@ var initMap = (mapa,centro) => {
     //map.setCenter(pos);
     map.setZoom(18);
 
-    marker = new google.maps.Marker({
-      position: centro,
-      map: map,
+    markerLocation = new google.maps.Marker({
+			position: pos,
+			map: map,
 			animation: google.maps.Animation.DROP
-    });
+		});
+
+		markerCC = new google.maps.Marker({
+			position: centro,
+			map: map,
+			animation: google.maps.Animation.DROP
+		});
+
   };
 
   var functionNotFounded = function(error) {
@@ -283,7 +291,7 @@ const ChoiceMall = (update) => {
   });
   const section = $('<section></section>');
 
-  section.append(HeaderAll('',3,update));
+  section.append(HeaderAll('lista de las tiendas de cada departamento',3,update));
 
   section.append(divMall);
 
@@ -304,7 +312,8 @@ const ChoiceOption = (update) => {
   const divChoiceOption = $('<div class="row"></div>');
   const colBtn = $('<div class="col-xs-12 choiceOption_groupBtn"></div>');
   const btnChoiceRP = $('<button class="btn btn-connect btn-lg uppercase">Ubícame</button>');
-  const btnUseLocation = $('<p class="text">Listado de centros comerciales</p>');
+  const btnUseLocation = $('<span class="text">Listado de centros comerciales</span>');
+
 
   divChoiceOption.append(colBtn);
   colBtn.append(btnChoiceRP);
@@ -314,18 +323,18 @@ const ChoiceOption = (update) => {
   colTexto.append(title);
   colTexto.append(subtitle);
 
-  section.append(divChoiceOption)
+  section.append(divChoiceOption);
   section.append(divDetails);
 
   btnChoiceRP.on('click', (e) => {
     e.preventDefault();
-    state.page = 3;
+    state.page = 4;
     update();
   });
 
   btnUseLocation.on('click', (e) => {
     e.preventDefault();
-    state.page = 4;
+    state.page = 3;
     update();
 
   });
@@ -567,14 +576,16 @@ const MapaLocation = (update) => {
   const container  = $('<div class="container"></div>');
   const row        = $('<div class="row"></div>');
   const divMap     = $('<div id="map-location" class="map"></div>');
+	const divMall    = $('<div class="col-xs-12"></div>');
 
-  ListarInmueble().then((response) => {
+
+	ListarInmueble().then((response) => {
     console.log(state.data.inm_departamento);
     $.each(state.data.inm_departamento, ( key, value ) =>  {
-      const divMall   = $('<div class="col-xs-12"></div>');
       const name      = $('<div><h2>'+value.NOM_INMUEBLE+'</h2></div>');
       const direccion = $('<div><h2>'+value.DIRECCION+'</h2></div>');
       const btnNext   = $('<button class="push-right">Ver Detalle</button>');
+
       btnNext.on('click',(e)=>{
         state.selectTienda = value;
         e.preventDefault();
@@ -589,7 +600,7 @@ const MapaLocation = (update) => {
   row.append(divMap,divMall,irRP);
 
   container.append(row);
-  section.append(HeaderAll('',2,update));
+  section.append(HeaderAll('Mi ubicación', 2, update));
   section.append(container);
 
   return section;
@@ -747,7 +758,7 @@ const render = (root) => {
   }else if (state.page == 4){
     wrapper.append(MapaLocation(_=>{ render(root) }));
     setTimeout(function(){
-      initMap("map-location",laboratoriaLima);
+      initMap("map-location", laboratoriaLima);
     },500);
   }else if (state.page == 5){
     wrapper.append(ChoiceMall(_=>{ render(root) }));

@@ -7,10 +7,11 @@ var initMap = (mapa,centro) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,
-    center: centro,
+   center: centro,
   });
 
-  var marker;
+  var markerLocation;
+  var markerCC;
   var functionLocalization = function(position) {
     var pos = {
       lat: position.coords.latitude,
@@ -19,11 +20,18 @@ var initMap = (mapa,centro) => {
     //map.setCenter(pos);
     map.setZoom(18);
 
-    marker = new google.maps.Marker({
-      position: centro,
-      map: map,
+    markerLocation = new google.maps.Marker({
+			position: pos,
+			map: map,
 			animation: google.maps.Animation.DROP
-    });
+		});
+
+		markerCC = new google.maps.Marker({
+			position: centro,
+			map: map,
+			animation: google.maps.Animation.DROP
+		});
+
   };
 
   var functionNotFounded = function(error) {
